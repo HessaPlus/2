@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>نظام حجز مصادر التعلم - حصة بلس</title>
 
-    <!-- إعدادات تطبيق الويب PWA -->
+    <!-- إعدادات تطبيق الويب PWA وأيقونة الآيفون والأندرويد -->
     <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="icon" type="image/jpeg" href="https://e.top4top.io/p_3900ivtyk0.jpeg">
+    <link rel="apple-touch-icon" href="https://e.top4top.io/p_3900ivtyk0.jpeg">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://e.top4top.io/p_3900ivtyk0.jpeg">
     <meta name="theme-color" content="#496875">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -456,7 +458,6 @@
             return;
         }
 
-        // تحويل الرمز للرابط الآمن
         const docId = `school_${sCode.toLowerCase().replace(/\s+/g, '_')}`;
 
         try {
@@ -464,11 +465,9 @@
             const doc = await schoolRef.get();
 
             if (doc.exists) {
-                // مدرسة مسجلة مسبقاً
                 schoolId = docId;
                 schoolName = doc.data().name;
             } else {
-                // مدرسة جديدة تسجيل لأول مرة
                 await schoolRef.set({
                     name: sName,
                     code: sCode,
@@ -478,11 +477,9 @@
                 schoolName = sName;
             }
 
-            // حفظ الجلسة محلياً
             localStorage.setItem('hessa_school_id', schoolId);
             localStorage.setItem('hessa_school_name', schoolName);
 
-            // إخفاء نافذة الدخول وتحديث الواجهة
             document.getElementById('loginModal').style.display = 'none';
             document.getElementById('currentSchoolDisplay').innerText = `المدرسة: ${schoolName}`;
 
@@ -515,18 +512,15 @@
         }
     }
 
-    // جلب البيانات الخاصة بالمدرسة المسجلة دخولها فقط
     function fetchData() {
         if(!schoolId) return;
 
-        // جلب الأسماء
         db.collection("schools").doc(schoolId).collection("teachers").onSnapshot((snapshot) => {
             teachers = [];
             snapshot.forEach((doc) => teachers.push(doc.data().name));
             updateSettingsLists();
         });
 
-        // جلب الحجوزات
         db.collection("schools").doc(schoolId).collection("bookings").onSnapshot((snapshot) => {
             allBookings = [];
             snapshot.forEach((doc) => allBookings.push(doc.data()));
@@ -615,7 +609,6 @@
         }
     }
 
-    // --- إعدادات المعلمين ---
     function importFromExcel() {
         const fileInput = document.getElementById('excelFileInput');
         const file = fileInput.files[0];
