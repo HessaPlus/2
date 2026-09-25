@@ -16,7 +16,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <style>
 :root{
@@ -369,7 +368,7 @@ height:48px;
 
 .report-actions{
 display:grid;
-grid-template-columns:repeat(3,1fr);
+grid-template-columns:repeat(2,1fr);
 gap:10px;
 margin:18px 0;
 }
@@ -458,12 +457,15 @@ border-top:4px solid var(--toffee-brown);
 }
 
 @media(max-width:700px){
+
 .main-title{
 font-size:21px;
 padding:0 35px;
 }
 
-.content-section{padding:15px 10px}
+.content-section{
+padding:15px 10px;
+}
 
 .periods-grid{
 grid-template-columns:repeat(2,minmax(0,1fr));
@@ -471,7 +473,9 @@ gap:12px;
 padding:10px;
 }
 
-.period-card{padding:20px 8px}
+.period-card{
+padding:20px 8px;
+}
 
 .data-card{
 padding:16px;
@@ -487,12 +491,18 @@ gap:12px;
 grid-template-columns:1fr;
 }
 
-.report-actions .btn-action{width:100%}
+.report-actions .btn-action{
+width:100%;
+}
 
-#reportTable{min-width:620px}
+#reportTable{
+min-width:620px;
+}
+
 }
 
 @media print{
+
 @page{
 size:A4 portrait;
 margin:12mm;
@@ -545,6 +555,7 @@ font-weight:bold;
 body.printing-report .report-empty{
 display:none!important;
 }
+
 }
 </style>
 </head>
@@ -553,6 +564,7 @@ display:none!important;
 
 <!-- LOGIN -->
 <div id="loginModal" class="modal">
+
 <div class="modal-content" style="text-align:center;">
 
 <img
@@ -593,10 +605,12 @@ onclick="loginSchool()">
 
 <!-- HEADER BANNER -->
 <div class="header-banner">
+
 <img
 src="https://k.top4top.io/p_3686e38dp0.png"
 onerror="this.src='https://via.placeholder.com/800x150/ffffff/496875?text=%D9%86%D8%B8%D8%A7%D9%85+%D8%AD%D8%AC%D8%B2+%D9%85%D8%B5%D8%A7%D8%AF%D8%B1+%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%85'"
 alt="شعار النظام">
+
 </div>
 
 <!-- HEADER -->
@@ -613,6 +627,7 @@ alt="شعار النظام">
 </div>
 
 <div style="text-align:center;margin-top:10px;">
+
 <button
 id="installAppBtn"
 style="
@@ -626,8 +641,11 @@ font-weight:bold;
 border-radius:20px;
 cursor:pointer;
 box-shadow:0 4px 6px rgba(0,0,0,.2);">
+
 📲 تثبيت تطبيق حصة بلس
+
 </button>
+
 </div>
 
 </header>
@@ -665,7 +683,9 @@ style="color:#ff8a8a;">
 
 <!-- BOOKING -->
 <div id="booking" class="content-section active-section">
+
 <div class="periods-grid" id="periodsGrid"></div>
+
 </div>
 
 <!-- REPORT -->
@@ -682,13 +702,27 @@ style="color:#ff8a8a;">
 <div class="report-controls">
 
 <div class="date-field">
-<label for="startDate">من تاريخ:</label>
-<input type="date" id="startDate">
+
+<label for="startDate">
+من تاريخ:
+</label>
+
+<input
+type="date"
+id="startDate">
+
 </div>
 
 <div class="date-field">
-<label for="endDate">إلى تاريخ:</label>
-<input type="date" id="endDate">
+
+<label for="endDate">
+إلى تاريخ:
+</label>
+
+<input
+type="date"
+id="endDate">
+
 </div>
 
 </div>
@@ -702,7 +736,9 @@ aria-live="polite">
 
 <div class="report-actions">
 
-<button class="btn-action" onclick="handleSearch()">
+<button
+class="btn-action"
+onclick="handleSearch()">
 🔎 بحث
 </button>
 
@@ -715,15 +751,6 @@ disabled>
 🖨️ طباعة التقرير
 </button>
 
-<button
-id="exportPdfBtn"
-class="btn-action"
-style="background:#8e44ad;"
-onclick="handleExportPDF()"
-disabled>
-📄 تصدير PDF
-</button>
-
 </div>
 
 <div
@@ -731,7 +758,9 @@ id="reportLoading"
 class="report-message loading"
 style="display:none;"
 aria-live="polite">
+
 ⏳ جارٍ تحميل البيانات من قاعدة البيانات...
+
 </div>
 
 <div
@@ -744,7 +773,9 @@ style="display:none;">
 
 <div class="print-report-header">
 
-<h2>سجل الحجوزات</h2>
+<h2>
+سجل الحجوزات
+</h2>
 
 <p id="printSchoolName"></p>
 
@@ -757,12 +788,19 @@ style="display:none;">
 <table id="reportTable">
 
 <thead>
+
 <tr>
+
 <th>التاريخ</th>
+
 <th>الحصة</th>
+
 <th>المعلم / المعلمة</th>
+
 <th>التخصص</th>
+
 </tr>
+
 </thead>
 
 <tbody id="reportTableBody"></tbody>
@@ -775,12 +813,15 @@ style="display:none;">
 id="reportEmptyState"
 class="report-empty"
 style="display:none;">
+
 لا توجد حجوزات مسجلة ضمن الفترة المحددة.
-</div>
 
 </div>
 
 </div>
+
+</div>
+
 </div>
 
 <!-- SETTINGS -->
@@ -788,9 +829,13 @@ style="display:none;">
 
 <div class="data-card">
 
-<h3>⚙️ إدارة قائمة المعلمين / المعلمات</h3>
+<h3>
+⚙️ إدارة قائمة المعلمين / المعلمات
+</h3>
 
-<h4>1️⃣ استيراد الأسماء من ملف إكسل (.xlsx / .xls / .csv):</h4>
+<h4>
+1️⃣ استيراد الأسماء من ملف إكسل (.xlsx / .xls / .csv):
+</h4>
 
 <input
 type="file"
@@ -801,20 +846,28 @@ accept=".xlsx,.xls,.csv">
 class="btn-action"
 style="background:#1d6f42;"
 onclick="importFromExcel()">
+
 📊 جلب الأسماء من ملف الإكسل
+
 </button>
 
 <hr style="margin:20px 0;border:1px solid var(--toffee-brown);">
 
-<h4>2️⃣ إضافة معلم / معلمة يدوياً:</h4>
+<h4>
+2️⃣ إضافة معلم / معلمة يدوياً:
+</h4>
 
 <input
 type="text"
 id="newTeacherName"
 placeholder="أدخل اسم المعلم/المعلمة">
 
-<button class="btn-action" onclick="addTeacher()">
+<button
+class="btn-action"
+onclick="addTeacher()">
+
 ➕ إضافة للقائمة
+
 </button>
 
 <hr style="margin:20px 0;border:1px solid var(--toffee-brown);">
@@ -826,18 +879,25 @@ placeholder="أدخل اسم المعلم/المعلمة">
 
 <select id="deleteTeacherSelect"></select>
 
-<button class="btn-danger" onclick="deleteTeacher()">
+<button
+class="btn-danger"
+onclick="deleteTeacher()">
+
 🗑️ حذف الاسم المحدد
+
 </button>
 
 <button
 class="btn-danger"
 style="background:#8b0000;margin-top:10px;"
 onclick="clearAllTeachers()">
+
 ⚠️ مسح جميع الأسماء
+
 </button>
 
 </div>
+
 </div>
 
 <!-- BOOKING MODAL -->
@@ -845,7 +905,9 @@ onclick="clearAllTeachers()">
 
 <div class="modal-content">
 
-<h3 id="modalTitle">تأكيد الحجز</h3>
+<h3 id="modalTitle">
+تأكيد الحجز
+</h3>
 
 <label for="modalTeacherSelect">
 اختر الاسم:
@@ -859,8 +921,12 @@ onclick="clearAllTeachers()">
 
 <select id="modalSubjectSelect"></select>
 
-<button class="btn-action" onclick="confirmBooking()">
+<button
+class="btn-action"
+onclick="confirmBooking()">
+
 تأكيد الحجز ✅
+
 </button>
 
 <button
@@ -873,10 +939,13 @@ color:red;
 margin-top:10px;
 cursor:pointer;
 font-weight:bold;">
+
 إلغاء
+
 </button>
 
 </div>
+
 </div>
 
 <!-- CANCEL MODAL -->
@@ -884,14 +953,20 @@ font-weight:bold;">
 
 <div class="modal-content">
 
-<h3>إلغاء الحجز</h3>
+<h3>
+إلغاء الحجز
+</h3>
 
 <p id="cancelModalText">
 هل أنت متأكد من رغبتك في إلغاء حجز هذه الحصة؟
 </p>
 
-<button class="btn-danger" onclick="confirmCancelBooking()">
+<button
+class="btn-danger"
+onclick="confirmCancelBooking()">
+
 نعم، إلغاء الحجز 🗑️
+
 </button>
 
 <button
@@ -904,18 +979,25 @@ color:#555;
 margin-top:10px;
 cursor:pointer;
 font-weight:bold;">
+
 تراجع
+
 </button>
 
 </div>
+
 </div>
 
 <!-- FOOTER -->
 <footer class="footer">
 
-<p>فكرة وتصميم: نوال ناجم الغنبوصية</p>
+<p>
+فكرة وتصميم: نوال ناجم الغنبوصية
+</p>
 
-<p>©️ 2025 / 2026</p>
+<p>
+©️ 2025 / 2026
+</p>
 
 </footer>
 
@@ -961,6 +1043,7 @@ let bookingsUnsubscribe=null;
 ========================================================= */
 
 const subjects=[
+
 "التربية الإسلامية",
 "اللغة العربية",
 "مجال أول",
@@ -987,6 +1070,7 @@ const subjects=[
 "أخصائي أنشطة",
 "فني دعم أجهزة مدرسية",
 "منسق شؤون مدرسية"
+
 ];
 
 /* =========================================================
@@ -1029,7 +1113,9 @@ const value=String(dateValue).trim();
 const parts=value.split("-");
 
 if(parts.length===3){
+
 return `${parts[2]}/${parts[1]}/${parts[0]}`;
+
 }
 
 return value;
@@ -1059,6 +1145,7 @@ const element=document.getElementById("loginStatus");
 if(!element)return;
 
 element.className="login-status";
+
 element.innerHTML="";
 
 }
@@ -1084,21 +1171,29 @@ function showSection(id){
 document
 .querySelectorAll(".content-section")
 .forEach(section=>{
+
 section.classList.remove("active-section");
+
 });
 
 const target=document.getElementById(id);
 
 if(target){
+
 target.classList.add("active-section");
+
 }
 
 if(id==="settings"){
+
 updateSettingsLists();
+
 }
 
 if(id==="report"){
+
 renderReport();
+
 }
 
 closeNav();
@@ -1134,6 +1229,7 @@ const docId=`school_${sCode
 .replace(/\s+/g,"_")}`;
 
 loginButton.disabled=true;
+
 loginButton.innerText="⏳ جارٍ الاتصال...";
 
 setLoginStatus(
@@ -1154,24 +1250,24 @@ if(schoolDoc.exists){
 const data=schoolDoc.data()||{};
 
 schoolId=docId;
+
 schoolName=data.name||sName;
 
 }else{
 
 await schoolRef.set({
+
 name:sName,
 code:sCode,
 createdAt:firebase.firestore.FieldValue.serverTimestamp()
+
 });
 
 schoolId=docId;
+
 schoolName=sName;
 
 }
-
-/*
- * نحفظ بيانات الدخول فقط بعد نجاح Firebase.
- */
 
 localStorage.setItem(
 "hessa_school_id",
@@ -1183,17 +1279,9 @@ localStorage.setItem(
 schoolName
 );
 
-/*
- * نحدّث الواجهة.
- */
-
 document.getElementById(
 "currentSchoolDisplay"
 ).innerText=`المدرسة: ${schoolName}`;
-
-/*
- * نبدأ الاستماع إلى بيانات المدرسة.
- */
 
 setLoginStatus(
 "✅ تم الاتصال بنجاح. جارٍ تحميل بيانات المدرسة...",
@@ -1201,10 +1289,6 @@ setLoginStatus(
 );
 
 fetchData();
-
-/*
- * إخفاء نافذة الدخول بعد نجاح الاتصال فقط.
- */
 
 setTimeout(()=>{
 
@@ -1258,6 +1342,7 @@ error.message;
 setLoginStatus(message,"error");
 
 loginButton.disabled=false;
+
 loginButton.innerText="دخول إلى النظام 🚀";
 
 }
@@ -1273,13 +1358,17 @@ function logoutSchool(){
 if(confirm("هل ترغب في تسجيل الخروج وتغيير المدرسة؟")){
 
 if(teachersUnsubscribe){
+
 teachersUnsubscribe();
 teachersUnsubscribe=null;
+
 }
 
 if(bookingsUnsubscribe){
+
 bookingsUnsubscribe();
 bookingsUnsubscribe=null;
+
 }
 
 localStorage.removeItem("hessa_school_id");
@@ -1301,7 +1390,9 @@ const savedId=localStorage.getItem("hessa_school_id");
 const savedName=localStorage.getItem("hessa_school_name");
 
 if(!savedId||!savedName){
+
 return;
+
 }
 
 schoolId=savedId;
@@ -1317,11 +1408,6 @@ setLoginStatus(
 );
 
 try{
-
-/*
- * نتحقق من أن Firebase يمكنه الوصول
- * إلى بيانات المدرسة قبل إخفاء نافذة الدخول.
- */
 
 await db
 .collection("registered_schools")
@@ -1390,19 +1476,21 @@ setLoginStatus(message,"error");
 function fetchData(){
 
 if(!schoolId){
+
 return;
+
 }
 
-/*
- * إلغاء أي مستمع قديم.
- */
-
 if(teachersUnsubscribe){
+
 teachersUnsubscribe();
+
 }
 
 if(bookingsUnsubscribe){
+
 bookingsUnsubscribe();
+
 }
 
 /* ================= TEACHERS ================= */
@@ -1422,7 +1510,9 @@ snapshot.forEach(doc=>{
 const data=doc.data();
 
 if(data&&data.name){
+
 teachers.push(data.name);
+
 }
 
 });
@@ -1639,6 +1729,7 @@ async function confirmBooking(){
 if(!schoolId){
 
 alert("يرجى تسجيل الدخول أولاً.");
+
 return;
 
 }
@@ -1656,6 +1747,7 @@ const date=getTodayString();
 if(!teacher){
 
 alert("يرجى اختيار الاسم");
+
 return;
 
 }
@@ -1670,10 +1762,12 @@ await db
 .collection("bookings")
 .doc(docId)
 .set({
+
 date:date,
 period:currentPeriod,
 teacher:teacher,
 subject:subject
+
 });
 
 closeModal();
@@ -1736,6 +1830,7 @@ async function confirmCancelBooking(){
 if(!schoolId){
 
 alert("يرجى تسجيل الدخول أولاً.");
+
 return;
 
 }
@@ -1800,8 +1895,10 @@ const snapshot=await db
 .get();
 
 return snapshot.docs.map(doc=>({
+
 id:doc.id,
 ...doc.data()
+
 }));
 
 }
@@ -1874,7 +1971,9 @@ const dateComparison=
 String(a.date).localeCompare(String(b.date));
 
 if(dateComparison!==0){
+
 return dateComparison;
+
 }
 
 return Number(a.period||0)-Number(b.period||0);
@@ -1924,18 +2023,25 @@ const meta=document.getElementById("reportMeta");
 if(!tbody)return;
 
 tbody.innerHTML="";
+
 emptyState.style.display="none";
+
 meta.style.display="none";
 
 if(!hasReportSearched){
+
 disableReportActions();
+
 return;
+
 }
 
 if(!Array.isArray(filteredData)||filteredData.length===0){
 
 emptyState.style.display="block";
+
 disableReportActions();
+
 return;
 
 }
@@ -1945,22 +2051,34 @@ filteredData.forEach(booking=>{
 const row=document.createElement("tr");
 
 const dateCell=document.createElement("td");
-dateCell.textContent=formatReportDate(booking.date);
+
+dateCell.textContent=
+formatReportDate(booking.date);
 
 const periodCell=document.createElement("td");
 
-const periodNumber=parseInt(booking.period,10);
+const periodNumber=parseInt(
+booking.period,
+10
+);
 
 periodCell.textContent=
-!isNaN(periodNumber)&&pNames[periodNumber-1]
-?`الحصة ${pNames[periodNumber-1]}`
-:`الحصة ${booking.period||""}`;
+!isNaN(periodNumber)&&
+pNames[periodNumber-1]
+?
+`الحصة ${pNames[periodNumber-1]}`
+:
+`الحصة ${booking.period||""}`;
 
 const teacherCell=document.createElement("td");
-teacherCell.textContent=booking.teacher||"";
+
+teacherCell.textContent=
+booking.teacher||"";
 
 const subjectCell=document.createElement("td");
-subjectCell.textContent=booking.subject||"";
+
+subjectCell.textContent=
+booking.subject||"";
 
 row.appendChild(dateCell);
 row.appendChild(periodCell);
@@ -1971,8 +2089,13 @@ tbody.appendChild(row);
 
 });
 
-const startDate=document.getElementById("startDate").value;
-const endDate=document.getElementById("endDate").value;
+const startDate=document.getElementById(
+"startDate"
+).value;
+
+const endDate=document.getElementById(
+"endDate"
+).value;
 
 meta.textContent=
 `عدد الحجوزات: ${filteredData.length} | الفترة: ${formatReportDate(startDate)} إلى ${formatReportDate(endDate)}`;
@@ -2007,20 +2130,12 @@ document.getElementById(
 "printReportBtn"
 ).disabled=!hasData;
 
-document.getElementById(
-"exportPdfBtn"
-).disabled=!hasData;
-
 }
 
 function disableReportActions(){
 
 document.getElementById(
 "printReportBtn"
-).disabled=true;
-
-document.getElementById(
-"exportPdfBtn"
 ).disabled=true;
 
 }
@@ -2034,6 +2149,7 @@ function handlePrint(){
 if(!Array.isArray(filteredData)||filteredData.length===0){
 
 alert("لا توجد بيانات متاحة للطباعة.");
+
 return;
 
 }
@@ -2044,113 +2160,15 @@ window.print();
 
 }
 
-window.addEventListener("afterprint",()=>{
+window.addEventListener(
+"afterprint",
+()=>{
 
-document.body.classList.remove("printing-report");
+document.body.classList.remove(
+"printing-report"
+);
 
 });
-
-/* =========================================================
-   PDF
-========================================================= */
-
-async function handleExportPDF(){
-
-if(!Array.isArray(filteredData)||filteredData.length===0){
-
-alert("لا توجد بيانات متاحة لتصديرها.");
-return;
-
-}
-
-const reportArea=document.getElementById(
-"printReportArea"
-);
-
-if(!reportArea){
-
-alert("تعذر العثور على التقرير.");
-return;
-
-}
-
-if(typeof html2pdf==="undefined"){
-
-alert(
-"لم يتم تحميل مكتبة PDF. تحقق من اتصال الإنترنت ثم أعد المحاولة."
-);
-
-return;
-
-}
-
-const startDate=document.getElementById("startDate").value;
-const endDate=document.getElementById("endDate").value;
-
-const safeStart=startDate.replace(/[^0-9-]/g,"");
-const safeEnd=endDate.replace(/[^0-9-]/g,"");
-
-const fileName=
-`سجل_الحجوزات_${safeStart}_إلى_${safeEnd}.pdf`;
-
-const printHeader=
-reportArea.querySelector(".print-report-header");
-
-const previousDisplay=
-printHeader?printHeader.style.display:"";
-
-if(printHeader){
-printHeader.style.display="block";
-}
-
-const options={
-margin:10,
-filename:fileName,
-image:{
-type:"jpeg",
-quality:.98
-},
-html2canvas:{
-scale:2,
-useCORS:true,
-backgroundColor:"#ffffff",
-logging:false
-},
-jsPDF:{
-unit:"mm",
-format:"a4",
-orientation:"portrait"
-},
-pagebreak:{
-mode:["css","legacy"]
-}
-};
-
-try{
-
-await html2pdf()
-.set(options)
-.from(reportArea)
-.save();
-
-}catch(error){
-
-console.error(
-"PDF export error:",
-error
-);
-
-alert("حدث خطأ أثناء إنشاء ملف PDF.");
-
-}finally{
-
-if(printHeader){
-printHeader.style.display=previousDisplay;
-}
-
-}
-
-}
 
 /* =========================================================
    IMPORT EXCEL
@@ -2177,6 +2195,7 @@ return;
 if(!schoolId){
 
 alert("يرجى تسجيل الدخول أولاً.");
+
 return;
 
 }
@@ -2187,9 +2206,14 @@ reader.onload=async function(e){
 
 try{
 
-const data=new Uint8Array(e.target.result);
+const data=new Uint8Array(
+e.target.result
+);
 
-const workbook=XLSX.read(data,{type:"array"});
+const workbook=XLSX.read(
+data,
+{type:"array"}
+);
 
 const sheet=workbook.Sheets[
 workbook.SheetNames[0]
@@ -2253,7 +2277,10 @@ const docRef=db
 .collection("teachers")
 .doc(name);
 
-batch.set(docRef,{name:name});
+batch.set(
+docRef,
+{name:name}
+);
 
 });
 
@@ -2308,6 +2335,7 @@ if(!name)return;
 if(teachers.includes(name)){
 
 alert("هذا الاسم موجود بالفعل!");
+
 return;
 
 }
@@ -2315,6 +2343,7 @@ return;
 if(!schoolId){
 
 alert("يرجى تسجيل الدخول أولاً.");
+
 return;
 
 }
@@ -2420,7 +2449,9 @@ const snapshot=await db
 const batch=db.batch();
 
 snapshot.forEach(doc=>{
+
 batch.delete(doc.ref);
+
 });
 
 await batch.commit();
@@ -2462,7 +2493,9 @@ const countSpan=document.getElementById(
 if(!select)return;
 
 if(countSpan){
+
 countSpan.innerText=teachers.length;
+
 }
 
 if(!teachers||teachers.length===0){
@@ -2488,17 +2521,26 @@ select.innerHTML=teachers
 
 window.onload=function(){
 
-const startDate=document.getElementById("startDate");
-const endDate=document.getElementById("endDate");
+const startDate=document.getElementById(
+"startDate"
+);
+
+const endDate=document.getElementById(
+"endDate"
+);
 
 const today=getTodayString();
 
 if(startDate){
+
 startDate.value=today;
+
 }
 
 if(endDate){
+
 endDate.value=today;
+
 }
 
 disableReportActions();
@@ -2511,7 +2553,9 @@ checkSavedLogin();
    ENTER KEY LOGIN
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded",()=>{
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
 
 const codeInput=document.getElementById(
 "schoolCodeInput"
@@ -2524,7 +2568,9 @@ codeInput.addEventListener(
 event=>{
 
 if(event.key==="Enter"){
+
 loginSchool();
+
 }
 
 }
@@ -2553,11 +2599,12 @@ e.preventDefault();
 deferredPrompt=e;
 
 if(installBtn){
+
 installBtn.style.display="inline-block";
-}
 
 }
-);
+
+});
 
 if(installBtn){
 
@@ -2584,8 +2631,7 @@ deferredPrompt=null;
 
 installBtn.style.display="none";
 
-}
-);
+});
 
 }
 
@@ -2594,11 +2640,12 @@ window.addEventListener(
 ()=>{
 
 if(installBtn){
+
 installBtn.style.display="none";
-}
 
 }
-);
+
+});
 
 /* =========================================================
    SERVICE WORKER
@@ -2624,8 +2671,7 @@ error
 )
 );
 
-}
-);
+});
 
 }
 
