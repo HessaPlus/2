@@ -1,779 +1,2635 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نظام حجز مصادر التعلم - حصة بلس</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- إعدادات تطبيق الويب PWA وأيقونة الآيفون والأندرويد -->
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/jpeg" href="https://e.top4top.io/p_3900ivtyk0.jpeg">
-    <link rel="apple-touch-icon" href="https://e.top4top.io/p_3900ivtyk0.jpeg">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://e.top4top.io/p_3900ivtyk0.jpeg">
-    <meta name="theme-color" content="#496875">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>نظام حجز مصادر التعلم - حصة بلس</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-    <style>
-        :root { 
-            --toffee-brown: #C6BFB9; 
-            --dark-navy: #496875; 
-            --white: #ffffff; 
-            --booked-red: #c1121f; 
-            --free-green: #155d27; 
-        }
-        
-        * { box-sizing: border-box; }
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/jpeg" href="https://e.top4top.io/p_3900ivtyk0.jpeg">
+<link rel="apple-touch-icon" href="https://e.top4top.io/p_3900ivtyk0.jpeg">
+<meta name="theme-color" content="#496875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-        body { 
-            margin: 0; 
-            padding: 0; 
-            font-family: 'Tajawal', sans-serif; 
-            background-color: var(--toffee-brown); 
-            color: var(--dark-navy); 
-        }
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 
-        .header-banner { 
-            width: 100%; 
-            background-color: var(--white); 
-            border-bottom: 5px solid var(--dark-navy); 
-            text-align: center; 
-            padding: 10px 0; 
-        }
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-        .header-banner img { 
-            max-width: 100%; 
-            height: auto; 
-            max-height: 180px; 
-            display: block; 
-            margin: auto; 
-            object-fit: contain; 
-        }
+<style>
+:root{
+--toffee-brown:#C6BFB9;
+--dark-navy:#496875;
+--dark-navy-2:#3d5965;
+--white:#fff;
+--booked-red:#c1121f;
+--free-green:#155d27;
+--success-bg:#edf8f0;
+--error-bg:#fff0f0;
+--info-bg:#eef5f8;
+--border:#d8dee2;
+--text-muted:#68777e;
+--shadow:0 8px 24px rgba(0,0,0,.08);
+}
 
-        header { 
-            background-color: var(--dark-navy); 
-            color: white; 
-            padding: 20px 10px; 
-            text-align: center; 
-            position: relative; 
-        }
+*{box-sizing:border-box}
 
-        .main-title { 
-            font-family: 'Amiri', serif; 
-            font-size: 24px; 
-            color: var(--toffee-brown); 
-            margin: 0; 
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5); 
-        }
+html{scroll-behavior:smooth}
 
-        .school-badge {
-            background: var(--toffee-brown);
-            color: var(--dark-navy);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 8px;
-        }
+body{
+margin:0;
+padding:0;
+font-family:'Tajawal',sans-serif;
+background:linear-gradient(135deg,#c6bfb9 0%,#d7d1cc 50%,#c6bfb9 100%);
+color:var(--dark-navy);
+}
 
-        .menu-btn { 
-            position: absolute; 
-            right: 20px; 
-            top: 15px; 
-            font-size: 30px; 
-            cursor: pointer; 
-            color: white; 
-            user-select: none;
-        }
+button,input,select{font-family:'Tajawal',sans-serif}
 
-        .sidebar { 
-            height: 100%; 
-            width: 0; 
-            position: fixed; 
-            z-index: 2000; 
-            top: 0; 
-            right: 0; 
-            background-color: var(--dark-navy); 
-            overflow-x: hidden; 
-            transition: 0.4s; 
-            padding-top: 60px; 
-            box-shadow: -2px 0 10px rgba(0,0,0,0.3);
-        }
+.header-banner{
+width:100%;
+background:#fff;
+border-bottom:5px solid var(--dark-navy);
+text-align:center;
+padding:10px 0;
+}
 
-        .sidebar a { 
-            padding: 15px 25px; 
-            text-decoration: none; 
-            font-size: 18px; 
-            color: white; 
-            display: block; 
-            border-bottom: 1px solid rgba(255,255,255,0.1); 
-            transition: 0.2s;
-        }
+.header-banner img{
+max-width:100%;
+height:auto;
+max-height:180px;
+display:block;
+margin:auto;
+object-fit:contain;
+}
 
-        .sidebar a:hover { background-color: rgba(255,255,255,0.1); }
+header{
+background:linear-gradient(135deg,var(--dark-navy),var(--dark-navy-2));
+color:#fff;
+padding:20px 10px;
+text-align:center;
+position:relative;
+box-shadow:0 4px 15px rgba(0,0,0,.15);
+}
 
-        .periods-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
-            gap: 15px; 
-            padding: 20px; 
-            max-width: 800px; 
-            margin: auto; 
-            min-height: 250px; 
-        }
+.main-title{
+font-family:'Amiri',serif;
+font-size:26px;
+color:var(--toffee-brown);
+margin:0;
+text-shadow:2px 2px 4px rgba(0,0,0,.5);
+}
 
-        .period-card { 
-            background: #fdfdfd; 
-            border: 2px solid var(--dark-navy); 
-            border-radius: 15px; 
-            padding: 20px 10px; 
-            text-align: center; 
-            font-weight: bold; 
-            box-shadow: 0 6px 0 var(--dark-navy); 
-            transition: 0.2s; 
-            cursor: pointer; 
-            user-select: none;
-        }
+.school-badge{
+background:var(--toffee-brown);
+color:var(--dark-navy);
+padding:6px 16px;
+border-radius:20px;
+font-size:14px;
+font-weight:bold;
+display:inline-block;
+margin-top:8px;
+}
 
-        .period-card:active { 
-            transform: translateY(4px); 
-            box-shadow: 0 2px 0 var(--dark-navy); 
-        }
+.menu-btn{
+position:absolute;
+right:20px;
+top:15px;
+font-size:30px;
+cursor:pointer;
+color:#fff;
+user-select:none;
+transition:.2s;
+}
 
-        .is-booked { 
-            border-color: var(--booked-red) !important; 
-            box-shadow: 0 6px 0 var(--booked-red) !important; 
-            background: #fff5f5 !important; 
-        }
+.menu-btn:hover{transform:scale(1.08)}
 
-        .status-text { 
-            font-size: 13px; 
-            margin-top: 8px; 
-            font-weight: 800; 
-        }
+.sidebar{
+height:100%;
+width:0;
+position:fixed;
+z-index:2000;
+top:0;
+right:0;
+background-color:var(--dark-navy);
+overflow-x:hidden;
+transition:.4s;
+padding-top:60px;
+box-shadow:-2px 0 15px rgba(0,0,0,.3);
+}
 
-        .content-section { 
-            padding: 20px; 
-            display: none; 
-            min-height: 70vh; 
-        }
+.sidebar a{
+padding:15px 25px;
+text-decoration:none;
+font-size:18px;
+color:#fff;
+display:block;
+border-bottom:1px solid rgba(255,255,255,.1);
+transition:.2s;
+}
 
-        .active-section { display: block; }
+.sidebar a:hover{
+background-color:rgba(255,255,255,.1);
+padding-right:30px;
+}
 
-        .data-card { 
-            background: white; 
-            border-radius: 15px; 
-            padding: 20px; 
-            border: 2px solid var(--dark-navy); 
-            margin-bottom: 20px; 
-            max-width: 600px; 
-            margin: auto; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+.content-section{
+padding:25px 20px;
+display:none;
+min-height:70vh;
+}
 
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            margin-top: 15px; 
-            background: white; 
-        }
+.active-section{display:block}
 
-        th, td { 
-            border: 1px solid var(--dark-navy); 
-            padding: 10px; 
-            text-align: center; 
-            font-size: 14px; 
-        }
+.periods-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:18px;
+padding:20px;
+max-width:900px;
+margin:auto;
+min-height:250px;
+}
 
-        th { background: var(--dark-navy); color: white; }
+.period-card{
+background:#fdfdfd;
+border:2px solid var(--dark-navy);
+border-radius:15px;
+padding:24px 10px;
+text-align:center;
+font-weight:bold;
+box-shadow:0 6px 0 var(--dark-navy);
+transition:.2s;
+cursor:pointer;
+user-select:none;
+}
 
-        .modal { 
-            display: none; 
-            position: fixed; 
-            z-index: 3000; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background: rgba(0,0,0,0.7); 
-            align-items: center; 
-            justify-content: center; 
-        }
+.period-card:hover{transform:translateY(-2px)}
 
-        /* نافذة تسجيل الدخول الشفافة */
-        #loginModal {
-            display: flex;
-            background: rgba(73, 104, 117, 0.95);
-        }
+.period-card:active{
+transform:translateY(4px);
+box-shadow:0 2px 0 var(--dark-navy);
+}
 
-        .modal-content { 
-            background: white; 
-            padding: 25px; 
-            width: 90%; 
-            max-width: 400px; 
-            border-radius: 15px; 
-            border: 3px solid var(--dark-navy); 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
+.is-booked{
+border-color:var(--booked-red)!important;
+box-shadow:0 6px 0 var(--booked-red)!important;
+background:#fff5f5!important;
+}
 
-        input, select { 
-            width: 100%; 
-            padding: 12px; 
-            margin: 10px 0; 
-            border-radius: 8px; 
-            border: 1px solid #ccc; 
-            font-family: 'Tajawal'; 
-            font-size: 14px;
-        }
+.status-text{
+font-size:13px;
+margin-top:8px;
+font-weight:800;
+}
 
-        .btn-action { 
-            background: var(--dark-navy); 
-            color: white; 
-            border: none; 
-            padding: 12px; 
-            width: 100%; 
-            border-radius: 8px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            margin-top: 8px; 
-            transition: 0.2s;
-        }
+.data-card{
+background:#fff;
+border-radius:18px;
+padding:24px;
+border:2px solid var(--dark-navy);
+margin:auto;
+max-width:600px;
+box-shadow:var(--shadow);
+}
 
-        .btn-action:hover { opacity: 0.9; }
+#report .data-card{max-width:1150px}
 
-        .btn-danger { 
-            background: var(--booked-red); 
-            color: white; 
-            border: none; 
-            padding: 12px; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            width: 100%; 
-            margin-top: 8px; 
-            font-weight: bold;
-            transition: 0.2s;
-        }
+.data-card h3{
+margin-top:0;
+margin-bottom:20px;
+}
 
-        .footer { 
-            background-color: var(--dark-navy); 
-            color: white; 
-            text-align: center; 
-            padding: 20px; 
-            margin-top: 40px; 
-            font-size: 14px; 
-            border-top: 4px solid var(--toffee-brown); 
-        }
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+background:#fff;
+}
 
-        @media print {
-            header, .header-banner, .menu-btn, .footer, .btn-action, input[type="date"], #installAppBtn {
-                display: none !important;
-            }
-            .content-section { display: block !important; }
-            .data-card { border: none; box-shadow: none; }
-        }
-    </style>
+th,td{
+border:1px solid var(--dark-navy);
+padding:11px;
+text-align:center;
+font-size:14px;
+}
+
+th{
+background:var(--dark-navy);
+color:#fff;
+font-weight:800;
+}
+
+tbody tr:nth-child(even){background:#f7f9fa}
+tbody tr:hover{background:#eef4f6}
+
+.modal{
+display:none;
+position:fixed;
+z-index:3000;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.7);
+align-items:center;
+justify-content:center;
+padding:20px;
+}
+
+#loginModal{
+display:flex;
+background:rgba(73,104,117,.95);
+}
+
+.modal-content{
+background:#fff;
+padding:25px;
+width:90%;
+max-width:400px;
+border-radius:15px;
+border:3px solid var(--dark-navy);
+box-shadow:0 5px 25px rgba(0,0,0,.3);
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:8px;
+border:1px solid #ccc;
+font-size:14px;
+background:#fff;
+transition:border-color .2s,box-shadow .2s;
+}
+
+input:focus,select:focus{
+outline:none;
+border-color:var(--dark-navy);
+box-shadow:0 0 0 3px rgba(73,104,117,.12);
+}
+
+.btn-action{
+background:var(--dark-navy);
+color:#fff;
+border:none;
+padding:12px;
+width:100%;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+margin-top:8px;
+transition:.2s;
+}
+
+.btn-action:hover{
+opacity:.9;
+transform:translateY(-1px);
+}
+
+.btn-action:disabled{
+opacity:.45;
+cursor:not-allowed;
+transform:none;
+}
+
+.btn-danger{
+background:var(--booked-red);
+color:#fff;
+border:none;
+padding:12px;
+border-radius:8px;
+cursor:pointer;
+width:100%;
+margin-top:8px;
+font-weight:bold;
+transition:.2s;
+}
+
+.btn-danger:hover{opacity:.9}
+
+.login-status{
+display:none;
+margin-top:12px;
+padding:11px;
+border-radius:8px;
+font-size:13px;
+font-weight:700;
+line-height:1.7;
+text-align:right;
+}
+
+.login-status.error{
+display:block;
+color:#9d1515;
+background:#fff0f0;
+border:1px solid #e3aaaa;
+}
+
+.login-status.success{
+display:block;
+color:#155d27;
+background:#edf8f0;
+border:1px solid #abd4b7;
+}
+
+.login-status.loading{
+display:block;
+color:var(--dark-navy);
+background:#eef5f8;
+border:1px solid #c9dce4;
+}
+
+.report-card{overflow:hidden}
+
+.report-controls{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:18px;
+margin-bottom:15px;
+}
+
+.date-field{
+display:flex;
+flex-direction:column;
+gap:5px;
+}
+
+.date-field label{
+font-weight:800;
+color:var(--dark-navy);
+}
+
+.date-field input{
+margin:0;
+height:48px;
+}
+
+.report-actions{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin:18px 0;
+}
+
+.report-actions .btn-action{margin-top:0}
+
+.report-message{
+margin:12px 0;
+padding:12px 15px;
+border-radius:10px;
+font-weight:700;
+text-align:center;
+}
+
+.report-message.error{
+color:#a61b1b;
+background:var(--error-bg);
+border:1px solid #f1b7b7;
+display:none;
+}
+
+.report-message.loading{
+color:var(--dark-navy);
+background:var(--info-bg);
+border:1px solid #c9dce4;
+}
+
+.report-meta{
+margin:15px 0;
+padding:13px 15px;
+background:linear-gradient(135deg,#f4f8fa,#edf3f5);
+border:1px solid #d4e0e5;
+border-radius:10px;
+font-weight:700;
+color:var(--dark-navy);
+}
+
+.report-table-wrapper{
+width:100%;
+overflow-x:auto;
+border-radius:10px;
+}
+
+#reportTable{min-width:650px}
+
+#reportTable th:first-child,
+#reportTable td:first-child{
+white-space:nowrap;
+}
+
+.report-empty{
+text-align:center;
+padding:35px 20px;
+margin-top:15px;
+color:#a61b1b;
+background:var(--error-bg);
+border:1px dashed #d98282;
+border-radius:10px;
+font-weight:800;
+}
+
+.print-report-header{
+display:none;
+text-align:center;
+margin-bottom:20px;
+}
+
+.print-report-header h2{
+margin:0 0 8px;
+color:#000;
+}
+
+.print-report-header p{
+margin:0;
+color:#333;
+}
+
+.footer{
+background-color:var(--dark-navy);
+color:#fff;
+text-align:center;
+padding:20px;
+margin-top:40px;
+font-size:14px;
+border-top:4px solid var(--toffee-brown);
+}
+
+@media(max-width:700px){
+.main-title{
+font-size:21px;
+padding:0 35px;
+}
+
+.content-section{padding:15px 10px}
+
+.periods-grid{
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:12px;
+padding:10px;
+}
+
+.period-card{padding:20px 8px}
+
+.data-card{
+padding:16px;
+border-radius:14px;
+}
+
+.report-controls{
+grid-template-columns:1fr;
+gap:12px;
+}
+
+.report-actions{
+grid-template-columns:1fr;
+}
+
+.report-actions .btn-action{width:100%}
+
+#reportTable{min-width:620px}
+}
+
+@media print{
+@page{
+size:A4 portrait;
+margin:12mm;
+}
+
+body.printing-report *{
+visibility:hidden!important;
+}
+
+body.printing-report #printReportArea,
+body.printing-report #printReportArea *{
+visibility:visible!important;
+}
+
+body.printing-report #printReportArea{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+background:#fff;
+margin:0;
+padding:0;
+}
+
+body.printing-report .print-report-header{
+display:block!important;
+}
+
+body.printing-report #reportTable{
+width:100%;
+border-collapse:collapse;
+min-width:0;
+}
+
+body.printing-report #reportTable th,
+body.printing-report #reportTable td{
+border:1px solid #000!important;
+color:#000!important;
+background:#fff!important;
+padding:7px;
+text-align:center;
+font-size:11px;
+}
+
+body.printing-report #reportTable th{
+background:#eee!important;
+font-weight:bold;
+}
+
+body.printing-report .report-empty{
+display:none!important;
+}
+}
+</style>
 </head>
+
 <body>
 
-<!-- شاشة تسجيل الدخول المباشرة -->
+<!-- LOGIN -->
 <div id="loginModal" class="modal">
-    <div class="modal-content" style="text-align: center;">
-        <img src="https://k.top4top.io/p_3686e38dp0.png" style="max-width: 150px; margin-bottom: 10px;" alt="شعار">
-        <h3 style="color: var(--dark-navy); margin-top:0;">تسجيل دخول المدرسة</h3>
-        <p style="font-size: 12px; color: #666;">أدخل رمز المدرسة للدخول لقاعدة بيانات مدرستك، أو اختر رمزاً جديداً لمدرستك لإنشاء حساب جديد.</p>
-        
-        <input type="text" id="schoolNameInput" placeholder="اسم المدرسة ">
-        <input type="password" id="schoolCodeInput" placeholder="رمز المدرسة / كلمة المرور">
-        
-        <button class="btn-action" onclick="loginSchool()">دخول إلى النظام 🚀</button>
-    </div>
+<div class="modal-content" style="text-align:center;">
+
+<img
+src="https://k.top4top.io/p_3686e38dp0.png"
+style="max-width:150px;margin-bottom:10px;"
+alt="شعار">
+
+<h3 style="color:var(--dark-navy);margin-top:0;">
+تسجيل دخول المدرسة
+</h3>
+
+<p style="font-size:12px;color:#666;">
+أدخل رمز المدرسة للدخول لقاعدة بيانات مدرستك،
+أو اختر رمزاً جديداً لمدرستك لإنشاء حساب جديد.
+</p>
+
+<input
+type="text"
+id="schoolNameInput"
+placeholder="اسم المدرسة">
+
+<input
+type="password"
+id="schoolCodeInput"
+placeholder="رمز المدرسة / كلمة المرور">
+
+<button
+id="loginButton"
+class="btn-action"
+onclick="loginSchool()">
+دخول إلى النظام 🚀
+</button>
+
+<div id="loginStatus" class="login-status"></div>
+
+</div>
 </div>
 
+<!-- HEADER BANNER -->
 <div class="header-banner">
-    <img src="https://k.top4top.io/p_3686e38dp0.png" onerror="this.src='https://via.placeholder.com/800x150/ffffff/496875?text=%D9%86%D8%B8%D8%A7%D9%85+%D8%AD%D8%AC%D8%B2+%D9%85%D8%B5%D8%A7%D8%AF%D8%B1+%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%85'" alt="شعار النظام">
+<img
+src="https://k.top4top.io/p_3686e38dp0.png"
+onerror="this.src='https://via.placeholder.com/800x150/ffffff/496875?text=%D9%86%D8%B8%D8%A7%D9%85+%D8%AD%D8%AC%D8%B2+%D9%85%D8%B5%D8%A7%D8%AF%D8%B1+%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%85'"
+alt="شعار النظام">
 </div>
 
+<!-- HEADER -->
 <header>
-    <div class="menu-btn" onclick="openNav()">☰</div>
-    <h1 class="main-title">نظام حجز مصادر التعلم الإلكتروني</h1>
-    <div class="school-badge" id="currentSchoolDisplay">المدرسة: غير متصل</div>
-    
-    <!-- زر تثبيت تطبيق حصة بلس -->
-    <div style="text-align: center; margin-top: 10px;">
-        <button id="installAppBtn" style="display: none; background-color: var(--toffee-brown); color: var(--dark-navy); border: 2px solid var(--white); padding: 8px 18px; font-size: 14px; font-weight: bold; border-radius: 20px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
-            📲 تثبيت تطبيق حصة بلس
-        </button>
-    </div>
+
+<div class="menu-btn" onclick="openNav()">☰</div>
+
+<h1 class="main-title">
+نظام حجز مصادر التعلم الإلكتروني
+</h1>
+
+<div class="school-badge" id="currentSchoolDisplay">
+المدرسة: غير متصل
+</div>
+
+<div style="text-align:center;margin-top:10px;">
+<button
+id="installAppBtn"
+style="
+display:none;
+background-color:var(--toffee-brown);
+color:var(--dark-navy);
+border:2px solid var(--white);
+padding:8px 18px;
+font-size:14px;
+font-weight:bold;
+border-radius:20px;
+cursor:pointer;
+box-shadow:0 4px 6px rgba(0,0,0,.2);">
+📲 تثبيت تطبيق حصة بلس
+</button>
+</div>
+
 </header>
 
+<!-- SIDEBAR -->
 <div id="mySidebar" class="sidebar">
-    <a href="javascript:void(0)" onclick="closeNav()" style="font-size:35px; text-align:left; padding-top:0;">×</a>
-    <a href="#" onclick="showSection('booking')">📅 حجز الحصص</a>
-    <a href="#" onclick="showSection('report')">📋 سجل الحجوزات اليومي</a>
-    <a href="#" onclick="showSection('settings')">⚙️ إعدادات المعلمين / المعلمات</a>
-    <a href="#" onclick="logoutSchool()" style="color:#ff8a8a;">🚪 تسجيل الخروج / تغيير المدرسة</a>
+
+<a
+href="javascript:void(0)"
+onclick="closeNav()"
+style="font-size:35px;text-align:left;padding-top:0;">
+×
+</a>
+
+<a href="#" onclick="showSection('booking')">
+📅 حجز الحصص
+</a>
+
+<a href="#" onclick="showSection('report')">
+📋 سجل الحجوزات
+</a>
+
+<a href="#" onclick="showSection('settings')">
+⚙️ إعدادات المعلمين / المعلمات
+</a>
+
+<a
+href="#"
+onclick="logoutSchool()"
+style="color:#ff8a8a;">
+🚪 تسجيل الخروج / تغيير المدرسة
+</a>
+
 </div>
 
-<!-- قسم حجز الحصص -->
+<!-- BOOKING -->
 <div id="booking" class="content-section active-section">
-    <div class="periods-grid" id="periodsGrid"></div>
+<div class="periods-grid" id="periodsGrid"></div>
 </div>
 
-<!-- قسم السجل اليومي -->
+<!-- REPORT -->
 <div id="report" class="content-section">
-    <div class="data-card">
-        <h3>📋 سجل الحجوزات اليومي</h3>
-        <label for="searchDate">اختر التاريخ:</label>
-        <input type="date" id="searchDate" onchange="renderReport()">
-        <table>
-            <thead>
-                <tr>
-                    <th>الحصة</th>
-                    <th>المعلم / المعلمة</th>
-                    <th>التخصص</th>
-                </tr>
-            </thead>
-            <tbody id="reportTableBody"></tbody>
-        </table>
-        <button class="btn-action" style="margin-top:15px; background:var(--free-green);" onclick="window.print()">🖨️ طباعة السجل</button>
-    </div>
+
+<div class="data-card report-card">
+
+<h3>📋 سجل الحجوزات</h3>
+
+<p style="color:var(--text-muted);margin-top:-10px;margin-bottom:20px;">
+حدد الفترة الزمنية التي تريد عرض حجوزاتها.
+</p>
+
+<div class="report-controls">
+
+<div class="date-field">
+<label for="startDate">من تاريخ:</label>
+<input type="date" id="startDate">
 </div>
 
-<!-- قسم إعدادات المعلمين -->
+<div class="date-field">
+<label for="endDate">إلى تاريخ:</label>
+<input type="date" id="endDate">
+</div>
+
+</div>
+
+<div
+id="dateRangeError"
+class="report-message error"
+role="alert"
+aria-live="polite">
+</div>
+
+<div class="report-actions">
+
+<button class="btn-action" onclick="handleSearch()">
+🔎 بحث
+</button>
+
+<button
+id="printReportBtn"
+class="btn-action"
+style="background:var(--free-green);"
+onclick="handlePrint()"
+disabled>
+🖨️ طباعة التقرير
+</button>
+
+<button
+id="exportPdfBtn"
+class="btn-action"
+style="background:#8e44ad;"
+onclick="handleExportPDF()"
+disabled>
+📄 تصدير PDF
+</button>
+
+</div>
+
+<div
+id="reportLoading"
+class="report-message loading"
+style="display:none;"
+aria-live="polite">
+⏳ جارٍ تحميل البيانات من قاعدة البيانات...
+</div>
+
+<div
+id="reportMeta"
+class="report-meta"
+style="display:none;">
+</div>
+
+<div id="printReportArea">
+
+<div class="print-report-header">
+
+<h2>سجل الحجوزات</h2>
+
+<p id="printSchoolName"></p>
+
+<p id="printDateRange"></p>
+
+</div>
+
+<div class="report-table-wrapper">
+
+<table id="reportTable">
+
+<thead>
+<tr>
+<th>التاريخ</th>
+<th>الحصة</th>
+<th>المعلم / المعلمة</th>
+<th>التخصص</th>
+</tr>
+</thead>
+
+<tbody id="reportTableBody"></tbody>
+
+</table>
+
+</div>
+
+<div
+id="reportEmptyState"
+class="report-empty"
+style="display:none;">
+لا توجد حجوزات مسجلة ضمن الفترة المحددة.
+</div>
+
+</div>
+
+</div>
+</div>
+
+<!-- SETTINGS -->
 <div id="settings" class="content-section">
-    <div class="data-card">
-        <h3>⚙️ إدارة قائمة المعلمين / المعلمات</h3>
-        
-        <h4>1️⃣ استيراد الأسماء من ملف إكسل (.xlsx / .xls / .csv):</h4>
-        <input type="file" id="excelFileInput" accept=".xlsx, .xls, .csv">
-        <button class="btn-action" style="background:#1d6f42;" onclick="importFromExcel()">📊 جلب الأسماء من ملف الإكسل</button>
 
-        <hr style="margin: 20px 0; border: 1px solid var(--toffee-brown);">
+<div class="data-card">
 
-        <h4>2️⃣ إضافة معلم / معلمة يدوياً:</h4>
-        <input type="text" id="newTeacherName" placeholder="أدخل اسم المعلم/المعلمة">
-        <button class="btn-action" onclick="addTeacher()">➕ إضافة للقائمة</button>
-        
-        <hr style="margin: 20px 0; border: 1px solid var(--toffee-brown);">
-        
-        <h4>3️⃣ القائمة الحالية (<span id="teacherCount">0</span>):</h4>
-        <select id="deleteTeacherSelect"></select>
-        <button class="btn-danger" onclick="deleteTeacher()">🗑️ حذف الاسم المحدد</button>
-        <button class="btn-danger" style="background:#8b0000; margin-top:10px;" onclick="clearAllTeachers()">⚠️ مسح جميع الأسماء</button>
-    </div>
+<h3>⚙️ إدارة قائمة المعلمين / المعلمات</h3>
+
+<h4>1️⃣ استيراد الأسماء من ملف إكسل (.xlsx / .xls / .csv):</h4>
+
+<input
+type="file"
+id="excelFileInput"
+accept=".xlsx,.xls,.csv">
+
+<button
+class="btn-action"
+style="background:#1d6f42;"
+onclick="importFromExcel()">
+📊 جلب الأسماء من ملف الإكسل
+</button>
+
+<hr style="margin:20px 0;border:1px solid var(--toffee-brown);">
+
+<h4>2️⃣ إضافة معلم / معلمة يدوياً:</h4>
+
+<input
+type="text"
+id="newTeacherName"
+placeholder="أدخل اسم المعلم/المعلمة">
+
+<button class="btn-action" onclick="addTeacher()">
+➕ إضافة للقائمة
+</button>
+
+<hr style="margin:20px 0;border:1px solid var(--toffee-brown);">
+
+<h4>
+3️⃣ القائمة الحالية
+(<span id="teacherCount">0</span>):
+</h4>
+
+<select id="deleteTeacherSelect"></select>
+
+<button class="btn-danger" onclick="deleteTeacher()">
+🗑️ حذف الاسم المحدد
+</button>
+
+<button
+class="btn-danger"
+style="background:#8b0000;margin-top:10px;"
+onclick="clearAllTeachers()">
+⚠️ مسح جميع الأسماء
+</button>
+
+</div>
 </div>
 
-<!-- نافذة تأكيد الحجز -->
+<!-- BOOKING MODAL -->
 <div id="bookingModal" class="modal">
-    <div class="modal-content">
-        <h3 id="modalTitle">تأكيد الحجز</h3>
-        <label for="modalTeacherSelect">اختر الاسم:</label>
-        <select id="modalTeacherSelect"></select>
-        
-        <label for="modalSubjectSelect">اختر المادة/التخصص:</label>
-        <select id="modalSubjectSelect"></select>
-        
-        <button class="btn-action" onclick="confirmBooking()">تأكيد الحجز ✅</button>
-        <button onclick="closeModal()" style="width:100%; border:none; background:none; color:red; margin-top:10px; cursor:pointer; font-weight:bold;">إلغاء</button>
-    </div>
+
+<div class="modal-content">
+
+<h3 id="modalTitle">تأكيد الحجز</h3>
+
+<label for="modalTeacherSelect">
+اختر الاسم:
+</label>
+
+<select id="modalTeacherSelect"></select>
+
+<label for="modalSubjectSelect">
+اختر المادة/التخصص:
+</label>
+
+<select id="modalSubjectSelect"></select>
+
+<button class="btn-action" onclick="confirmBooking()">
+تأكيد الحجز ✅
+</button>
+
+<button
+onclick="closeModal()"
+style="
+width:100%;
+border:none;
+background:none;
+color:red;
+margin-top:10px;
+cursor:pointer;
+font-weight:bold;">
+إلغاء
+</button>
+
+</div>
 </div>
 
-<!-- نافذة إلغاء الحجز -->
+<!-- CANCEL MODAL -->
 <div id="cancelModal" class="modal">
-    <div class="modal-content">
-        <h3>إلغاء الحجز</h3>
-        <p id="cancelModalText">هل أنت متأكد من رغبتك في إلغاء حجز هذه الحصة؟</p>
-        <button class="btn-danger" onclick="confirmCancelBooking()">نعم، إلغاء الحجز 🗑️</button>
-        <button onclick="closeCancelModal()" style="width:100%; border:none; background:none; color:#555; margin-top:10px; cursor:pointer; font-weight:bold;">تراجع</button>
-    </div>
+
+<div class="modal-content">
+
+<h3>إلغاء الحجز</h3>
+
+<p id="cancelModalText">
+هل أنت متأكد من رغبتك في إلغاء حجز هذه الحصة؟
+</p>
+
+<button class="btn-danger" onclick="confirmCancelBooking()">
+نعم، إلغاء الحجز 🗑️
+</button>
+
+<button
+onclick="closeCancelModal()"
+style="
+width:100%;
+border:none;
+background:none;
+color:#555;
+margin-top:10px;
+cursor:pointer;
+font-weight:bold;">
+تراجع
+</button>
+
+</div>
 </div>
 
+<!-- FOOTER -->
 <footer class="footer">
-    <p>فكرة وتصميم: نوال ناجم الغنبوصية</p>
-    <p>©️ 2025 / 2026</p>
+
+<p>فكرة وتصميم: نوال ناجم الغنبوصية</p>
+
+<p>©️ 2025 / 2026</p>
+
 </footer>
 
+<!-- FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
 <script>
-    // 1. إعدادات Firebase
-    const firebaseConfig = {
-        apiKey: "AIzaSyBSp6_uiL2g2_wXE-jUKrveaHn3y1EKXWM",
-        authDomain: "hessaplus-4c4c3.firebaseapp.com",
-        projectId: "hessaplus-4c4c3",
-        storageBucket: "hessaplus-4c4c3.firebasestorage.app",
-        messagingSenderId: "995731746565",
-        appId: "1:995731746565:web:fb7b5038585d7aa002116c"
-    };
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+/* =========================================================
+   FIREBASE
+========================================================= */
 
-    let schoolId = null;
-    let schoolName = "";
-    let teachers = [];
-    let allBookings = [];
-    let currentPeriod = null;
-    
-    const subjects = [
-        "التربية الإسلامية", "اللغة العربية", "مجال أول", "مجال ثاني", "العلوم", "الرياضيات", 
-        "الدراسات الاجتماعية", "الفيزياء", "الكيمياء", "الأحياء", 
-        "اللغة الإنجليزية", "تقنية المعلومات", "المهارات الموسيقية", 
-        "المهارات الحياتية", "مدير المدرسة", "الفنون البصرية", 
-        "الرياضة البدنية", "الأخصائي الاجتماعي", "الأخصائي النفسي", 
-        "فني مختبر", "أخصائي التوجيه المهني", "أخصائي مصادر التعلم", 
-        "أخصائي إداري مالي", "أخصائي أنشطة", "فني دعم أجهزة مدرسية", 
-        "منسق شؤون مدرسية"
-    ];
-    
-    const pNames = ["الأولى", "الثانية", "الثالثة", "الرابعة", "الخامسة", "السادسة", "السابعة", "الثامنة"];
+const firebaseConfig = {
+apiKey:"AIzaSyBSp6_uiL2g2_wXE-jUKrveaHn3y1EKXWM",
+authDomain:"hessaplus-4c4c3.firebaseapp.com",
+projectId:"hessaplus-4c4c3",
+storageBucket:"hessaplus-4c4c3.firebasestorage.app",
+messagingSenderId:"995731746565",
+appId:"1:995731746565:web:fb7b5038585d7aa002116c"
+};
 
-    function getTodayString() {
-        const today = new Date();
-        return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-    }
+firebase.initializeApp(firebaseConfig);
 
-    function openNav() { document.getElementById("mySidebar").style.width = "280px"; }
-    function closeNav() { document.getElementById("mySidebar").style.width = "0"; }
+const db=firebase.firestore();
 
-    function showSection(id) {
-        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active-section'));
-        document.getElementById(id).classList.add('active-section');
-        if(id === 'settings') updateSettingsLists();
-        if(id === 'report') renderReport();
-        closeNav();
-    }
+/* =========================================================
+   GLOBAL
+========================================================= */
 
-    // --- آلية تسجيل الدخول وإدارة المدارس ---
-    async function loginSchool() {
-        const sName = document.getElementById('schoolNameInput').value.trim();
-        const sCode = document.getElementById('schoolCodeInput').value.trim();
+let schoolId=null;
+let schoolName="";
+let teachers=[];
+let allBookings=[];
+let filteredData=[];
+let currentPeriod=null;
+let hasReportSearched=false;
+let teachersUnsubscribe=null;
+let bookingsUnsubscribe=null;
 
-        if(!sName || !sCode) {
-            alert('يرجى إدخال اسم المدرسة ورمز المدرسة!');
-            return;
-        }
+/* =========================================================
+   SUBJECTS
+========================================================= */
 
-        const docId = `school_${sCode.toLowerCase().replace(/\s+/g, '_')}`;
+const subjects=[
+"التربية الإسلامية",
+"اللغة العربية",
+"مجال أول",
+"مجال ثاني",
+"العلوم",
+"الرياضيات",
+"الدراسات الاجتماعية",
+"الفيزياء",
+"الكيمياء",
+"الأحياء",
+"اللغة الإنجليزية",
+"تقنية المعلومات",
+"المهارات الموسيقية",
+"المهارات الحياتية",
+"مدير المدرسة",
+"الفنون البصرية",
+"الرياضة البدنية",
+"الأخصائي الاجتماعي",
+"الأخصائي النفسي",
+"فني مختبر",
+"أخصائي التوجيه المهني",
+"أخصائي مصادر التعلم",
+"أخصائي إداري مالي",
+"أخصائي أنشطة",
+"فني دعم أجهزة مدرسية",
+"منسق شؤون مدرسية"
+];
 
-        try {
-            const schoolRef = db.collection("registered_schools").doc(docId);
-            const doc = await schoolRef.get();
+/* =========================================================
+   PERIODS
+========================================================= */
 
-            if (doc.exists) {
-                schoolId = docId;
-                schoolName = doc.data().name;
-            } else {
-                await schoolRef.set({
-                    name: sName,
-                    code: sCode,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                schoolId = docId;
-                schoolName = sName;
-            }
+const pNames=[
+"الأولى",
+"الثانية",
+"الثالثة",
+"الرابعة",
+"الخامسة",
+"السادسة",
+"السابعة",
+"الثامنة"
+];
 
-            localStorage.setItem('hessa_school_id', schoolId);
-            localStorage.setItem('hessa_school_name', schoolName);
+/* =========================================================
+   DATE
+========================================================= */
 
-            document.getElementById('loginModal').style.display = 'none';
-            document.getElementById('currentSchoolDisplay').innerText = `المدرسة: ${schoolName}`;
+function getTodayString(){
 
-            fetchData();
+const today=new Date();
 
-        } catch (e) {
-            console.error(e);
-            alert('حدث خطأ أثناء الاتصال بالنظام.');
-        }
-    }
+return `${today.getFullYear()}-${String(
+today.getMonth()+1
+).padStart(2,'0')}-${String(
+today.getDate()
+).padStart(2,'0')}`;
 
-    function logoutSchool() {
-        if(confirm('هل ترغب في تسجيل الخروج وتغيير المدرسة؟')) {
-            localStorage.removeItem('hessa_school_id');
-            localStorage.removeItem('hessa_school_name');
-            location.reload();
-        }
-    }
+}
 
-    function checkSavedLogin() {
-        const savedId = localStorage.getItem('hessa_school_id');
-        const savedName = localStorage.getItem('hessa_school_name');
+function formatReportDate(dateValue){
 
-        if(savedId && savedName) {
-            schoolId = savedId;
-            schoolName = savedName;
-            document.getElementById('loginModal').style.display = 'none';
-            document.getElementById('currentSchoolDisplay').innerText = `المدرسة: ${schoolName}`;
-            fetchData();
-        }
-    }
+if(!dateValue)return "";
 
-    function fetchData() {
-        if(!schoolId) return;
+const value=String(dateValue).trim();
 
-        db.collection("schools").doc(schoolId).collection("teachers").onSnapshot((snapshot) => {
-            teachers = [];
-            snapshot.forEach((doc) => teachers.push(doc.data().name));
-            updateSettingsLists();
-        });
+const parts=value.split("-");
 
-        db.collection("schools").doc(schoolId).collection("bookings").onSnapshot((snapshot) => {
-            allBookings = [];
-            snapshot.forEach((doc) => allBookings.push(doc.data()));
-            renderGrid();
-            renderReport();
-        });
-    }
+if(parts.length===3){
+return `${parts[2]}/${parts[1]}/${parts[0]}`;
+}
 
-    function renderGrid() {
-        const grid = document.getElementById('periodsGrid');
-        if(!grid) return;
-        grid.innerHTML = '';
-        
-        const today = getTodayString();
+return value;
 
-        pNames.forEach((name, i) => {
-            const pNum = i + 1;
-            const b = Array.isArray(allBookings) ? allBookings.find(x => x.period == pNum && x.date == today) : null;
-            
-            const card = document.createElement('div');
-            card.className = `period-card ${b ? 'is-booked' : ''}`;
-            card.innerHTML = `<div>الحصة ${name}</div><div class="status-text">${b ? '🔒 ' + b.teacher + ' (إلغاء)' : '🟢 متاحة'}</div>`;
-            
-            if(!b) {
-                card.onclick = () => openModal(pNum);
-            } else {
-                card.onclick = () => openCancelModal(pNum, b.teacher);
-            }
-            grid.appendChild(card);
-        });
-    }
+}
 
-    function openModal(p) {
-        if(!teachers || teachers.length === 0) {
-            alert('⚠️ القائمة فارغة! يرجى إضافة الأسماء من قسم الإعدادات أولاً.');
-            showSection('settings');
-            return;
-        }
-        currentPeriod = p;
-        document.getElementById('modalTeacherSelect').innerHTML = teachers.map(t => `<option value="${t}">${t}</option>`).join('');
-        document.getElementById('modalSubjectSelect').innerHTML = subjects.map(s => `<option value="${s}">${s}</option>`).join('');
-        document.getElementById('bookingModal').style.display = 'flex';
-    }
+/* =========================================================
+   LOGIN STATUS
+========================================================= */
 
-    function closeModal() { document.getElementById('bookingModal').style.display = 'none'; }
+function setLoginStatus(message,type="loading"){
 
-    async function confirmBooking() {
-        const teacher = document.getElementById('modalTeacherSelect').value;
-        const subject = document.getElementById('modalSubjectSelect').value;
-        const date = getTodayString();
-        
-        if(!teacher) { alert('يرجى اختيار الاسم'); return; }
+const element=document.getElementById("loginStatus");
 
-        const docId = `${date}_p${currentPeriod}`;
-        
-        try {
-            await db.collection("schools").doc(schoolId).collection("bookings").doc(docId).set({
-                date: date,
-                period: currentPeriod,
-                teacher: teacher,
-                subject: subject
-            });
-            closeModal();
-        } catch (e) {
-            console.error("فشل حفظ الحجز:", e);
-        }
-    }
+if(!element)return;
 
-    function openCancelModal(pNum, teacherName) {
-        currentPeriod = pNum;
-        document.getElementById('cancelModalText').innerText = `هل أنت متأكد من إلغاء حجز الحصة (${pNames[pNum-1]}) المحجوزة باسم (${teacherName})؟`;
-        document.getElementById('cancelModal').style.display = 'flex';
-    }
+element.className=`login-status ${type}`;
 
-    function closeCancelModal() { document.getElementById('cancelModal').style.display = 'none'; }
+element.innerHTML=message;
 
-    async function confirmCancelBooking() {
-        const date = getTodayString();
-        const docId = `${date}_p${currentPeriod}`;
+}
 
-        try {
-            await db.collection("schools").doc(schoolId).collection("bookings").doc(docId).delete();
-            closeCancelModal();
-        } catch (e) {
-            console.error("فشل إلغاء الحجز:", e);
-        }
-    }
+function clearLoginStatus(){
 
-    function importFromExcel() {
-        const fileInput = document.getElementById('excelFileInput');
-        const file = fileInput.files[0];
-        
-        if (!file) {
-            alert('يرجى اختيار ملف الإكسل من جهازك أولاً!');
-            return;
-        }
+const element=document.getElementById("loginStatus");
 
-        const reader = new FileReader();
-        reader.onload = async function(e) {
-            try {
-                const data = new Uint8Array(e.target.result);
-                const workbook = XLSX.read(data, { type: 'array' });
-                const jsonData = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], { header: 1 });
-                
-                let importedNames = [];
-                jsonData.forEach(row => {
-                    if (row && row.length > 0) {
-                        row.forEach(cell => {
-                            if(cell) {
-                                const name = String(cell).trim();
-                                if (name && name.length > 2 && !teachers.includes(name) && !importedNames.includes(name) && name !== "اسم المعلم" && name !== "الاسم") {
-                                    importedNames.push(name);
-                                }
-                            }
-                        });
-                    }
-                });
+if(!element)return;
 
-                if(importedNames.length === 0) {
-                    alert('لم يتم العثور على أسماء جديدة في الملف.');
-                    return;
-                }
+element.className="login-status";
+element.innerHTML="";
 
-                const batch = db.batch();
-                importedNames.forEach(name => {
-                    const docRef = db.collection("schools").doc(schoolId).collection("teachers").doc(name);
-                    batch.set(docRef, { name: name });
-                });
+}
 
-                await batch.commit();
-                alert(`تم حفظ ${importedNames.length} اسم بنجاح في قاعدة بيانات المدرسة!`);
-                fileInput.value = '';
-            } catch(err) {
-                alert('حدث خطأ أثناء قراءة الملف.');
-            }
-        };
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
-        reader.readAsArrayBuffer(file);
-    }
+function openNav(){
 
-    async function addTeacher() {
-        const nameInput = document.getElementById('newTeacherName');
-        const name = nameInput.value.trim();
-        if(name) {
-            if(teachers.includes(name)) {
-                alert('هذا الاسم موجود بالفعل!');
-                return;
-            }
-            try {
-                await db.collection("schools").doc(schoolId).collection("teachers").doc(name).set({ name: name });
-                nameInput.value = '';
-            } catch(e) { console.error(e); }
-        }
-    }
+document.getElementById("mySidebar").style.width="280px";
 
-    async function deleteTeacher() {
-        const select = document.getElementById('deleteTeacherSelect');
-        const teacherToDelete = select.value;
-        if(teacherToDelete) {
-            try {
-                await db.collection("schools").doc(schoolId).collection("teachers").doc(teacherToDelete).delete();
-            } catch(e) { console.error(e); }
-        }
-    }
+}
 
-    async function clearAllTeachers() {
-        if(confirm('هل أنت متأكد من مسح كافة الأسماء المسجلة لهذه المدرسة؟')) {
-            try {
-                const snapshot = await db.collection("schools").doc(schoolId).collection("teachers").get();
-                const batch = db.batch();
-                snapshot.forEach(doc => batch.delete(doc.ref));
-                await batch.commit();
-            } catch(e) { console.error(e); }
-        }
-    }
+function closeNav(){
 
-    function updateSettingsLists() {
-        const select = document.getElementById('deleteTeacherSelect');
-        const countSpan = document.getElementById('teacherCount');
-        if(countSpan) countSpan.innerText = teachers.length;
-        
-        if(!teachers || teachers.length === 0) {
-            select.innerHTML = '<option value="">(لا توجد أسماء مسجلة)</option>';
-        } else {
-            select.innerHTML = teachers.map(t => `<option value="${t}">${t}</option>`).join('');
-        }
-    }
+document.getElementById("mySidebar").style.width="0";
 
-    function renderReport() {
-        const dateInput = document.getElementById('searchDate');
-        if(!dateInput.value) dateInput.value = getTodayString();
+}
 
-        const searchInput = dateInput.value;
-        const tbody = document.getElementById('reportTableBody');
-        if(!tbody) return;
-        tbody.innerHTML = '';
+function showSection(id){
 
-        const filtered = Array.isArray(allBookings) ? allBookings.filter(b => String(b.date).trim() === String(searchInput).trim()) : [];
-        
-        if (filtered.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="3" style="color:red; font-weight:bold;">لا توجد حجوزات مسجلة لهذا التاريخ</td></tr>';
-            return;
-        }
+document
+.querySelectorAll(".content-section")
+.forEach(section=>{
+section.classList.remove("active-section");
+});
 
-        filtered.sort((a, b) => a.period - b.period).forEach(b => {
-            tbody.innerHTML += `<tr>
-                <td>الحصة ${pNames[parseInt(b.period)-1]}</td>
-                <td>${b.teacher}</td>
-                <td>${b.subject}</td>
-            </tr>`;
-        });
-    }
+const target=document.getElementById(id);
 
-    window.onload = () => {
-        document.getElementById('searchDate').value = getTodayString();
-        checkSavedLogin();
-    };
+if(target){
+target.classList.add("active-section");
+}
 
-    // --- سكربت تفعيل تثبيت التطبيق PWA ---
-    let deferredPrompt;
-    const installBtn = document.getElementById('installAppBtn');
+if(id==="settings"){
+updateSettingsLists();
+}
 
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        if (installBtn) installBtn.style.display = 'inline-block';
-    });
+if(id==="report"){
+renderReport();
+}
 
-    if (installBtn) {
-        installBtn.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') {
-                    console.log('تم تثبيت التطبيق بنجاح');
-                }
-                deferredPrompt = null;
-                installBtn.style.display = 'none';
-            }
-        });
-    }
+closeNav();
 
-    window.addEventListener('appinstalled', () => {
-        if (installBtn) installBtn.style.display = 'none';
-    });
+}
 
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./sw.js')
-                .then((reg) => console.log('Service Worker Registered'))
-                .catch((err) => console.log('Service Worker Failed', err));
-        });
-    }
+/* =========================================================
+   LOGIN
+========================================================= */
+
+async function loginSchool(){
+
+const nameInput=document.getElementById("schoolNameInput");
+const codeInput=document.getElementById("schoolCodeInput");
+const loginButton=document.getElementById("loginButton");
+
+const sName=nameInput.value.trim();
+const sCode=codeInput.value.trim();
+
+if(!sName||!sCode){
+
+setLoginStatus(
+"⚠️ يرجى إدخال اسم المدرسة ورمز المدرسة.",
+"error"
+);
+
+return;
+
+}
+
+const docId=`school_${sCode
+.toLowerCase()
+.replace(/\s+/g,"_")}`;
+
+loginButton.disabled=true;
+loginButton.innerText="⏳ جارٍ الاتصال...";
+
+setLoginStatus(
+"⏳ جارٍ الاتصال بقاعدة بيانات Firebase...",
+"loading"
+);
+
+try{
+
+const schoolRef=db
+.collection("registered_schools")
+.doc(docId);
+
+const schoolDoc=await schoolRef.get();
+
+if(schoolDoc.exists){
+
+const data=schoolDoc.data()||{};
+
+schoolId=docId;
+schoolName=data.name||sName;
+
+}else{
+
+await schoolRef.set({
+name:sName,
+code:sCode,
+createdAt:firebase.firestore.FieldValue.serverTimestamp()
+});
+
+schoolId=docId;
+schoolName=sName;
+
+}
+
+/*
+ * نحفظ بيانات الدخول فقط بعد نجاح Firebase.
+ */
+
+localStorage.setItem(
+"hessa_school_id",
+schoolId
+);
+
+localStorage.setItem(
+"hessa_school_name",
+schoolName
+);
+
+/*
+ * نحدّث الواجهة.
+ */
+
+document.getElementById(
+"currentSchoolDisplay"
+).innerText=`المدرسة: ${schoolName}`;
+
+/*
+ * نبدأ الاستماع إلى بيانات المدرسة.
+ */
+
+setLoginStatus(
+"✅ تم الاتصال بنجاح. جارٍ تحميل بيانات المدرسة...",
+"success"
+);
+
+fetchData();
+
+/*
+ * إخفاء نافذة الدخول بعد نجاح الاتصال فقط.
+ */
+
+setTimeout(()=>{
+
+document.getElementById(
+"loginModal"
+).style.display="none";
+
+clearLoginStatus();
+
+},500);
+
+}catch(error){
+
+console.error("LOGIN ERROR:",error);
+
+let message="حدث خطأ أثناء الاتصال بالنظام.";
+
+if(error.code==="permission-denied"){
+
+message=
+"🚫 تم رفض الوصول إلى Firebase.<br>" +
+"المشكلة غالباً في Firestore Security Rules.<br>" +
+"رمز الخطأ: permission-denied";
+
+}else if(error.code==="unavailable"){
+
+message=
+"🌐 لا يمكن الاتصال بـ Firebase حالياً.<br>" +
+"تأكد من اتصال الإنترنت ثم حاول مرة أخرى.";
+
+}else if(error.code==="failed-precondition"){
+
+message=
+"⚠️ قاعدة بيانات Firestore تحتاج إلى إعداد إضافي.<br>" +
+"راجع فهرسة Firestore أو إعدادات المشروع.";
+
+}else if(error.code==="unauthenticated"){
+
+message=
+"🔐 Firebase يطلب مصادقة للمستخدم.<br>" +
+"تأكد من إعداد Authentication وFirestore Rules.";
+
+}else if(error.message){
+
+message=
+"❌ حدث خطأ في Firebase.<br>" +
+error.message;
+
+}
+
+setLoginStatus(message,"error");
+
+loginButton.disabled=false;
+loginButton.innerText="دخول إلى النظام 🚀";
+
+}
+
+}
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logoutSchool(){
+
+if(confirm("هل ترغب في تسجيل الخروج وتغيير المدرسة؟")){
+
+if(teachersUnsubscribe){
+teachersUnsubscribe();
+teachersUnsubscribe=null;
+}
+
+if(bookingsUnsubscribe){
+bookingsUnsubscribe();
+bookingsUnsubscribe=null;
+}
+
+localStorage.removeItem("hessa_school_id");
+localStorage.removeItem("hessa_school_name");
+
+location.reload();
+
+}
+
+}
+
+/* =========================================================
+   SAVED LOGIN
+========================================================= */
+
+async function checkSavedLogin(){
+
+const savedId=localStorage.getItem("hessa_school_id");
+const savedName=localStorage.getItem("hessa_school_name");
+
+if(!savedId||!savedName){
+return;
+}
+
+schoolId=savedId;
+schoolName=savedName;
+
+document.getElementById(
+"currentSchoolDisplay"
+).innerText=`المدرسة: ${schoolName}`;
+
+setLoginStatus(
+"⏳ جارٍ التحقق من اتصال المدرسة...",
+"loading"
+);
+
+try{
+
+/*
+ * نتحقق من أن Firebase يمكنه الوصول
+ * إلى بيانات المدرسة قبل إخفاء نافذة الدخول.
+ */
+
+await db
+.collection("registered_schools")
+.doc(schoolId)
+.get();
+
+fetchData();
+
+document.getElementById(
+"loginModal"
+).style.display="none";
+
+clearLoginStatus();
+
+}catch(error){
+
+console.error(
+"SAVED LOGIN ERROR:",
+error
+);
+
+localStorage.removeItem("hessa_school_id");
+localStorage.removeItem("hessa_school_name");
+
+schoolId=null;
+schoolName="";
+
+document.getElementById(
+"currentSchoolDisplay"
+).innerText="المدرسة: غير متصل";
+
+document.getElementById(
+"loginModal"
+).style.display="flex";
+
+let message="تعذر استعادة جلسة المدرسة.";
+
+if(error.code==="permission-denied"){
+
+message=
+"🚫 تم رفض الوصول إلى Firebase.<br>" +
+"تحقق من Firestore Security Rules.";
+
+}else if(error.code==="unavailable"){
+
+message=
+"🌐 لا يوجد اتصال متاح بـ Firebase حالياً.";
+
+}else if(error.message){
+
+message=
+"❌ "+error.message;
+
+}
+
+setLoginStatus(message,"error");
+
+}
+
+}
+
+/* =========================================================
+   FIREBASE DATA
+========================================================= */
+
+function fetchData(){
+
+if(!schoolId){
+return;
+}
+
+/*
+ * إلغاء أي مستمع قديم.
+ */
+
+if(teachersUnsubscribe){
+teachersUnsubscribe();
+}
+
+if(bookingsUnsubscribe){
+bookingsUnsubscribe();
+}
+
+/* ================= TEACHERS ================= */
+
+teachersUnsubscribe=db
+.collection("schools")
+.doc(schoolId)
+.collection("teachers")
+.onSnapshot(
+
+snapshot=>{
+
+teachers=[];
+
+snapshot.forEach(doc=>{
+
+const data=doc.data();
+
+if(data&&data.name){
+teachers.push(data.name);
+}
+
+});
+
+teachers.sort((a,b)=>
+String(a).localeCompare(String(b),"ar")
+);
+
+updateSettingsLists();
+
+},
+
+error=>{
+
+console.error(
+"Teachers listener error:",
+error
+);
+
+if(error.code==="permission-denied"){
+
+alert(
+"🚫 تم رفض الوصول إلى قائمة المعلمين في Firestore.\n\n" +
+"تحقق من Firestore Security Rules."
+);
+
+}
+
+}
+);
+
+/* ================= BOOKINGS ================= */
+
+bookingsUnsubscribe=db
+.collection("schools")
+.doc(schoolId)
+.collection("bookings")
+.onSnapshot(
+
+snapshot=>{
+
+allBookings=[];
+
+snapshot.forEach(doc=>{
+
+allBookings.push({
+id:doc.id,
+...doc.data()
+});
+
+});
+
+renderGrid();
+
+},
+
+error=>{
+
+console.error(
+"Bookings listener error:",
+error
+);
+
+if(error.code==="permission-denied"){
+
+alert(
+"🚫 تم رفض الوصول إلى الحجوزات في Firestore.\n\n" +
+"تحقق من Firestore Security Rules."
+);
+
+}
+
+}
+);
+
+}
+
+/* =========================================================
+   BOOKING GRID
+========================================================= */
+
+function renderGrid(){
+
+const grid=document.getElementById("periodsGrid");
+
+if(!grid)return;
+
+grid.innerHTML="";
+
+const today=getTodayString();
+
+pNames.forEach((name,i)=>{
+
+const pNum=i+1;
+
+const booking=Array.isArray(allBookings)
+?allBookings.find(item=>
+item.period==pNum &&
+item.date==today
+)
+:null;
+
+const card=document.createElement("div");
+
+card.className=
+`period-card ${booking?"is-booked":""}`;
+
+card.innerHTML=`
+
+<div>الحصة ${name}</div>
+
+<div class="status-text">
+
+${
+booking
+?"🔒 "+escapeHtml(booking.teacher)+" (إلغاء)"
+:"🟢 متاحة"
+}
+
+</div>
+
+`;
+
+if(!booking){
+
+card.onclick=()=>openModal(pNum);
+
+}else{
+
+card.onclick=()=>openCancelModal(
+pNum,
+booking.teacher
+);
+
+}
+
+grid.appendChild(card);
+
+});
+
+}
+
+/* =========================================================
+   SAFE HTML
+========================================================= */
+
+function escapeHtml(value){
+
+return String(value??"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+/* =========================================================
+   BOOKING MODAL
+========================================================= */
+
+function openModal(p){
+
+if(!teachers||teachers.length===0){
+
+alert(
+"⚠️ القائمة فارغة! يرجى إضافة الأسماء من قسم الإعدادات أولاً."
+);
+
+showSection("settings");
+
+return;
+
+}
+
+currentPeriod=p;
+
+document.getElementById(
+"modalTeacherSelect"
+).innerHTML=teachers
+.map(teacher=>
+`<option value="${escapeHtml(teacher)}">${escapeHtml(teacher)}</option>`
+)
+.join("");
+
+document.getElementById(
+"modalSubjectSelect"
+).innerHTML=subjects
+.map(subject=>
+`<option value="${escapeHtml(subject)}">${escapeHtml(subject)}</option>`
+)
+.join("");
+
+document.getElementById(
+"bookingModal"
+).style.display="flex";
+
+}
+
+function closeModal(){
+
+document.getElementById(
+"bookingModal"
+).style.display="none";
+
+}
+
+/* =========================================================
+   CONFIRM BOOKING
+========================================================= */
+
+async function confirmBooking(){
+
+if(!schoolId){
+
+alert("يرجى تسجيل الدخول أولاً.");
+return;
+
+}
+
+const teacher=document.getElementById(
+"modalTeacherSelect"
+).value;
+
+const subject=document.getElementById(
+"modalSubjectSelect"
+).value;
+
+const date=getTodayString();
+
+if(!teacher){
+
+alert("يرجى اختيار الاسم");
+return;
+
+}
+
+const docId=`${date}_p${currentPeriod}`;
+
+try{
+
+await db
+.collection("schools")
+.doc(schoolId)
+.collection("bookings")
+.doc(docId)
+.set({
+date:date,
+period:currentPeriod,
+teacher:teacher,
+subject:subject
+});
+
+closeModal();
+
+}catch(error){
+
+console.error(
+"فشل حفظ الحجز:",
+error
+);
+
+if(error.code==="permission-denied"){
+
+alert(
+"🚫 تم رفض حفظ الحجز من Firestore.\n\n" +
+"تحقق من Firestore Security Rules."
+);
+
+}else{
+
+alert(
+"تعذر حفظ الحجز. يرجى المحاولة مرة أخرى."
+);
+
+}
+
+}
+
+}
+
+/* =========================================================
+   CANCEL
+========================================================= */
+
+function openCancelModal(pNum,teacherName){
+
+currentPeriod=pNum;
+
+document.getElementById(
+"cancelModalText"
+).innerText=
+`هل أنت متأكد من إلغاء حجز الحصة (${pNames[pNum-1]}) المحجوزة باسم (${teacherName})؟`;
+
+document.getElementById(
+"cancelModal"
+).style.display="flex";
+
+}
+
+function closeCancelModal(){
+
+document.getElementById(
+"cancelModal"
+).style.display="none";
+
+}
+
+async function confirmCancelBooking(){
+
+if(!schoolId){
+
+alert("يرجى تسجيل الدخول أولاً.");
+return;
+
+}
+
+const date=getTodayString();
+
+const docId=`${date}_p${currentPeriod}`;
+
+try{
+
+await db
+.collection("schools")
+.doc(schoolId)
+.collection("bookings")
+.doc(docId)
+.delete();
+
+closeCancelModal();
+
+}catch(error){
+
+console.error(
+"فشل إلغاء الحجز:",
+error
+);
+
+if(error.code==="permission-denied"){
+
+alert(
+"🚫 تم رفض إلغاء الحجز من Firestore.\n\n" +
+"تحقق من Firestore Security Rules."
+);
+
+}else{
+
+alert("تعذر إلغاء الحجز.");
+
+}
+
+}
+
+}
+
+/* =========================================================
+   DATE RANGE
+========================================================= */
+
+async function fetchDataByDateRange(startDate,endDate){
+
+if(!schoolId){
+
+throw new Error("لم يتم تحديد المدرسة.");
+
+}
+
+const snapshot=await db
+.collection("schools")
+.doc(schoolId)
+.collection("bookings")
+.where("date",">=",startDate)
+.where("date","<=",endDate)
+.get();
+
+return snapshot.docs.map(doc=>({
+id:doc.id,
+...doc.data()
+}));
+
+}
+
+/* =========================================================
+   REPORT SEARCH
+========================================================= */
+
+async function handleSearch(){
+
+const startDate=document.getElementById("startDate").value;
+const endDate=document.getElementById("endDate").value;
+
+const errorElement=document.getElementById("dateRangeError");
+const loadingElement=document.getElementById("reportLoading");
+
+errorElement.textContent="";
+errorElement.style.display="none";
+
+if(!schoolId){
+
+errorElement.textContent=
+"يرجى تسجيل الدخول إلى المدرسة أولاً.";
+
+errorElement.style.display="block";
+
+return;
+
+}
+
+if(!startDate||!endDate){
+
+errorElement.textContent=
+"يرجى اختيار تاريخ البداية وتاريخ النهاية.";
+
+errorElement.style.display="block";
+
+return;
+
+}
+
+if(startDate>endDate){
+
+errorElement.textContent=
+"تاريخ البداية يجب أن يكون قبل أو مساويًا لتاريخ النهاية.";
+
+errorElement.style.display="block";
+
+return;
+
+}
+
+loadingElement.style.display="block";
+
+filteredData=[];
+hasReportSearched=true;
+
+disableReportActions();
+
+try{
+
+filteredData=await fetchDataByDateRange(
+startDate,
+endDate
+);
+
+filteredData.sort((a,b)=>{
+
+const dateComparison=
+String(a.date).localeCompare(String(b.date));
+
+if(dateComparison!==0){
+return dateComparison;
+}
+
+return Number(a.period||0)-Number(b.period||0);
+
+});
+
+renderReport();
+
+}catch(error){
+
+console.error(
+"Error fetching bookings by date range:",
+error
+);
+
+errorElement.textContent=
+error.code==="permission-denied"
+?
+"🚫 تم رفض قراءة الحجوزات من Firebase. تحقق من Firestore Security Rules."
+:
+"حدث خطأ أثناء تحميل البيانات من قاعدة البيانات. تأكد من الاتصال.";
+
+errorElement.style.display="block";
+
+filteredData=[];
+
+renderReport();
+
+}finally{
+
+loadingElement.style.display="none";
+
+}
+
+}
+
+/* =========================================================
+   RENDER REPORT
+========================================================= */
+
+function renderReport(){
+
+const tbody=document.getElementById("reportTableBody");
+const emptyState=document.getElementById("reportEmptyState");
+const meta=document.getElementById("reportMeta");
+
+if(!tbody)return;
+
+tbody.innerHTML="";
+emptyState.style.display="none";
+meta.style.display="none";
+
+if(!hasReportSearched){
+disableReportActions();
+return;
+}
+
+if(!Array.isArray(filteredData)||filteredData.length===0){
+
+emptyState.style.display="block";
+disableReportActions();
+return;
+
+}
+
+filteredData.forEach(booking=>{
+
+const row=document.createElement("tr");
+
+const dateCell=document.createElement("td");
+dateCell.textContent=formatReportDate(booking.date);
+
+const periodCell=document.createElement("td");
+
+const periodNumber=parseInt(booking.period,10);
+
+periodCell.textContent=
+!isNaN(periodNumber)&&pNames[periodNumber-1]
+?`الحصة ${pNames[periodNumber-1]}`
+:`الحصة ${booking.period||""}`;
+
+const teacherCell=document.createElement("td");
+teacherCell.textContent=booking.teacher||"";
+
+const subjectCell=document.createElement("td");
+subjectCell.textContent=booking.subject||"";
+
+row.appendChild(dateCell);
+row.appendChild(periodCell);
+row.appendChild(teacherCell);
+row.appendChild(subjectCell);
+
+tbody.appendChild(row);
+
+});
+
+const startDate=document.getElementById("startDate").value;
+const endDate=document.getElementById("endDate").value;
+
+meta.textContent=
+`عدد الحجوزات: ${filteredData.length} | الفترة: ${formatReportDate(startDate)} إلى ${formatReportDate(endDate)}`;
+
+meta.style.display="block";
+
+document.getElementById(
+"printSchoolName"
+).textContent=
+`المدرسة: ${schoolName||"غير محددة"}`;
+
+document.getElementById(
+"printDateRange"
+).textContent=
+`الفترة: ${formatReportDate(startDate)} إلى ${formatReportDate(endDate)}`;
+
+enableReportActions();
+
+}
+
+/* =========================================================
+   REPORT BUTTONS
+========================================================= */
+
+function enableReportActions(){
+
+const hasData=
+Array.isArray(filteredData)&&
+filteredData.length>0;
+
+document.getElementById(
+"printReportBtn"
+).disabled=!hasData;
+
+document.getElementById(
+"exportPdfBtn"
+).disabled=!hasData;
+
+}
+
+function disableReportActions(){
+
+document.getElementById(
+"printReportBtn"
+).disabled=true;
+
+document.getElementById(
+"exportPdfBtn"
+).disabled=true;
+
+}
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+function handlePrint(){
+
+if(!Array.isArray(filteredData)||filteredData.length===0){
+
+alert("لا توجد بيانات متاحة للطباعة.");
+return;
+
+}
+
+document.body.classList.add("printing-report");
+
+window.print();
+
+}
+
+window.addEventListener("afterprint",()=>{
+
+document.body.classList.remove("printing-report");
+
+});
+
+/* =========================================================
+   PDF
+========================================================= */
+
+async function handleExportPDF(){
+
+if(!Array.isArray(filteredData)||filteredData.length===0){
+
+alert("لا توجد بيانات متاحة لتصديرها.");
+return;
+
+}
+
+const reportArea=document.getElementById(
+"printReportArea"
+);
+
+if(!reportArea){
+
+alert("تعذر العثور على التقرير.");
+return;
+
+}
+
+if(typeof html2pdf==="undefined"){
+
+alert(
+"لم يتم تحميل مكتبة PDF. تحقق من اتصال الإنترنت ثم أعد المحاولة."
+);
+
+return;
+
+}
+
+const startDate=document.getElementById("startDate").value;
+const endDate=document.getElementById("endDate").value;
+
+const safeStart=startDate.replace(/[^0-9-]/g,"");
+const safeEnd=endDate.replace(/[^0-9-]/g,"");
+
+const fileName=
+`سجل_الحجوزات_${safeStart}_إلى_${safeEnd}.pdf`;
+
+const printHeader=
+reportArea.querySelector(".print-report-header");
+
+const previousDisplay=
+printHeader?printHeader.style.display:"";
+
+if(printHeader){
+printHeader.style.display="block";
+}
+
+const options={
+margin:10,
+filename:fileName,
+image:{
+type:"jpeg",
+quality:.98
+},
+html2canvas:{
+scale:2,
+useCORS:true,
+backgroundColor:"#ffffff",
+logging:false
+},
+jsPDF:{
+unit:"mm",
+format:"a4",
+orientation:"portrait"
+},
+pagebreak:{
+mode:["css","legacy"]
+}
+};
+
+try{
+
+await html2pdf()
+.set(options)
+.from(reportArea)
+.save();
+
+}catch(error){
+
+console.error(
+"PDF export error:",
+error
+);
+
+alert("حدث خطأ أثناء إنشاء ملف PDF.");
+
+}finally{
+
+if(printHeader){
+printHeader.style.display=previousDisplay;
+}
+
+}
+
+}
+
+/* =========================================================
+   IMPORT EXCEL
+========================================================= */
+
+function importFromExcel(){
+
+const fileInput=document.getElementById(
+"excelFileInput"
+);
+
+const file=fileInput.files[0];
+
+if(!file){
+
+alert(
+"يرجى اختيار ملف الإكسل من جهازك أولاً!"
+);
+
+return;
+
+}
+
+if(!schoolId){
+
+alert("يرجى تسجيل الدخول أولاً.");
+return;
+
+}
+
+const reader=new FileReader();
+
+reader.onload=async function(e){
+
+try{
+
+const data=new Uint8Array(e.target.result);
+
+const workbook=XLSX.read(data,{type:"array"});
+
+const sheet=workbook.Sheets[
+workbook.SheetNames[0]
+];
+
+const jsonData=XLSX.utils.sheet_to_json(
+sheet,
+{header:1}
+);
+
+let importedNames=[];
+
+jsonData.forEach(row=>{
+
+if(row&&row.length>0){
+
+row.forEach(cell=>{
+
+if(cell){
+
+const name=String(cell).trim();
+
+if(
+name&&
+name.length>2&&
+!teachers.includes(name)&&
+!importedNames.includes(name)&&
+name!=="اسم المعلم"&&
+name!=="الاسم"
+){
+
+importedNames.push(name);
+
+}
+
+}
+
+});
+
+}
+
+});
+
+if(importedNames.length===0){
+
+alert(
+"لم يتم العثور على أسماء جديدة في الملف."
+);
+
+return;
+
+}
+
+const batch=db.batch();
+
+importedNames.forEach(name=>{
+
+const docRef=db
+.collection("schools")
+.doc(schoolId)
+.collection("teachers")
+.doc(name);
+
+batch.set(docRef,{name:name});
+
+});
+
+await batch.commit();
+
+alert(
+`تم حفظ ${importedNames.length} اسم بنجاح في قاعدة بيانات المدرسة!`
+);
+
+fileInput.value="";
+
+}catch(error){
+
+console.error(error);
+
+if(error.code==="permission-denied"){
+
+alert(
+"🚫 تم رفض حفظ الأسماء.\n\nتحقق من Firestore Security Rules."
+);
+
+}else{
+
+alert(
+"حدث خطأ أثناء قراءة الملف."
+);
+
+}
+
+}
+
+};
+
+reader.readAsArrayBuffer(file);
+
+}
+
+/* =========================================================
+   ADD TEACHER
+========================================================= */
+
+async function addTeacher(){
+
+const nameInput=document.getElementById(
+"newTeacherName"
+);
+
+const name=nameInput.value.trim();
+
+if(!name)return;
+
+if(teachers.includes(name)){
+
+alert("هذا الاسم موجود بالفعل!");
+return;
+
+}
+
+if(!schoolId){
+
+alert("يرجى تسجيل الدخول أولاً.");
+return;
+
+}
+
+try{
+
+await db
+.collection("schools")
+.doc(schoolId)
+.collection("teachers")
+.doc(name)
+.set({
+name:name
+});
+
+nameInput.value="";
+
+}catch(error){
+
+console.error(error);
+
+if(error.code==="permission-denied"){
+
+alert(
+"🚫 تم رفض إضافة الاسم من Firebase.\n\nتحقق من Firestore Security Rules."
+);
+
+}else{
+
+alert("تعذر إضافة الاسم.");
+
+}
+
+}
+
+}
+
+/* =========================================================
+   DELETE TEACHER
+========================================================= */
+
+async function deleteTeacher(){
+
+const select=document.getElementById(
+"deleteTeacherSelect"
+);
+
+const teacherToDelete=select.value;
+
+if(!teacherToDelete)return;
+
+if(!confirm(
+`هل أنت متأكد من حذف الاسم (${teacherToDelete})؟`
+))return;
+
+try{
+
+await db
+.collection("schools")
+.doc(schoolId)
+.collection("teachers")
+.doc(teacherToDelete)
+.delete();
+
+}catch(error){
+
+console.error(error);
+
+if(error.code==="permission-denied"){
+
+alert(
+"🚫 تم رفض حذف الاسم من Firebase.\n\nتحقق من Firestore Security Rules."
+);
+
+}else{
+
+alert("تعذر حذف الاسم.");
+
+}
+
+}
+
+}
+
+/* =========================================================
+   CLEAR TEACHERS
+========================================================= */
+
+async function clearAllTeachers(){
+
+if(!confirm(
+"هل أنت متأكد من مسح كافة الأسماء المسجلة لهذه المدرسة؟"
+))return;
+
+try{
+
+const snapshot=await db
+.collection("schools")
+.doc(schoolId)
+.collection("teachers")
+.get();
+
+const batch=db.batch();
+
+snapshot.forEach(doc=>{
+batch.delete(doc.ref);
+});
+
+await batch.commit();
+
+}catch(error){
+
+console.error(error);
+
+if(error.code==="permission-denied"){
+
+alert(
+"🚫 تم رفض مسح الأسماء من Firebase.\n\nتحقق من Firestore Security Rules."
+);
+
+}else{
+
+alert("تعذر مسح الأسماء.");
+
+}
+
+}
+
+}
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+function updateSettingsLists(){
+
+const select=document.getElementById(
+"deleteTeacherSelect"
+);
+
+const countSpan=document.getElementById(
+"teacherCount"
+);
+
+if(!select)return;
+
+if(countSpan){
+countSpan.innerText=teachers.length;
+}
+
+if(!teachers||teachers.length===0){
+
+select.innerHTML=
+'<option value="">(لا توجد أسماء مسجلة)</option>';
+
+}else{
+
+select.innerHTML=teachers
+.map(teacher=>
+`<option value="${escapeHtml(teacher)}">${escapeHtml(teacher)}</option>`
+)
+.join("");
+
+}
+
+}
+
+/* =========================================================
+   PAGE LOAD
+========================================================= */
+
+window.onload=function(){
+
+const startDate=document.getElementById("startDate");
+const endDate=document.getElementById("endDate");
+
+const today=getTodayString();
+
+if(startDate){
+startDate.value=today;
+}
+
+if(endDate){
+endDate.value=today;
+}
+
+disableReportActions();
+
+checkSavedLogin();
+
+};
+
+/* =========================================================
+   ENTER KEY LOGIN
+========================================================= */
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+const codeInput=document.getElementById(
+"schoolCodeInput"
+);
+
+if(codeInput){
+
+codeInput.addEventListener(
+"keydown",
+event=>{
+
+if(event.key==="Enter"){
+loginSchool();
+}
+
+}
+);
+
+}
+
+});
+
+/* =========================================================
+   PWA
+========================================================= */
+
+let deferredPrompt;
+
+const installBtn=document.getElementById(
+"installAppBtn"
+);
+
+window.addEventListener(
+"beforeinstallprompt",
+e=>{
+
+e.preventDefault();
+
+deferredPrompt=e;
+
+if(installBtn){
+installBtn.style.display="inline-block";
+}
+
+}
+);
+
+if(installBtn){
+
+installBtn.addEventListener(
+"click",
+async()=>{
+
+if(!deferredPrompt)return;
+
+deferredPrompt.prompt();
+
+const {outcome}=
+await deferredPrompt.userChoice;
+
+if(outcome==="accepted"){
+
+console.log(
+"تم تثبيت التطبيق بنجاح"
+);
+
+}
+
+deferredPrompt=null;
+
+installBtn.style.display="none";
+
+}
+);
+
+}
+
+window.addEventListener(
+"appinstalled",
+()=>{
+
+if(installBtn){
+installBtn.style.display="none";
+}
+
+}
+);
+
+/* =========================================================
+   SERVICE WORKER
+========================================================= */
+
+if("serviceWorker" in navigator){
+
+window.addEventListener(
+"load",
+()=>{
+
+navigator.serviceWorker
+.register("./sw.js")
+.then(
+()=>console.log(
+"Service Worker Registered"
+)
+)
+.catch(
+error=>console.log(
+"Service Worker Failed",
+error
+)
+);
+
+}
+);
+
+}
+
 </script>
+
 </body>
 </html>
