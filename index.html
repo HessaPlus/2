@@ -9,6 +9,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/jpeg" href="https://e.top4top.io/p_3900ivtyk0.jpeg">
 <link rel="apple-touch-icon" href="https://e.top4top.io/p_3900ivtyk0.jpeg">
+
 <meta name="theme-color" content="#496875">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -33,19 +34,32 @@
 --shadow:0 8px 24px rgba(0,0,0,.08);
 }
 
-*{box-sizing:border-box}
+*{
+box-sizing:border-box;
+}
 
-html{scroll-behavior:smooth}
+html{
+scroll-behavior:smooth;
+}
 
 body{
 margin:0;
 padding:0;
 font-family:'Tajawal',sans-serif;
-background:linear-gradient(135deg,#c6bfb9 0%,#d7d1cc 50%,#c6bfb9 100%);
+background:linear-gradient(
+135deg,
+#c6bfb9 0%,
+#d7d1cc 50%,
+#c6bfb9 100%
+);
 color:var(--dark-navy);
 }
 
-button,input,select{font-family:'Tajawal',sans-serif}
+button,
+input,
+select{
+font-family:'Tajawal',sans-serif;
+}
 
 .header-banner{
 width:100%;
@@ -65,7 +79,11 @@ object-fit:contain;
 }
 
 header{
-background:linear-gradient(135deg,var(--dark-navy),var(--dark-navy-2));
+background:linear-gradient(
+135deg,
+var(--dark-navy),
+var(--dark-navy-2)
+);
 color:#fff;
 padding:20px 10px;
 text-align:center;
@@ -103,7 +121,9 @@ user-select:none;
 transition:.2s;
 }
 
-.menu-btn:hover{transform:scale(1.08)}
+.menu-btn:hover{
+transform:scale(1.08);
+}
 
 .sidebar{
 height:100%;
@@ -140,11 +160,16 @@ display:none;
 min-height:70vh;
 }
 
-.active-section{display:block}
+.active-section{
+display:block;
+}
 
 .periods-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+grid-template-columns:repeat(
+auto-fit,
+minmax(180px,1fr)
+);
 gap:18px;
 padding:20px;
 max-width:900px;
@@ -165,7 +190,9 @@ cursor:pointer;
 user-select:none;
 }
 
-.period-card:hover{transform:translateY(-2px)}
+.period-card:hover{
+transform:translateY(-2px);
+}
 
 .period-card:active{
 transform:translateY(4px);
@@ -194,7 +221,9 @@ max-width:600px;
 box-shadow:var(--shadow);
 }
 
-#report .data-card{max-width:1150px}
+#report .data-card{
+max-width:1150px;
+}
 
 .data-card h3{
 margin-top:0;
@@ -208,7 +237,8 @@ margin-top:15px;
 background:#fff;
 }
 
-th,td{
+th,
+td{
 border:1px solid var(--dark-navy);
 padding:11px;
 text-align:center;
@@ -221,8 +251,13 @@ color:#fff;
 font-weight:800;
 }
 
-tbody tr:nth-child(even){background:#f7f9fa}
-tbody tr:hover{background:#eef4f6}
+tbody tr:nth-child(even){
+background:#f7f9fa;
+}
+
+tbody tr:hover{
+background:#eef4f6;
+}
 
 .modal{
 display:none;
@@ -253,7 +288,8 @@ border:3px solid var(--dark-navy);
 box-shadow:0 5px 25px rgba(0,0,0,.3);
 }
 
-input,select{
+input,
+select{
 width:100%;
 padding:12px;
 margin:10px 0;
@@ -264,7 +300,8 @@ background:#fff;
 transition:border-color .2s,box-shadow .2s;
 }
 
-input:focus,select:focus{
+input:focus,
+select:focus{
 outline:none;
 border-color:var(--dark-navy);
 box-shadow:0 0 0 3px rgba(73,104,117,.12);
@@ -307,7 +344,9 @@ font-weight:bold;
 transition:.2s;
 }
 
-.btn-danger:hover{opacity:.9}
+.btn-danger:hover{
+opacity:.9;
+}
 
 .login-status{
 display:none;
@@ -341,7 +380,9 @@ background:#eef5f8;
 border:1px solid #c9dce4;
 }
 
-.report-card{overflow:hidden}
+.report-card{
+overflow:hidden;
+}
 
 .report-controls{
 display:grid;
@@ -373,7 +414,9 @@ gap:10px;
 margin:18px 0;
 }
 
-.report-actions .btn-action{margin-top:0}
+.report-actions .btn-action{
+margin-top:0;
+}
 
 .report-message{
 margin:12px 0;
@@ -399,7 +442,11 @@ border:1px solid #c9dce4;
 .report-meta{
 margin:15px 0;
 padding:13px 15px;
-background:linear-gradient(135deg,#f4f8fa,#edf3f5);
+background:linear-gradient(
+135deg,
+#f4f8fa,
+#edf3f5
+);
 border:1px solid #d4e0e5;
 border-radius:10px;
 font-weight:700;
@@ -412,7 +459,9 @@ overflow-x:auto;
 border-radius:10px;
 }
 
-#reportTable{min-width:650px}
+#reportTable{
+min-width:650px;
+}
 
 #reportTable th:first-child,
 #reportTable td:first-child{
@@ -562,7 +611,10 @@ display:none!important;
 
 <body>
 
-<!-- LOGIN -->
+<!-- =====================================================
+     LOGIN
+===================================================== -->
+
 <div id="loginModal" class="modal">
 
 <div class="modal-content" style="text-align:center;">
@@ -576,9 +628,12 @@ alt="شعار">
 تسجيل دخول المدرسة
 </h3>
 
-<p style="font-size:12px;color:#666;">
-أدخل رمز المدرسة للدخول لقاعدة بيانات مدرستك،
-أو اختر رمزاً جديداً لمدرستك لإنشاء حساب جديد.
+<p style="font-size:12px;color:#666;line-height:1.8;">
+أدخل اسم المدرسة ورقم/رمز المدرسة.
+<br>
+<strong>
+رمز المدرسة هو الهوية الأساسية للمدرسة.
+</strong>
 </p>
 
 <input
@@ -589,7 +644,7 @@ placeholder="اسم المدرسة">
 <input
 type="password"
 id="schoolCodeInput"
-placeholder="رمز المدرسة / كلمة المرور">
+placeholder="رقم / رمز المدرسة">
 
 <button
 id="loginButton"
@@ -598,12 +653,18 @@ onclick="loginSchool()">
 دخول إلى النظام 🚀
 </button>
 
-<div id="loginStatus" class="login-status"></div>
+<div
+id="loginStatus"
+class="login-status">
+</div>
 
 </div>
 </div>
 
-<!-- HEADER BANNER -->
+<!-- =====================================================
+     HEADER BANNER
+===================================================== -->
+
 <div class="header-banner">
 
 <img
@@ -613,16 +674,25 @@ alt="شعار النظام">
 
 </div>
 
-<!-- HEADER -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
 <header>
 
-<div class="menu-btn" onclick="openNav()">☰</div>
+<div
+class="menu-btn"
+onclick="openNav()">
+☰
+</div>
 
 <h1 class="main-title">
 نظام حجز مصادر التعلم الإلكتروني
 </h1>
 
-<div class="school-badge" id="currentSchoolDisplay">
+<div
+class="school-badge"
+id="currentSchoolDisplay">
 المدرسة: غير متصل
 </div>
 
@@ -641,16 +711,17 @@ font-weight:bold;
 border-radius:20px;
 cursor:pointer;
 box-shadow:0 4px 6px rgba(0,0,0,.2);">
-
 📲 تثبيت تطبيق حصة بلس
-
 </button>
 
 </div>
 
 </header>
 
-<!-- SIDEBAR -->
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
 <div id="mySidebar" class="sidebar">
 
 <a
@@ -660,15 +731,21 @@ style="font-size:35px;text-align:left;padding-top:0;">
 ×
 </a>
 
-<a href="#" onclick="showSection('booking')">
+<a
+href="#"
+onclick="showSection('booking')">
 📅 حجز الحصص
 </a>
 
-<a href="#" onclick="showSection('report')">
+<a
+href="#"
+onclick="showSection('report')">
 📋 سجل الحجوزات
 </a>
 
-<a href="#" onclick="showSection('settings')">
+<a
+href="#"
+onclick="showSection('settings')">
 ⚙️ إعدادات المعلمين / المعلمات
 </a>
 
@@ -681,21 +758,40 @@ style="color:#ff8a8a;">
 
 </div>
 
-<!-- BOOKING -->
-<div id="booking" class="content-section active-section">
+<!-- =====================================================
+     BOOKING
+===================================================== -->
 
-<div class="periods-grid" id="periodsGrid"></div>
+<div
+id="booking"
+class="content-section active-section">
+
+<div
+class="periods-grid"
+id="periodsGrid">
+</div>
 
 </div>
 
-<!-- REPORT -->
-<div id="report" class="content-section">
+<!-- =====================================================
+     REPORT
+===================================================== -->
+
+<div
+id="report"
+class="content-section">
 
 <div class="data-card report-card">
 
-<h3>📋 سجل الحجوزات</h3>
+<h3>
+📋 سجل الحجوزات
+</h3>
 
-<p style="color:var(--text-muted);margin-top:-10px;margin-bottom:20px;">
+<p
+style="
+color:var(--text-muted);
+margin-top:-10px;
+margin-bottom:20px;">
 حدد الفترة الزمنية التي تريد عرض حجوزاتها.
 </p>
 
@@ -746,7 +842,7 @@ onclick="handleSearch()">
 id="printReportBtn"
 class="btn-action"
 style="background:var(--free-green);"
-onclick="handlePrint()"
+onclick="handlePrint"
 disabled>
 🖨️ طباعة التقرير
 </button>
@@ -758,9 +854,7 @@ id="reportLoading"
 class="report-message loading"
 style="display:none;"
 aria-live="polite">
-
 ⏳ جارٍ تحميل البيانات من قاعدة البيانات...
-
 </div>
 
 <div
@@ -791,19 +885,28 @@ style="display:none;">
 
 <tr>
 
-<th>التاريخ</th>
+<th>
+التاريخ
+</th>
 
-<th>الحصة</th>
+<th>
+الحصة
+</th>
 
-<th>المعلم / المعلمة</th>
+<th>
+المعلم / المعلمة
+</th>
 
-<th>التخصص</th>
+<th>
+التخصص
+</th>
 
 </tr>
 
 </thead>
 
-<tbody id="reportTableBody"></tbody>
+<tbody id="reportTableBody">
+</tbody>
 
 </table>
 
@@ -813,9 +916,7 @@ style="display:none;">
 id="reportEmptyState"
 class="report-empty"
 style="display:none;">
-
 لا توجد حجوزات مسجلة ضمن الفترة المحددة.
-
 </div>
 
 </div>
@@ -824,8 +925,13 @@ style="display:none;">
 
 </div>
 
-<!-- SETTINGS -->
-<div id="settings" class="content-section">
+<!-- =====================================================
+     SETTINGS
+===================================================== -->
+
+<div
+id="settings"
+class="content-section">
 
 <div class="data-card">
 
@@ -834,7 +940,8 @@ style="display:none;">
 </h3>
 
 <h4>
-1️⃣ استيراد الأسماء من ملف إكسل (.xlsx / .xls / .csv):
+1️⃣ استيراد الأسماء من ملف إكسل
+(.xlsx / .xls / .csv):
 </h4>
 
 <input
@@ -846,12 +953,13 @@ accept=".xlsx,.xls,.csv">
 class="btn-action"
 style="background:#1d6f42;"
 onclick="importFromExcel()">
-
 📊 جلب الأسماء من ملف الإكسل
-
 </button>
 
-<hr style="margin:20px 0;border:1px solid var(--toffee-brown);">
+<hr
+style="
+margin:20px 0;
+border:1px solid var(--toffee-brown);">
 
 <h4>
 2️⃣ إضافة معلم / معلمة يدوياً:
@@ -865,12 +973,13 @@ placeholder="أدخل اسم المعلم/المعلمة">
 <button
 class="btn-action"
 onclick="addTeacher()">
-
 ➕ إضافة للقائمة
-
 </button>
 
-<hr style="margin:20px 0;border:1px solid var(--toffee-brown);">
+<hr
+style="
+margin:20px 0;
+border:1px solid var(--toffee-brown);">
 
 <h4>
 3️⃣ القائمة الحالية
@@ -882,26 +991,27 @@ onclick="addTeacher()">
 <button
 class="btn-danger"
 onclick="deleteTeacher()">
-
 🗑️ حذف الاسم المحدد
-
 </button>
 
 <button
 class="btn-danger"
 style="background:#8b0000;margin-top:10px;"
 onclick="clearAllTeachers()">
-
 ⚠️ مسح جميع الأسماء
-
 </button>
 
 </div>
 
 </div>
 
-<!-- BOOKING MODAL -->
-<div id="bookingModal" class="modal">
+<!-- =====================================================
+     BOOKING MODAL
+===================================================== -->
+
+<div
+id="bookingModal"
+class="modal">
 
 <div class="modal-content">
 
@@ -924,9 +1034,7 @@ onclick="clearAllTeachers()">
 <button
 class="btn-action"
 onclick="confirmBooking()">
-
 تأكيد الحجز ✅
-
 </button>
 
 <button
@@ -939,17 +1047,20 @@ color:red;
 margin-top:10px;
 cursor:pointer;
 font-weight:bold;">
-
 إلغاء
-
 </button>
 
 </div>
 
 </div>
 
-<!-- CANCEL MODAL -->
-<div id="cancelModal" class="modal">
+<!-- =====================================================
+     CANCEL MODAL
+===================================================== -->
+
+<div
+id="cancelModal"
+class="modal">
 
 <div class="modal-content">
 
@@ -964,9 +1075,7 @@ font-weight:bold;">
 <button
 class="btn-danger"
 onclick="confirmCancelBooking()">
-
 نعم، إلغاء الحجز 🗑️
-
 </button>
 
 <button
@@ -979,16 +1088,17 @@ color:#555;
 margin-top:10px;
 cursor:pointer;
 font-weight:bold;">
-
 تراجع
-
 </button>
 
 </div>
 
 </div>
 
-<!-- FOOTER -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
 <footer class="footer">
 
 <p>
@@ -1001,8 +1111,12 @@ font-weight:bold;">
 
 </footer>
 
-<!-- FIREBASE -->
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
 <script>
@@ -1012,12 +1126,25 @@ font-weight:bold;">
 ========================================================= */
 
 const firebaseConfig = {
-apiKey:"AIzaSyBSp6_uiL2g2_wXE-jUKrveaHn3y1EKXWM",
-authDomain:"hessaplus-4c4c3.firebaseapp.com",
-projectId:"hessaplus-4c4c3",
-storageBucket:"hessaplus-4c4c3.firebasestorage.app",
-messagingSenderId:"995731746565",
-appId:"1:995731746565:web:fb7b5038585d7aa002116c"
+
+apiKey:
+"AIzaSyBSp6_uiL2g2_wXE-jUKrveaHn3y1EKXWM",
+
+authDomain:
+"hessaplus-4c4c3.firebaseapp.com",
+
+projectId:
+"hessaplus-4c4c3",
+
+storageBucket:
+"hessaplus-4c4c3.firebasestorage.app",
+
+messagingSenderId:
+"995731746565",
+
+appId:
+"1:995731746565:web:fb7b5038585d7aa002116c"
+
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -1029,13 +1156,23 @@ const db=firebase.firestore();
 ========================================================= */
 
 let schoolId=null;
+
 let schoolName="";
+
+let schoolCode="";
+
 let teachers=[];
+
 let allBookings=[];
+
 let filteredData=[];
+
 let currentPeriod=null;
+
 let hasReportSearched=false;
+
 let teachersUnsubscribe=null;
+
 let bookingsUnsubscribe=null;
 
 /* =========================================================
@@ -1078,6 +1215,7 @@ const subjects=[
 ========================================================= */
 
 const pNames=[
+
 "الأولى",
 "الثانية",
 "الثالثة",
@@ -1086,7 +1224,53 @@ const pNames=[
 "السادسة",
 "السابعة",
 "الثامنة"
+
 ];
+
+/* =========================================================
+   NORMALIZE SCHOOL NAME
+   تستخدم للمقارنة فقط
+   ولا تغيّر الاسم المحفوظ
+========================================================= */
+
+function normalizeSchoolName(name){
+
+return String(name||"")
+.trim()
+.replace(/\s+/g," ")
+.replace(/[أإآ]/g,"ا")
+.replace(/ة/g,"ه")
+.replace(/ى/g,"ي")
+.toLowerCase();
+
+}
+
+/* =========================================================
+   NORMALIZE SCHOOL CODE
+   رمز المدرسة هو الهوية الأساسية
+========================================================= */
+
+function normalizeSchoolCode(code){
+
+return String(code||"")
+.trim()
+.replace(/\s+/g," ")
+.toLowerCase();
+
+}
+
+/* =========================================================
+   CREATE STABLE SCHOOL DOCUMENT ID
+   لا يعتمد على اسم المدرسة إطلاقاً
+========================================================= */
+
+function createSchoolDocId(code){
+
+const normalizedCode=normalizeSchoolCode(code);
+
+return `school_${normalizedCode.replace(/\s+/g,"_")}`;
+
+}
 
 /* =========================================================
    DATE
@@ -1098,15 +1282,17 @@ const today=new Date();
 
 return `${today.getFullYear()}-${String(
 today.getMonth()+1
-).padStart(2,'0')}-${String(
+).padStart(2,"0")}-${String(
 today.getDate()
-).padStart(2,'0')}`;
+).padStart(2,"0")}`;
 
 }
 
 function formatReportDate(dateValue){
 
-if(!dateValue)return "";
+if(!dateValue){
+return "";
+}
 
 const value=String(dateValue).trim();
 
@@ -1128,11 +1314,16 @@ return value;
 
 function setLoginStatus(message,type="loading"){
 
-const element=document.getElementById("loginStatus");
+const element=document.getElementById(
+"loginStatus"
+);
 
-if(!element)return;
+if(!element){
+return;
+}
 
-element.className=`login-status ${type}`;
+element.className=
+`login-status ${type}`;
 
 element.innerHTML=message;
 
@@ -1140,9 +1331,13 @@ element.innerHTML=message;
 
 function clearLoginStatus(){
 
-const element=document.getElementById("loginStatus");
+const element=document.getElementById(
+"loginStatus"
+);
 
-if(!element)return;
+if(!element){
+return;
+}
 
 element.className="login-status";
 
@@ -1156,13 +1351,17 @@ element.innerHTML="";
 
 function openNav(){
 
-document.getElementById("mySidebar").style.width="280px";
+document.getElementById(
+"mySidebar"
+).style.width="280px";
 
 }
 
 function closeNav(){
 
-document.getElementById("mySidebar").style.width="0";
+document.getElementById(
+"mySidebar"
+).style.width="0";
 
 }
 
@@ -1172,15 +1371,20 @@ document
 .querySelectorAll(".content-section")
 .forEach(section=>{
 
-section.classList.remove("active-section");
+section.classList.remove(
+"active-section"
+);
 
 });
 
-const target=document.getElementById(id);
+const target=
+document.getElementById(id);
 
 if(target){
 
-target.classList.add("active-section");
+target.classList.add(
+"active-section"
+);
 
 }
 
@@ -1201,22 +1405,216 @@ closeNav();
 }
 
 /* =========================================================
+   FIND SCHOOL BY CODE
+=========================================================
+
+   الأولوية دائماً للرمز.
+
+   1. نبحث في document المتوقع من الرمز.
+   2. إذا لم نجده نبحث في حقل code.
+   3. لا نستخدم اسم المدرسة لإنشاء هوية جديدة.
+========================================================= */
+
+async function findSchoolByCode(code){
+
+const normalizedCode=
+normalizeSchoolCode(code);
+
+if(!normalizedCode){
+
+throw new Error(
+"رمز المدرسة غير صالح."
+);
+
+}
+
+/*
+ * document الجديد/الثابت:
+ *
+ * registered_schools
+ *    school_رمز_المدرسة
+ */
+
+const stableDocId=
+createSchoolDocId(normalizedCode);
+
+const stableRef=db
+.collection("registered_schools")
+.doc(stableDocId);
+
+const stableDoc=
+await stableRef.get();
+
+if(stableDoc.exists){
+
+return {
+
+docId:stableDocId,
+
+data:stableDoc.data()||{},
+
+source:"stable-doc",
+
+multiple:false
+
+};
+
+}
+
+/*
+ * حماية إضافية للبيانات القديمة:
+ *
+ * إذا كانت المدرسة موجودة في سجل قديم
+ * لكن document ID مختلف، نبحث عن code.
+ */
+
+const codeSnapshot=
+await db
+.collection("registered_schools")
+.where("code","==",normalizedCode)
+.get();
+
+if(!codeSnapshot.empty){
+
+const docs=codeSnapshot.docs;
+
+/*
+ * إذا وجد سجل واحد فقط،
+ * نستخدمه كما هو حتى لا نفقد البيانات القديمة.
+ */
+
+if(docs.length===1){
+
+return {
+
+docId:docs[0].id,
+
+data:docs[0].data()||{},
+
+source:"legacy-code",
+
+multiple:false
+
+};
+
+}
+
+/*
+ * إذا وجد أكثر من سجل بنفس الرمز،
+ * لا ندمج ولا نحذف تلقائياً.
+ */
+
+return {
+
+docId:null,
+
+data:null,
+
+source:"duplicate-code",
+
+multiple:true,
+
+docs:docs
+
+};
+
+}
+
+return null;
+
+}
+
+/* =========================================================
+   FIND POTENTIAL NAME DUPLICATES
+=========================================================
+
+   هذه الوظيفة لا تحذف ولا تدمج أي شيء.
+
+   تستخدم للمقارنة فقط إذا احتجنا إلى اكتشاف
+   سجلات متشابهة في الاسم.
+========================================================= */
+
+async function findPotentialNameDuplicates(schoolNameValue){
+
+const normalized=
+normalizeSchoolName(schoolNameValue);
+
+if(!normalized){
+
+return [];
+
+}
+
+const snapshot=
+await db
+.collection("registered_schools")
+.get();
+
+const matches=[];
+
+snapshot.forEach(doc=>{
+
+const data=doc.data()||{};
+
+const savedName=
+normalizeSchoolName(data.name||"");
+
+if(
+savedName &&
+savedName===normalized
+){
+
+matches.push({
+
+id:doc.id,
+
+name:data.name||"",
+
+code:data.code||""
+
+});
+
+}
+
+});
+
+return matches;
+
+}
+
+/* =========================================================
    LOGIN
 ========================================================= */
 
 async function loginSchool(){
 
-const nameInput=document.getElementById("schoolNameInput");
-const codeInput=document.getElementById("schoolCodeInput");
-const loginButton=document.getElementById("loginButton");
+const nameInput=
+document.getElementById(
+"schoolNameInput"
+);
 
-const sName=nameInput.value.trim();
-const sCode=codeInput.value.trim();
+const codeInput=
+document.getElementById(
+"schoolCodeInput"
+);
 
-if(!sName||!sCode){
+const loginButton=
+document.getElementById(
+"loginButton"
+);
+
+const enteredName=
+nameInput.value.trim();
+
+const enteredCode=
+normalizeSchoolCode(
+codeInput.value
+);
+
+if(!enteredName || !enteredCode){
 
 setLoginStatus(
-"⚠️ يرجى إدخال اسم المدرسة ورمز المدرسة.",
+"⚠️ يرجى إدخال اسم المدرسة ورقم/رمز المدرسة.",
 "error"
 );
 
@@ -1224,50 +1622,167 @@ return;
 
 }
 
-const docId=`school_${sCode
-.toLowerCase()
-.replace(/\s+/g,"_")}`;
-
 loginButton.disabled=true;
 
-loginButton.innerText="⏳ جارٍ الاتصال...";
+loginButton.innerText=
+"⏳ جارٍ التحقق...";
 
 setLoginStatus(
-"⏳ جارٍ الاتصال بقاعدة بيانات Firebase...",
+"⏳ جارٍ البحث عن المدرسة باستخدام رقم/رمز المدرسة...",
 "loading"
 );
 
 try{
 
-const schoolRef=db
-.collection("registered_schools")
-.doc(docId);
+/*
+ * البحث الأساسي يعتمد على الرمز فقط.
+ */
 
-const schoolDoc=await schoolRef.get();
+let existingSchool=
+await findSchoolByCode(
+enteredCode
+);
 
-if(schoolDoc.exists){
+/*
+ * =====================================================
+ * الحالة 1:
+ * المدرسة موجودة
+ * =====================================================
+ */
 
-const data=schoolDoc.data()||{};
+if(existingSchool){
 
-schoolId=docId;
+/*
+ * إذا وجد أكثر من سجل بنفس الرمز
+ * لا نحذف ولا ندمج.
+ */
 
-schoolName=data.name||sName;
+if(existingSchool.multiple){
+
+setLoginStatus(
+"⚠️ يوجد أكثر من سجل في قاعدة البيانات مرتبط بنفس رقم/رمز المدرسة.<br><br>" +
+"لم يتم حذف أو دمج أي سجل حفاظًا على بياناتك.<br>" +
+"يجب مراجعة السجلات المكررة قبل الدمج.",
+"error"
+);
+
+loginButton.disabled=false;
+
+loginButton.innerText=
+"دخول إلى النظام 🚀";
+
+return;
+
+}
+
+/*
+ * نستخدم السجل الموجود.
+ *
+ * الاسم الموجود في Firebase هو الاسم المعتمد.
+ * لا نستبدله بالاسم الذي كتبه المستخدم.
+ */
+
+schoolId=
+existingSchool.docId;
+
+const savedData=
+existingSchool.data||{};
+
+schoolCode=
+normalizeSchoolCode(
+savedData.code||enteredCode
+);
+
+schoolName=
+savedData.name||
+enteredName;
+
+/*
+ * لا نقوم بتغيير name.
+ *
+ * هذا مهم حتى لا يتغير الاسم القديم
+ * بسبب اختلاف كتابة المستخدم.
+ */
 
 }else{
 
+/*
+ * =====================================================
+ * الحالة 2:
+ * الرمز غير موجود
+ * =====================================================
+ *
+ * يمكن إنشاء مدرسة جديدة.
+ *
+ * document ID مبني على الرمز فقط.
+ */
+
+const newDocId=
+createSchoolDocId(
+enteredCode
+);
+
+const schoolRef=
+db
+.collection("registered_schools")
+.doc(newDocId);
+
+/*
+ * حماية إضافية:
+ * نعيد القراءة قبل الإنشاء.
+ */
+
+const doubleCheck=
+await schoolRef.get();
+
+if(doubleCheck.exists){
+
+schoolId=newDocId;
+
+const existingData=
+doubleCheck.data()||{};
+
+schoolCode=
+normalizeSchoolCode(
+existingData.code||enteredCode
+);
+
+schoolName=
+existingData.name||enteredName;
+
+}else{
+
+/*
+ * ننشئ السجل لأول مرة.
+ *
+ * الاسم يحفظ كما أدخله المستخدم.
+ * ولا يستخدم في docId.
+ */
+
 await schoolRef.set({
 
-name:sName,
-code:sCode,
-createdAt:firebase.firestore.FieldValue.serverTimestamp()
+name:enteredName,
+
+code:enteredCode,
+
+createdAt:
+firebase.firestore.FieldValue.serverTimestamp()
 
 });
 
-schoolId=docId;
+schoolId=newDocId;
 
-schoolName=sName;
+schoolCode=enteredCode;
+
+schoolName=enteredName;
 
 }
+
+}
+
+/*
+ * حفظ بيانات الجلسة.
+ */
 
 localStorage.setItem(
 "hessa_school_id",
@@ -1279,16 +1794,34 @@ localStorage.setItem(
 schoolName
 );
 
+localStorage.setItem(
+"hessa_school_code",
+schoolCode
+);
+
+/*
+ * تحديث الواجهة.
+ */
+
 document.getElementById(
 "currentSchoolDisplay"
-).innerText=`المدرسة: ${schoolName}`;
+).innerText=
+`المدرسة: ${schoolName}`;
+
+/*
+ * بدء تحميل بيانات المدرسة.
+ */
 
 setLoginStatus(
-"✅ تم الاتصال بنجاح. جارٍ تحميل بيانات المدرسة...",
+"✅ تم التحقق من المدرسة. جارٍ تحميل بياناتها...",
 "success"
 );
 
 fetchData();
+
+/*
+ * إخفاء نافذة الدخول.
+ */
 
 setTimeout(()=>{
 
@@ -1302,14 +1835,18 @@ clearLoginStatus();
 
 }catch(error){
 
-console.error("LOGIN ERROR:",error);
+console.error(
+"LOGIN ERROR:",
+error
+);
 
-let message="حدث خطأ أثناء الاتصال بالنظام.";
+let message=
+"حدث خطأ أثناء الاتصال بالنظام.";
 
 if(error.code==="permission-denied"){
 
 message=
-"🚫 تم رفض الوصول إلى Firebase.<br>" +
+"🚫 تم رفض الوصول إلى Firebase.<br><br>" +
 "المشكلة غالباً في Firestore Security Rules.<br>" +
 "رمز الخطأ: permission-denied";
 
@@ -1323,13 +1860,13 @@ message=
 
 message=
 "⚠️ قاعدة بيانات Firestore تحتاج إلى إعداد إضافي.<br>" +
-"راجع فهرسة Firestore أو إعدادات المشروع.";
+"راجع إعدادات Firestore.";
 
 }else if(error.code==="unauthenticated"){
 
 message=
 "🔐 Firebase يطلب مصادقة للمستخدم.<br>" +
-"تأكد من إعداد Authentication وFirestore Rules.";
+"تحقق من إعدادات Authentication وFirestore Rules.";
 
 }else if(error.message){
 
@@ -1339,11 +1876,15 @@ error.message;
 
 }
 
-setLoginStatus(message,"error");
+setLoginStatus(
+message,
+"error"
+);
 
 loginButton.disabled=false;
 
-loginButton.innerText="دخول إلى النظام 🚀";
+loginButton.innerText=
+"دخول إلى النظام 🚀";
 
 }
 
@@ -1355,11 +1896,16 @@ loginButton.innerText="دخول إلى النظام 🚀";
 
 function logoutSchool(){
 
-if(confirm("هل ترغب في تسجيل الخروج وتغيير المدرسة؟")){
+if(
+confirm(
+"هل ترغب في تسجيل الخروج وتغيير المدرسة؟"
+)
+){
 
 if(teachersUnsubscribe){
 
 teachersUnsubscribe();
+
 teachersUnsubscribe=null;
 
 }
@@ -1367,12 +1913,22 @@ teachersUnsubscribe=null;
 if(bookingsUnsubscribe){
 
 bookingsUnsubscribe();
+
 bookingsUnsubscribe=null;
 
 }
 
-localStorage.removeItem("hessa_school_id");
-localStorage.removeItem("hessa_school_name");
+localStorage.removeItem(
+"hessa_school_id"
+);
+
+localStorage.removeItem(
+"hessa_school_name"
+);
+
+localStorage.removeItem(
+"hessa_school_code"
+);
 
 location.reload();
 
@@ -1386,21 +1942,45 @@ location.reload();
 
 async function checkSavedLogin(){
 
-const savedId=localStorage.getItem("hessa_school_id");
-const savedName=localStorage.getItem("hessa_school_name");
+const savedId=
+localStorage.getItem(
+"hessa_school_id"
+);
 
-if(!savedId||!savedName){
+const savedName=
+localStorage.getItem(
+"hessa_school_name"
+);
+
+const savedCode=
+localStorage.getItem(
+"hessa_school_code"
+);
+
+/*
+ * دعم الجلسات القديمة التي لم يكن فيها
+ * hessa_school_code موجوداً.
+ */
+
+if(!savedId || !savedName){
 
 return;
 
 }
 
 schoolId=savedId;
+
 schoolName=savedName;
+
+schoolCode=
+normalizeSchoolCode(
+savedCode||""
+);
 
 document.getElementById(
 "currentSchoolDisplay"
-).innerText=`المدرسة: ${schoolName}`;
+).innerText=
+`المدرسة: ${schoolName}`;
 
 setLoginStatus(
 "⏳ جارٍ التحقق من اتصال المدرسة...",
@@ -1409,10 +1989,114 @@ setLoginStatus(
 
 try{
 
+/*
+ * نتحقق من أن document القديم ما زال موجوداً.
+ */
+
+const schoolDoc=
 await db
 .collection("registered_schools")
 .doc(schoolId)
 .get();
+
+if(!schoolDoc.exists){
+
+/*
+ * إذا كان لدينا الرمز، نحاول العثور على
+ * السجل باستخدام code.
+ */
+
+if(schoolCode){
+
+const found=
+await findSchoolByCode(
+schoolCode
+);
+
+if(found && !found.multiple){
+
+schoolId=found.docId;
+
+const data=
+found.data||{};
+
+schoolName=
+data.name||schoolName;
+
+schoolCode=
+normalizeSchoolCode(
+data.code||schoolCode
+);
+
+localStorage.setItem(
+"hessa_school_id",
+schoolId
+);
+
+localStorage.setItem(
+"hessa_school_name",
+schoolName
+);
+
+localStorage.setItem(
+"hessa_school_code",
+schoolCode
+);
+
+}else{
+
+throw new Error(
+"لم يتم العثور على سجل المدرسة."
+);
+
+}
+
+}else{
+
+throw new Error(
+"لم يتم العثور على سجل المدرسة."
+);
+
+}
+
+}else{
+
+/*
+ * إذا كان السجل موجوداً،
+ * نستخدم الاسم المحفوظ فيه كما هو.
+ */
+
+const data=
+schoolDoc.data()||{};
+
+schoolName=
+data.name||schoolName;
+
+schoolCode=
+normalizeSchoolCode(
+data.code||schoolCode
+);
+
+localStorage.setItem(
+"hessa_school_name",
+schoolName
+);
+
+if(schoolCode){
+
+localStorage.setItem(
+"hessa_school_code",
+schoolCode
+);
+
+}
+
+document.getElementById(
+"currentSchoolDisplay"
+).innerText=
+`المدرسة: ${schoolName}`;
+
+}
 
 fetchData();
 
@@ -1429,21 +2113,41 @@ console.error(
 error
 );
 
-localStorage.removeItem("hessa_school_id");
-localStorage.removeItem("hessa_school_name");
+/*
+ * لا نحذف بيانات Firebase.
+ * نحذف فقط جلسة المتصفح حتى يستطيع المستخدم
+ * تسجيل الدخول من جديد.
+ */
+
+localStorage.removeItem(
+"hessa_school_id"
+);
+
+localStorage.removeItem(
+"hessa_school_name"
+);
+
+localStorage.removeItem(
+"hessa_school_code"
+);
 
 schoolId=null;
+
 schoolName="";
+
+schoolCode="";
 
 document.getElementById(
 "currentSchoolDisplay"
-).innerText="المدرسة: غير متصل";
+).innerText=
+"المدرسة: غير متصل";
 
 document.getElementById(
 "loginModal"
 ).style.display="flex";
 
-let message="تعذر استعادة جلسة المدرسة.";
+let message=
+"تعذر استعادة جلسة المدرسة.";
 
 if(error.code==="permission-denied"){
 
@@ -1463,7 +2167,10 @@ message=
 
 }
 
-setLoginStatus(message,"error");
+setLoginStatus(
+message,
+"error"
+);
 
 }
 
@@ -1481,6 +2188,10 @@ return;
 
 }
 
+/*
+ * إلغاء المستمعين السابقين.
+ */
+
 if(teachersUnsubscribe){
 
 teachersUnsubscribe();
@@ -1495,7 +2206,8 @@ bookingsUnsubscribe();
 
 /* ================= TEACHERS ================= */
 
-teachersUnsubscribe=db
+teachersUnsubscribe=
+db
 .collection("schools")
 .doc(schoolId)
 .collection("teachers")
@@ -1509,16 +2221,22 @@ snapshot.forEach(doc=>{
 
 const data=doc.data();
 
-if(data&&data.name){
+if(data && data.name){
 
-teachers.push(data.name);
+teachers.push(
+data.name
+);
 
 }
 
 });
 
-teachers.sort((a,b)=>
-String(a).localeCompare(String(b),"ar")
+teachers.sort(
+(a,b)=>
+String(a).localeCompare(
+String(b),
+"ar"
+)
 );
 
 updateSettingsLists();
@@ -1542,11 +2260,13 @@ alert(
 }
 
 }
+
 );
 
 /* ================= BOOKINGS ================= */
 
-bookingsUnsubscribe=db
+bookingsUnsubscribe=
+db
 .collection("schools")
 .doc(schoolId)
 .collection("bookings")
@@ -1559,8 +2279,11 @@ allBookings=[];
 snapshot.forEach(doc=>{
 
 allBookings.push({
+
 id:doc.id,
+
 ...doc.data()
+
 });
 
 });
@@ -1586,6 +2309,7 @@ alert(
 }
 
 }
+
 );
 
 }
@@ -1596,40 +2320,70 @@ alert(
 
 function renderGrid(){
 
-const grid=document.getElementById("periodsGrid");
+const grid=
+document.getElementById(
+"periodsGrid"
+);
 
-if(!grid)return;
+if(!grid){
+
+return;
+
+}
 
 grid.innerHTML="";
 
-const today=getTodayString();
+const today=
+getTodayString();
 
-pNames.forEach((name,i)=>{
+pNames.forEach(
+(name,i)=>{
 
 const pNum=i+1;
 
-const booking=Array.isArray(allBookings)
-?allBookings.find(item=>
+const booking=
+Array.isArray(allBookings)
+?
+allBookings.find(
+item=>
 item.period==pNum &&
 item.date==today
 )
-:null;
+:
+null;
 
-const card=document.createElement("div");
+const card=
+document.createElement(
+"div"
+);
 
 card.className=
-`period-card ${booking?"is-booked":""}`;
+`period-card ${
+booking
+?
+"is-booked"
+:
+""
+}`;
 
 card.innerHTML=`
 
-<div>الحصة ${name}</div>
+<div>
+الحصة ${name}
+</div>
 
 <div class="status-text">
 
 ${
 booking
-?"🔒 "+escapeHtml(booking.teacher)+" (إلغاء)"
-:"🟢 متاحة"
+?
+"🔒 "+
+escapeHtml(
+booking.teacher
+)+
+" (إلغاء)"
+:
+"🟢 متاحة"
 }
 
 </div>
@@ -1638,11 +2392,13 @@ booking
 
 if(!booking){
 
-card.onclick=()=>openModal(pNum);
+card.onclick=()=>
+openModal(pNum);
 
 }else{
 
-card.onclick=()=>openCancelModal(
+card.onclick=()=>
+openCancelModal(
 pNum,
 booking.teacher
 );
@@ -1651,7 +2407,8 @@ booking.teacher
 
 grid.appendChild(card);
 
-});
+}
+);
 
 }
 
@@ -1661,12 +2418,34 @@ grid.appendChild(card);
 
 function escapeHtml(value){
 
-return String(value??"")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+return String(
+value??""
+)
+
+.replace(
+/&/g,
+"&amp;"
+)
+
+.replace(
+/</g,
+"&lt;"
+)
+
+.replace(
+/>/g,
+"&gt;"
+)
+
+.replace(
+/"/g,
+"&quot;"
+)
+
+.replace(
+/'/g,
+"&#039;"
+);
 
 }
 
@@ -1676,13 +2455,18 @@ return String(value??"")
 
 function openModal(p){
 
-if(!teachers||teachers.length===0){
+if(
+!teachers ||
+teachers.length===0
+){
 
 alert(
 "⚠️ القائمة فارغة! يرجى إضافة الأسماء من قسم الإعدادات أولاً."
 );
 
-showSection("settings");
+showSection(
+"settings"
+);
 
 return;
 
@@ -1692,17 +2476,33 @@ currentPeriod=p;
 
 document.getElementById(
 "modalTeacherSelect"
-).innerHTML=teachers
-.map(teacher=>
-`<option value="${escapeHtml(teacher)}">${escapeHtml(teacher)}</option>`
+).innerHTML=
+teachers
+.map(
+teacher=>
+`<option value="${escapeHtml(
+teacher
+)}">
+${escapeHtml(
+teacher
+)}
+</option>`
 )
 .join("");
 
 document.getElementById(
 "modalSubjectSelect"
-).innerHTML=subjects
-.map(subject=>
-`<option value="${escapeHtml(subject)}">${escapeHtml(subject)}</option>`
+).innerHTML=
+subjects
+.map(
+subject=>
+`<option value="${escapeHtml(
+subject
+)}">
+${escapeHtml(
+subject
+)}
+</option>`
 )
 .join("");
 
@@ -1728,31 +2528,39 @@ async function confirmBooking(){
 
 if(!schoolId){
 
-alert("يرجى تسجيل الدخول أولاً.");
+alert(
+"يرجى تسجيل الدخول أولاً."
+);
 
 return;
 
 }
 
-const teacher=document.getElementById(
+const teacher=
+document.getElementById(
 "modalTeacherSelect"
 ).value;
 
-const subject=document.getElementById(
+const subject=
+document.getElementById(
 "modalSubjectSelect"
 ).value;
 
-const date=getTodayString();
+const date=
+getTodayString();
 
 if(!teacher){
 
-alert("يرجى اختيار الاسم");
+alert(
+"يرجى اختيار الاسم"
+);
 
 return;
 
 }
 
-const docId=`${date}_p${currentPeriod}`;
+const docId=
+`${date}_p${currentPeriod}`;
 
 try{
 
@@ -1764,8 +2572,11 @@ await db
 .set({
 
 date:date,
+
 period:currentPeriod,
+
 teacher:teacher,
+
 subject:subject
 
 });
@@ -1779,7 +2590,9 @@ console.error(
 error
 );
 
-if(error.code==="permission-denied"){
+if(
+error.code==="permission-denied"
+){
 
 alert(
 "🚫 تم رفض حفظ الحجز من Firestore.\n\n" +
@@ -1802,7 +2615,10 @@ alert(
    CANCEL
 ========================================================= */
 
-function openCancelModal(pNum,teacherName){
+function openCancelModal(
+pNum,
+teacherName
+){
 
 currentPeriod=pNum;
 
@@ -1829,15 +2645,19 @@ async function confirmCancelBooking(){
 
 if(!schoolId){
 
-alert("يرجى تسجيل الدخول أولاً.");
+alert(
+"يرجى تسجيل الدخول أولاً."
+);
 
 return;
 
 }
 
-const date=getTodayString();
+const date=
+getTodayString();
 
-const docId=`${date}_p${currentPeriod}`;
+const docId=
+`${date}_p${currentPeriod}`;
 
 try{
 
@@ -1857,7 +2677,9 @@ console.error(
 error
 );
 
-if(error.code==="permission-denied"){
+if(
+error.code==="permission-denied"
+){
 
 alert(
 "🚫 تم رفض إلغاء الحجز من Firestore.\n\n" +
@@ -1866,7 +2688,9 @@ alert(
 
 }else{
 
-alert("تعذر إلغاء الحجز.");
+alert(
+"تعذر إلغاء الحجز."
+);
 
 }
 
@@ -1878,28 +2702,45 @@ alert("تعذر إلغاء الحجز.");
    DATE RANGE
 ========================================================= */
 
-async function fetchDataByDateRange(startDate,endDate){
+async function fetchDataByDateRange(
+startDate,
+endDate
+){
 
 if(!schoolId){
 
-throw new Error("لم يتم تحديد المدرسة.");
+throw new Error(
+"لم يتم تحديد المدرسة."
+);
 
 }
 
-const snapshot=await db
+const snapshot=
+await db
 .collection("schools")
 .doc(schoolId)
 .collection("bookings")
-.where("date",">=",startDate)
-.where("date","<=",endDate)
+.where(
+"date",
+">=",
+startDate
+)
+.where(
+"date",
+"<=",
+endDate
+)
 .get();
 
-return snapshot.docs.map(doc=>({
+return snapshot.docs.map(
+doc=>({
 
 id:doc.id,
+
 ...doc.data()
 
-}));
+})
+);
 
 }
 
@@ -1909,32 +2750,50 @@ id:doc.id,
 
 async function handleSearch(){
 
-const startDate=document.getElementById("startDate").value;
-const endDate=document.getElementById("endDate").value;
+const startDate=
+document.getElementById(
+"startDate"
+).value;
 
-const errorElement=document.getElementById("dateRangeError");
-const loadingElement=document.getElementById("reportLoading");
+const endDate=
+document.getElementById(
+"endDate"
+).value;
+
+const errorElement=
+document.getElementById(
+"dateRangeError"
+);
+
+const loadingElement=
+document.getElementById(
+"reportLoading"
+);
 
 errorElement.textContent="";
-errorElement.style.display="none";
+
+errorElement.style.display=
+"none";
 
 if(!schoolId){
 
 errorElement.textContent=
 "يرجى تسجيل الدخول إلى المدرسة أولاً.";
 
-errorElement.style.display="block";
+errorElement.style.display=
+"block";
 
 return;
 
 }
 
-if(!startDate||!endDate){
+if(!startDate || !endDate){
 
 errorElement.textContent=
 "يرجى اختيار تاريخ البداية وتاريخ النهاية.";
 
-errorElement.style.display="block";
+errorElement.style.display=
+"block";
 
 return;
 
@@ -1945,30 +2804,38 @@ if(startDate>endDate){
 errorElement.textContent=
 "تاريخ البداية يجب أن يكون قبل أو مساويًا لتاريخ النهاية.";
 
-errorElement.style.display="block";
+errorElement.style.display=
+"block";
 
 return;
 
 }
 
-loadingElement.style.display="block";
+loadingElement.style.display=
+"block";
 
 filteredData=[];
+
 hasReportSearched=true;
 
 disableReportActions();
 
 try{
 
-filteredData=await fetchDataByDateRange(
+filteredData=
+await fetchDataByDateRange(
 startDate,
 endDate
 );
 
-filteredData.sort((a,b)=>{
+filteredData.sort(
+(a,b)=>{
 
 const dateComparison=
-String(a.date).localeCompare(String(b.date));
+String(a.date)
+.localeCompare(
+String(b.date)
+);
 
 if(dateComparison!==0){
 
@@ -1976,9 +2843,11 @@ return dateComparison;
 
 }
 
-return Number(a.period||0)-Number(b.period||0);
+return Number(a.period||0)-
+Number(b.period||0);
 
-});
+}
+);
 
 renderReport();
 
@@ -1996,7 +2865,8 @@ error.code==="permission-denied"
 :
 "حدث خطأ أثناء تحميل البيانات من قاعدة البيانات. تأكد من الاتصال.";
 
-errorElement.style.display="block";
+errorElement.style.display=
+"block";
 
 filteredData=[];
 
@@ -2004,7 +2874,8 @@ renderReport();
 
 }finally{
 
-loadingElement.style.display="none";
+loadingElement.style.display=
+"none";
 
 }
 
@@ -2016,17 +2887,34 @@ loadingElement.style.display="none";
 
 function renderReport(){
 
-const tbody=document.getElementById("reportTableBody");
-const emptyState=document.getElementById("reportEmptyState");
-const meta=document.getElementById("reportMeta");
+const tbody=
+document.getElementById(
+"reportTableBody"
+);
 
-if(!tbody)return;
+const emptyState=
+document.getElementById(
+"reportEmptyState"
+);
+
+const meta=
+document.getElementById(
+"reportMeta"
+);
+
+if(!tbody){
+
+return;
+
+}
 
 tbody.innerHTML="";
 
-emptyState.style.display="none";
+emptyState.style.display=
+"none";
 
-meta.style.display="none";
+meta.style.display=
+"none";
 
 if(!hasReportSearched){
 
@@ -2036,9 +2924,13 @@ return;
 
 }
 
-if(!Array.isArray(filteredData)||filteredData.length===0){
+if(
+!Array.isArray(filteredData) ||
+filteredData.length===0
+){
 
-emptyState.style.display="block";
+emptyState.style.display=
+"block";
 
 disableReportActions();
 
@@ -2046,71 +2938,117 @@ return;
 
 }
 
-filteredData.forEach(booking=>{
+filteredData.forEach(
+booking=>{
 
-const row=document.createElement("tr");
+const row=
+document.createElement(
+"tr"
+);
 
-const dateCell=document.createElement("td");
+const dateCell=
+document.createElement(
+"td"
+);
 
 dateCell.textContent=
-formatReportDate(booking.date);
+formatReportDate(
+booking.date
+);
 
-const periodCell=document.createElement("td");
+const periodCell=
+document.createElement(
+"td"
+);
 
-const periodNumber=parseInt(
+const periodNumber=
+parseInt(
 booking.period,
 10
 );
 
 periodCell.textContent=
-!isNaN(periodNumber)&&
+!isNaN(periodNumber) &&
 pNames[periodNumber-1]
 ?
-`الحصة ${pNames[periodNumber-1]}`
+`الحصة ${
+pNames[periodNumber-1]
+}`
 :
-`الحصة ${booking.period||""}`;
+`الحصة ${
+booking.period||""
+}`;
 
-const teacherCell=document.createElement("td");
+const teacherCell=
+document.createElement(
+"td"
+);
 
 teacherCell.textContent=
 booking.teacher||"";
 
-const subjectCell=document.createElement("td");
+const subjectCell=
+document.createElement(
+"td"
+);
 
 subjectCell.textContent=
 booking.subject||"";
 
-row.appendChild(dateCell);
-row.appendChild(periodCell);
-row.appendChild(teacherCell);
-row.appendChild(subjectCell);
+row.appendChild(
+dateCell
+);
 
-tbody.appendChild(row);
+row.appendChild(
+periodCell
+);
 
-});
+row.appendChild(
+teacherCell
+);
 
-const startDate=document.getElementById(
+row.appendChild(
+subjectCell
+);
+
+tbody.appendChild(
+row
+);
+
+}
+);
+
+const startDate=
+document.getElementById(
 "startDate"
 ).value;
 
-const endDate=document.getElementById(
+const endDate=
+document.getElementById(
 "endDate"
 ).value;
 
 meta.textContent=
 `عدد الحجوزات: ${filteredData.length} | الفترة: ${formatReportDate(startDate)} إلى ${formatReportDate(endDate)}`;
 
-meta.style.display="block";
+meta.style.display=
+"block";
 
 document.getElementById(
 "printSchoolName"
 ).textContent=
-`المدرسة: ${schoolName||"غير محددة"}`;
+`المدرسة: ${
+schoolName||"غير محددة"
+}`;
 
 document.getElementById(
 "printDateRange"
 ).textContent=
-`الفترة: ${formatReportDate(startDate)} إلى ${formatReportDate(endDate)}`;
+`الفترة: ${
+formatReportDate(startDate)
+} إلى ${
+formatReportDate(endDate)
+}`;
 
 enableReportActions();
 
@@ -2123,12 +3061,13 @@ enableReportActions();
 function enableReportActions(){
 
 const hasData=
-Array.isArray(filteredData)&&
+Array.isArray(filteredData) &&
 filteredData.length>0;
 
 document.getElementById(
 "printReportBtn"
-).disabled=!hasData;
+).disabled=
+!hasData;
 
 }
 
@@ -2146,15 +3085,22 @@ document.getElementById(
 
 function handlePrint(){
 
-if(!Array.isArray(filteredData)||filteredData.length===0){
+if(
+!Array.isArray(filteredData) ||
+filteredData.length===0
+){
 
-alert("لا توجد بيانات متاحة للطباعة.");
+alert(
+"لا توجد بيانات متاحة للطباعة."
+);
 
 return;
 
 }
 
-document.body.classList.add("printing-report");
+document.body.classList.add(
+"printing-report"
+);
 
 window.print();
 
@@ -2168,7 +3114,8 @@ document.body.classList.remove(
 "printing-report"
 );
 
-});
+}
+);
 
 /* =========================================================
    IMPORT EXCEL
@@ -2176,11 +3123,13 @@ document.body.classList.remove(
 
 function importFromExcel(){
 
-const fileInput=document.getElementById(
+const fileInput=
+document.getElementById(
 "excelFileInput"
 );
 
-const file=fileInput.files[0];
+const file=
+fileInput.files[0];
 
 if(!file){
 
@@ -2194,70 +3143,94 @@ return;
 
 if(!schoolId){
 
-alert("يرجى تسجيل الدخول أولاً.");
+alert(
+"يرجى تسجيل الدخول أولاً."
+);
 
 return;
 
 }
 
-const reader=new FileReader();
+const reader=
+new FileReader();
 
-reader.onload=async function(e){
+reader.onload=
+async function(e){
 
 try{
 
-const data=new Uint8Array(
+const data=
+new Uint8Array(
 e.target.result
 );
 
-const workbook=XLSX.read(
+const workbook=
+XLSX.read(
 data,
-{type:"array"}
+{
+type:"array"
+}
 );
 
-const sheet=workbook.Sheets[
+const sheet=
+workbook.Sheets[
 workbook.SheetNames[0]
 ];
 
-const jsonData=XLSX.utils.sheet_to_json(
+const jsonData=
+XLSX.utils.sheet_to_json(
 sheet,
-{header:1}
+{
+header:1
+}
 );
 
 let importedNames=[];
 
-jsonData.forEach(row=>{
+jsonData.forEach(
+row=>{
 
-if(row&&row.length>0){
+if(
+row &&
+row.length>0
+){
 
-row.forEach(cell=>{
+row.forEach(
+cell=>{
 
 if(cell){
 
-const name=String(cell).trim();
+const name=
+String(cell).trim();
 
 if(
-name&&
-name.length>2&&
-!teachers.includes(name)&&
-!importedNames.includes(name)&&
-name!=="اسم المعلم"&&
+name &&
+name.length>2 &&
+!teachers.includes(name) &&
+!importedNames.includes(name) &&
+name!=="اسم المعلم" &&
 name!=="الاسم"
 ){
 
-importedNames.push(name);
+importedNames.push(
+name
+);
 
 }
 
 }
 
-});
+}
+);
 
 }
 
-});
+}
+);
 
-if(importedNames.length===0){
+if(
+importedNames.length===0
+){
 
 alert(
 "لم يتم العثور على أسماء جديدة في الملف."
@@ -2267,11 +3240,14 @@ return;
 
 }
 
-const batch=db.batch();
+const batch=
+db.batch();
 
-importedNames.forEach(name=>{
+importedNames.forEach(
+name=>{
 
-const docRef=db
+const docRef=
+db
 .collection("schools")
 .doc(schoolId)
 .collection("teachers")
@@ -2279,10 +3255,13 @@ const docRef=db
 
 batch.set(
 docRef,
-{name:name}
+{
+name:name
+}
 );
 
-});
+}
+);
 
 await batch.commit();
 
@@ -2294,9 +3273,13 @@ fileInput.value="";
 
 }catch(error){
 
-console.error(error);
+console.error(
+error
+);
 
-if(error.code==="permission-denied"){
+if(
+error.code==="permission-denied"
+){
 
 alert(
 "🚫 تم رفض حفظ الأسماء.\n\nتحقق من Firestore Security Rules."
@@ -2314,7 +3297,9 @@ alert(
 
 };
 
-reader.readAsArrayBuffer(file);
+reader.readAsArrayBuffer(
+file
+);
 
 }
 
@@ -2324,17 +3309,27 @@ reader.readAsArrayBuffer(file);
 
 async function addTeacher(){
 
-const nameInput=document.getElementById(
+const nameInput=
+document.getElementById(
 "newTeacherName"
 );
 
-const name=nameInput.value.trim();
+const name=
+nameInput.value.trim();
 
-if(!name)return;
+if(!name){
 
-if(teachers.includes(name)){
+return;
 
-alert("هذا الاسم موجود بالفعل!");
+}
+
+if(
+teachers.includes(name)
+){
+
+alert(
+"هذا الاسم موجود بالفعل!"
+);
 
 return;
 
@@ -2342,7 +3337,9 @@ return;
 
 if(!schoolId){
 
-alert("يرجى تسجيل الدخول أولاً.");
+alert(
+"يرجى تسجيل الدخول أولاً."
+);
 
 return;
 
@@ -2356,16 +3353,22 @@ await db
 .collection("teachers")
 .doc(name)
 .set({
+
 name:name
+
 });
 
 nameInput.value="";
 
 }catch(error){
 
-console.error(error);
+console.error(
+error
+);
 
-if(error.code==="permission-denied"){
+if(
+error.code==="permission-denied"
+){
 
 alert(
 "🚫 تم رفض إضافة الاسم من Firebase.\n\nتحقق من Firestore Security Rules."
@@ -2373,7 +3376,9 @@ alert(
 
 }else{
 
-alert("تعذر إضافة الاسم.");
+alert(
+"تعذر إضافة الاسم."
+);
 
 }
 
@@ -2387,17 +3392,29 @@ alert("تعذر إضافة الاسم.");
 
 async function deleteTeacher(){
 
-const select=document.getElementById(
+const select=
+document.getElementById(
 "deleteTeacherSelect"
 );
 
-const teacherToDelete=select.value;
+const teacherToDelete=
+select.value;
 
-if(!teacherToDelete)return;
+if(!teacherToDelete){
 
-if(!confirm(
+return;
+
+}
+
+if(
+!confirm(
 `هل أنت متأكد من حذف الاسم (${teacherToDelete})؟`
-))return;
+)
+){
+
+return;
+
+}
 
 try{
 
@@ -2410,9 +3427,13 @@ await db
 
 }catch(error){
 
-console.error(error);
+console.error(
+error
+);
 
-if(error.code==="permission-denied"){
+if(
+error.code==="permission-denied"
+){
 
 alert(
 "🚫 تم رفض حذف الاسم من Firebase.\n\nتحقق من Firestore Security Rules."
@@ -2420,7 +3441,9 @@ alert(
 
 }else{
 
-alert("تعذر حذف الاسم.");
+alert(
+"تعذر حذف الاسم."
+);
 
 }
 
@@ -2434,33 +3457,47 @@ alert("تعذر حذف الاسم.");
 
 async function clearAllTeachers(){
 
-if(!confirm(
+if(
+!confirm(
 "هل أنت متأكد من مسح كافة الأسماء المسجلة لهذه المدرسة؟"
-))return;
+)
+){
+
+return;
+
+}
 
 try{
 
-const snapshot=await db
+const snapshot=
+await db
 .collection("schools")
 .doc(schoolId)
 .collection("teachers")
 .get();
 
-const batch=db.batch();
+const batch=
+db.batch();
 
-snapshot.forEach(doc=>{
-
-batch.delete(doc.ref);
-
-});
+snapshot.forEach(
+doc=>{
+batch.delete(
+doc.ref
+);
+}
+);
 
 await batch.commit();
 
 }catch(error){
 
-console.error(error);
+console.error(
+error
+);
 
-if(error.code==="permission-denied"){
+if(
+error.code==="permission-denied"
+){
 
 alert(
 "🚫 تم رفض مسح الأسماء من Firebase.\n\nتحقق من Firestore Security Rules."
@@ -2468,7 +3505,9 @@ alert(
 
 }else{
 
-alert("تعذر مسح الأسماء.");
+alert(
+"تعذر مسح الأسماء."
+);
 
 }
 
@@ -2482,32 +3521,50 @@ alert("تعذر مسح الأسماء.");
 
 function updateSettingsLists(){
 
-const select=document.getElementById(
+const select=
+document.getElementById(
 "deleteTeacherSelect"
 );
 
-const countSpan=document.getElementById(
+const countSpan=
+document.getElementById(
 "teacherCount"
 );
 
-if(!select)return;
+if(!select){
 
-if(countSpan){
-
-countSpan.innerText=teachers.length;
+return;
 
 }
 
-if(!teachers||teachers.length===0){
+if(countSpan){
+
+countSpan.innerText=
+teachers.length;
+
+}
+
+if(
+!teachers ||
+teachers.length===0
+){
 
 select.innerHTML=
 '<option value="">(لا توجد أسماء مسجلة)</option>';
 
 }else{
 
-select.innerHTML=teachers
-.map(teacher=>
-`<option value="${escapeHtml(teacher)}">${escapeHtml(teacher)}</option>`
+select.innerHTML=
+teachers
+.map(
+teacher=>
+`<option value="${escapeHtml(
+teacher
+)}">
+${escapeHtml(
+teacher
+)}
+</option>`
 )
 .join("");
 
@@ -2519,27 +3576,33 @@ select.innerHTML=teachers
    PAGE LOAD
 ========================================================= */
 
-window.onload=function(){
+window.onload=
+function(){
 
-const startDate=document.getElementById(
+const startDate=
+document.getElementById(
 "startDate"
 );
 
-const endDate=document.getElementById(
+const endDate=
+document.getElementById(
 "endDate"
 );
 
-const today=getTodayString();
+const today=
+getTodayString();
 
 if(startDate){
 
-startDate.value=today;
+startDate.value=
+today;
 
 }
 
 if(endDate){
 
-endDate.value=today;
+endDate.value=
+today;
 
 }
 
@@ -2557,7 +3620,8 @@ document.addEventListener(
 "DOMContentLoaded",
 ()=>{
 
-const codeInput=document.getElementById(
+const codeInput=
+document.getElementById(
 "schoolCodeInput"
 );
 
@@ -2567,7 +3631,9 @@ codeInput.addEventListener(
 "keydown",
 event=>{
 
-if(event.key==="Enter"){
+if(
+event.key==="Enter"
+){
 
 loginSchool();
 
@@ -2578,7 +3644,8 @@ loginSchool();
 
 }
 
-});
+}
+);
 
 /* =========================================================
    PWA
@@ -2586,7 +3653,8 @@ loginSchool();
 
 let deferredPrompt;
 
-const installBtn=document.getElementById(
+const installBtn=
+document.getElementById(
 "installAppBtn"
 );
 
@@ -2600,11 +3668,13 @@ deferredPrompt=e;
 
 if(installBtn){
 
-installBtn.style.display="inline-block";
+installBtn.style.display=
+"inline-block";
 
 }
 
-});
+}
+);
 
 if(installBtn){
 
@@ -2612,14 +3682,20 @@ installBtn.addEventListener(
 "click",
 async()=>{
 
-if(!deferredPrompt)return;
+if(!deferredPrompt){
+
+return;
+
+}
 
 deferredPrompt.prompt();
 
 const {outcome}=
 await deferredPrompt.userChoice;
 
-if(outcome==="accepted"){
+if(
+outcome==="accepted"
+){
 
 console.log(
 "تم تثبيت التطبيق بنجاح"
@@ -2629,9 +3705,11 @@ console.log(
 
 deferredPrompt=null;
 
-installBtn.style.display="none";
+installBtn.style.display=
+"none";
 
-});
+}
+);
 
 }
 
@@ -2641,17 +3719,21 @@ window.addEventListener(
 
 if(installBtn){
 
-installBtn.style.display="none";
+installBtn.style.display=
+"none";
 
 }
 
-});
+}
+);
 
 /* =========================================================
    SERVICE WORKER
 ========================================================= */
 
-if("serviceWorker" in navigator){
+if(
+"serviceWorker" in navigator
+){
 
 window.addEventListener(
 "load",
@@ -2660,18 +3742,23 @@ window.addEventListener(
 navigator.serviceWorker
 .register("./sw.js")
 .then(
-()=>console.log(
+()=>{
+console.log(
 "Service Worker Registered"
-)
+);
+}
 )
 .catch(
-error=>console.log(
+error=>{
+console.log(
 "Service Worker Failed",
 error
-)
+);
+}
 );
 
-});
+}
+);
 
 }
 
