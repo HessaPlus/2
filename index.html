@@ -166,10 +166,7 @@ display:block;
 
 .periods-grid{
 display:grid;
-grid-template-columns:repeat(
-auto-fit,
-minmax(180px,1fr)
-);
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
 gap:18px;
 padding:20px;
 max-width:900px;
@@ -611,10 +608,7 @@ display:none!important;
 
 <body>
 
-<!-- =====================================================
-     LOGIN
-===================================================== -->
-
+<!-- LOGIN -->
 <div id="loginModal" class="modal">
 
 <div class="modal-content" style="text-align:center;">
@@ -650,7 +644,9 @@ placeholder="رقم / رمز المدرسة">
 id="loginButton"
 class="btn-action"
 onclick="loginSchool()">
+
 دخول إلى النظام 🚀
+
 </button>
 
 <div
@@ -661,10 +657,7 @@ class="login-status">
 </div>
 </div>
 
-<!-- =====================================================
-     HEADER BANNER
-===================================================== -->
-
+<!-- HEADER BANNER -->
 <div class="header-banner">
 
 <img
@@ -674,10 +667,7 @@ alt="شعار النظام">
 
 </div>
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
+<!-- HEADER -->
 <header>
 
 <div
@@ -711,17 +701,15 @@ font-weight:bold;
 border-radius:20px;
 cursor:pointer;
 box-shadow:0 4px 6px rgba(0,0,0,.2);">
+
 📲 تثبيت تطبيق حصة بلس
+
 </button>
 
 </div>
-
 </header>
 
-<!-- =====================================================
-     SIDEBAR
-===================================================== -->
-
+<!-- SIDEBAR -->
 <div id="mySidebar" class="sidebar">
 
 <a
@@ -758,10 +746,7 @@ style="color:#ff8a8a;">
 
 </div>
 
-<!-- =====================================================
-     BOOKING
-===================================================== -->
-
+<!-- BOOKING -->
 <div
 id="booking"
 class="content-section active-section">
@@ -773,10 +758,7 @@ id="periodsGrid">
 
 </div>
 
-<!-- =====================================================
-     REPORT
-===================================================== -->
-
+<!-- REPORT -->
 <div
 id="report"
 class="content-section">
@@ -792,7 +774,9 @@ style="
 color:var(--text-muted);
 margin-top:-10px;
 margin-bottom:20px;">
+
 حدد الفترة الزمنية التي تريد عرض حجوزاتها.
+
 </p>
 
 <div class="report-controls">
@@ -842,7 +826,7 @@ onclick="handleSearch()">
 id="printReportBtn"
 class="btn-action"
 style="background:var(--free-green);"
-onclick="handlePrint"
+onclick="handlePrint()"
 disabled>
 🖨️ طباعة التقرير
 </button>
@@ -854,7 +838,9 @@ id="reportLoading"
 class="report-message loading"
 style="display:none;"
 aria-live="polite">
+
 ⏳ جارٍ تحميل البيانات من قاعدة البيانات...
+
 </div>
 
 <div
@@ -916,19 +902,16 @@ style="display:none;">
 id="reportEmptyState"
 class="report-empty"
 style="display:none;">
+
 لا توجد حجوزات مسجلة ضمن الفترة المحددة.
-</div>
 
 </div>
 
 </div>
-
+</div>
 </div>
 
-<!-- =====================================================
-     SETTINGS
-===================================================== -->
-
+<!-- SETTINGS -->
 <div
 id="settings"
 class="content-section">
@@ -953,7 +936,9 @@ accept=".xlsx,.xls,.csv">
 class="btn-action"
 style="background:#1d6f42;"
 onclick="importFromExcel()">
+
 📊 جلب الأسماء من ملف الإكسل
+
 </button>
 
 <hr
@@ -973,7 +958,9 @@ placeholder="أدخل اسم المعلم/المعلمة">
 <button
 class="btn-action"
 onclick="addTeacher()">
+
 ➕ إضافة للقائمة
+
 </button>
 
 <hr
@@ -991,24 +978,24 @@ border:1px solid var(--toffee-brown);">
 <button
 class="btn-danger"
 onclick="deleteTeacher()">
+
 🗑️ حذف الاسم المحدد
+
 </button>
 
 <button
 class="btn-danger"
 style="background:#8b0000;margin-top:10px;"
 onclick="clearAllTeachers()">
+
 ⚠️ مسح جميع الأسماء
+
 </button>
 
 </div>
-
 </div>
 
-<!-- =====================================================
-     BOOKING MODAL
-===================================================== -->
-
+<!-- BOOKING MODAL -->
 <div
 id="bookingModal"
 class="modal">
@@ -1034,7 +1021,9 @@ class="modal">
 <button
 class="btn-action"
 onclick="confirmBooking()">
+
 تأكيد الحجز ✅
+
 </button>
 
 <button
@@ -1047,17 +1036,15 @@ color:red;
 margin-top:10px;
 cursor:pointer;
 font-weight:bold;">
+
 إلغاء
+
 </button>
 
 </div>
-
 </div>
 
-<!-- =====================================================
-     CANCEL MODAL
-===================================================== -->
-
+<!-- CANCEL MODAL -->
 <div
 id="cancelModal"
 class="modal">
@@ -1075,7 +1062,9 @@ class="modal">
 <button
 class="btn-danger"
 onclick="confirmCancelBooking()">
+
 نعم، إلغاء الحجز 🗑️
+
 </button>
 
 <button
@@ -1088,17 +1077,15 @@ color:#555;
 margin-top:10px;
 cursor:pointer;
 font-weight:bold;">
+
 تراجع
+
 </button>
 
 </div>
-
 </div>
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
+<!-- FOOTER -->
 <footer class="footer">
 
 <p>
@@ -1117,62 +1104,90 @@ font-weight:bold;">
 
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 
+<!-- تم إضافة Firebase Authentication -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
 <script>
 
 /* =========================================================
-   FIREBASE
+   FIREBASE CONFIG
 ========================================================= */
 
 const firebaseConfig = {
-
-apiKey:
-"AIzaSyBSp6_uiL2g2_wXE-jUKrveaHn3y1EKXWM",
-
-authDomain:
-"hessaplus-4c4c3.firebaseapp.com",
-
-projectId:
-"hessaplus-4c4c3",
-
-storageBucket:
-"hessaplus-4c4c3.firebasestorage.app",
-
-messagingSenderId:
-"995731746565",
-
-appId:
-"1:995731746565:web:fb7b5038585d7aa002116c"
-
+  apiKey: "AIzaSyBSp6_uil2g2_wXE-jUKrr6aHh3y1EKxWM",
+  authDomain: "hessaplus-4c4c3.firebaseapp.com",
+  projectId: "hessaplus-4c4c3",
+  storageBucket: "hessaplus-4c4c3.firebasestorage.app",
+  messagingSenderId: "995731746565",
+  appId: "1:995731746565:web:fb7b5038585d7aa002116c"
 };
-
 firebase.initializeApp(firebaseConfig);
 
-const db=firebase.firestore();
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+/* =========================================================
+   FIREBASE ANONYMOUS AUTHENTICATION
+   تسجيل دخول داخلي فقط إلى Firebase
+   لا يظهر للمستخدم ولا يحتاج بريدًا إلكترونيًا
+========================================================= */
+
+let firebaseUser = null;
+
+async function ensureAnonymousAuth(){
+
+    if(auth.currentUser){
+
+        firebaseUser = auth.currentUser;
+
+        console.log(
+            "Firebase user already authenticated:",
+            firebaseUser.uid
+        );
+
+        return firebaseUser;
+    }
+
+    try{
+
+        const result =
+            await auth.signInAnonymously();
+
+        firebaseUser = result.user;
+
+        console.log(
+            "Anonymous Firebase login successful:",
+            firebaseUser.uid
+        );
+
+        return firebaseUser;
+
+    }catch(error){
+
+        console.error(
+            "Anonymous Authentication Error:",
+            error
+        );
+
+        throw error;
+    }
+}
 
 /* =========================================================
    GLOBAL
 ========================================================= */
 
 let schoolId=null;
-
 let schoolName="";
-
 let schoolCode="";
-
 let teachers=[];
-
 let allBookings=[];
-
 let filteredData=[];
-
 let currentPeriod=null;
-
 let hasReportSearched=false;
-
 let teachersUnsubscribe=null;
-
 let bookingsUnsubscribe=null;
 
 /* =========================================================
@@ -1180,7 +1195,6 @@ let bookingsUnsubscribe=null;
 ========================================================= */
 
 const subjects=[
-
 "التربية الإسلامية",
 "اللغة العربية",
 "مجال أول",
@@ -1207,7 +1221,6 @@ const subjects=[
 "أخصائي أنشطة",
 "فني دعم أجهزة مدرسية",
 "منسق شؤون مدرسية"
-
 ];
 
 /* =========================================================
@@ -1215,7 +1228,6 @@ const subjects=[
 ========================================================= */
 
 const pNames=[
-
 "الأولى",
 "الثانية",
 "الثالثة",
@@ -1224,13 +1236,10 @@ const pNames=[
 "السادسة",
 "السابعة",
 "الثامنة"
-
 ];
 
 /* =========================================================
    NORMALIZE SCHOOL NAME
-   تستخدم للمقارنة فقط
-   ولا تغيّر الاسم المحفوظ
 ========================================================= */
 
 function normalizeSchoolName(name){
@@ -1247,7 +1256,6 @@ return String(name||"")
 
 /* =========================================================
    NORMALIZE SCHOOL CODE
-   رمز المدرسة هو الهوية الأساسية
 ========================================================= */
 
 function normalizeSchoolCode(code){
@@ -1261,12 +1269,12 @@ return String(code||"")
 
 /* =========================================================
    CREATE STABLE SCHOOL DOCUMENT ID
-   لا يعتمد على اسم المدرسة إطلاقاً
 ========================================================= */
 
 function createSchoolDocId(code){
 
-const normalizedCode=normalizeSchoolCode(code);
+const normalizedCode=
+normalizeSchoolCode(code);
 
 return `school_${normalizedCode.replace(/\s+/g,"_")}`;
 
@@ -1314,9 +1322,8 @@ return value;
 
 function setLoginStatus(message,type="loading"){
 
-const element=document.getElementById(
-"loginStatus"
-);
+const element=
+document.getElementById("loginStatus");
 
 if(!element){
 return;
@@ -1331,16 +1338,14 @@ element.innerHTML=message;
 
 function clearLoginStatus(){
 
-const element=document.getElementById(
-"loginStatus"
-);
+const element=
+document.getElementById("loginStatus");
 
 if(!element){
 return;
 }
 
 element.className="login-status";
-
 element.innerHTML="";
 
 }
@@ -1370,34 +1375,26 @@ function showSection(id){
 document
 .querySelectorAll(".content-section")
 .forEach(section=>{
-
 section.classList.remove(
 "active-section"
 );
-
 });
 
 const target=
 document.getElementById(id);
 
 if(target){
-
 target.classList.add(
 "active-section"
 );
-
 }
 
 if(id==="settings"){
-
 updateSettingsLists();
-
 }
 
 if(id==="report"){
-
 renderReport();
-
 }
 
 closeNav();
@@ -1406,13 +1403,6 @@ closeNav();
 
 /* =========================================================
    FIND SCHOOL BY CODE
-=========================================================
-
-   الأولوية دائماً للرمز.
-
-   1. نبحث في document المتوقع من الرمز.
-   2. إذا لم نجده نبحث في حقل code.
-   3. لا نستخدم اسم المدرسة لإنشاء هوية جديدة.
 ========================================================= */
 
 async function findSchoolByCode(code){
@@ -1428,18 +1418,11 @@ throw new Error(
 
 }
 
-/*
- * document الجديد/الثابت:
- *
- * registered_schools
- *    school_رمز_المدرسة
- */
-
 const stableDocId=
 createSchoolDocId(normalizedCode);
 
-const stableRef=db
-.collection("registered_schools")
+const stableRef=
+db.collection("registered_schools")
 .doc(stableDocId);
 
 const stableDoc=
@@ -1448,25 +1431,13 @@ await stableRef.get();
 if(stableDoc.exists){
 
 return {
-
 docId:stableDocId,
-
 data:stableDoc.data()||{},
-
 source:"stable-doc",
-
 multiple:false
-
 };
 
 }
-
-/*
- * حماية إضافية للبيانات القديمة:
- *
- * إذا كانت المدرسة موجودة في سجل قديم
- * لكن document ID مختلف، نبحث عن code.
- */
 
 const codeSnapshot=
 await db
@@ -1478,107 +1449,28 @@ if(!codeSnapshot.empty){
 
 const docs=codeSnapshot.docs;
 
-/*
- * إذا وجد سجل واحد فقط،
- * نستخدمه كما هو حتى لا نفقد البيانات القديمة.
- */
-
 if(docs.length===1){
 
 return {
-
 docId:docs[0].id,
-
 data:docs[0].data()||{},
-
 source:"legacy-code",
-
 multiple:false
-
 };
 
 }
 
-/*
- * إذا وجد أكثر من سجل بنفس الرمز،
- * لا ندمج ولا نحذف تلقائياً.
- */
-
 return {
-
 docId:null,
-
 data:null,
-
 source:"duplicate-code",
-
 multiple:true,
-
 docs:docs
-
 };
 
 }
 
 return null;
-
-}
-
-/* =========================================================
-   FIND POTENTIAL NAME DUPLICATES
-=========================================================
-
-   هذه الوظيفة لا تحذف ولا تدمج أي شيء.
-
-   تستخدم للمقارنة فقط إذا احتجنا إلى اكتشاف
-   سجلات متشابهة في الاسم.
-========================================================= */
-
-async function findPotentialNameDuplicates(schoolNameValue){
-
-const normalized=
-normalizeSchoolName(schoolNameValue);
-
-if(!normalized){
-
-return [];
-
-}
-
-const snapshot=
-await db
-.collection("registered_schools")
-.get();
-
-const matches=[];
-
-snapshot.forEach(doc=>{
-
-const data=doc.data()||{};
-
-const savedName=
-normalizeSchoolName(data.name||"");
-
-if(
-savedName &&
-savedName===normalized
-){
-
-matches.push({
-
-id:doc.id,
-
-name:data.name||"",
-
-code:data.code||""
-
-});
-
-}
-
-});
-
-return matches;
 
 }
 
@@ -1623,64 +1515,55 @@ return;
 }
 
 loginButton.disabled=true;
-
-loginButton.innerText=
-"⏳ جارٍ التحقق...";
+loginButton.innerText="⏳ جارٍ التحقق...";
 
 setLoginStatus(
-"⏳ جارٍ البحث عن المدرسة باستخدام رقم/رمز المدرسة...",
+"⏳ جارٍ التحقق من الاتصال الآمن بقاعدة البيانات...",
 "loading"
 );
 
 try{
 
 /*
- * البحث الأساسي يعتمد على الرمز فقط.
+ * التأكد أولاً من تسجيل الدخول المجهول
+ * إلى Firebase.
  */
+
+await ensureAnonymousAuth();
+
+/*
+ * البحث عن المدرسة باستخدام الرمز.
+ */
+
+setLoginStatus(
+"⏳ جارٍ البحث عن المدرسة باستخدام رقم/رمز المدرسة...",
+"loading"
+);
 
 let existingSchool=
 await findSchoolByCode(
 enteredCode
 );
 
-/*
- * =====================================================
- * الحالة 1:
- * المدرسة موجودة
- * =====================================================
- */
+/* المدرسة موجودة */
 
 if(existingSchool){
-
-/*
- * إذا وجد أكثر من سجل بنفس الرمز
- * لا نحذف ولا ندمج.
- */
 
 if(existingSchool.multiple){
 
 setLoginStatus(
 "⚠️ يوجد أكثر من سجل في قاعدة البيانات مرتبط بنفس رقم/رمز المدرسة.<br><br>" +
-"لم يتم حذف أو دمج أي سجل حفاظًا على بياناتك.<br>" +
-"يجب مراجعة السجلات المكررة قبل الدمج.",
+"لم يتم حذف أو دمج أي سجل حفاظًا على بياناتك.",
 "error"
 );
 
 loginButton.disabled=false;
-
 loginButton.innerText=
 "دخول إلى النظام 🚀";
 
 return;
 
 }
-
-/*
- * نستخدم السجل الموجود.
- *
- * الاسم الموجود في Firebase هو الاسم المعتمد.
- * لا نستبدله بالاسم الذي كتبه المستخدم.
- */
 
 schoolId=
 existingSchool.docId;
@@ -1697,25 +1580,9 @@ schoolName=
 savedData.name||
 enteredName;
 
-/*
- * لا نقوم بتغيير name.
- *
- * هذا مهم حتى لا يتغير الاسم القديم
- * بسبب اختلاف كتابة المستخدم.
- */
-
 }else{
 
-/*
- * =====================================================
- * الحالة 2:
- * الرمز غير موجود
- * =====================================================
- *
- * يمكن إنشاء مدرسة جديدة.
- *
- * document ID مبني على الرمز فقط.
- */
+/* مدرسة جديدة */
 
 const newDocId=
 createSchoolDocId(
@@ -1723,14 +1590,8 @@ enteredCode
 );
 
 const schoolRef=
-db
-.collection("registered_schools")
+db.collection("registered_schools")
 .doc(newDocId);
-
-/*
- * حماية إضافية:
- * نعيد القراءة قبل الإنشاء.
- */
 
 const doubleCheck=
 await schoolRef.get();
@@ -1752,28 +1613,17 @@ existingData.name||enteredName;
 
 }else{
 
-/*
- * ننشئ السجل لأول مرة.
- *
- * الاسم يحفظ كما أدخله المستخدم.
- * ولا يستخدم في docId.
- */
-
 await schoolRef.set({
 
 name:enteredName,
-
 code:enteredCode,
-
 createdAt:
 firebase.firestore.FieldValue.serverTimestamp()
 
 });
 
 schoolId=newDocId;
-
 schoolCode=enteredCode;
-
 schoolName=enteredName;
 
 }
@@ -1781,7 +1631,7 @@ schoolName=enteredName;
 }
 
 /*
- * حفظ بيانات الجلسة.
+ * حفظ جلسة المدرسة في الجهاز.
  */
 
 localStorage.setItem(
@@ -1809,7 +1659,7 @@ document.getElementById(
 `المدرسة: ${schoolName}`;
 
 /*
- * بدء تحميل بيانات المدرسة.
+ * تحميل بيانات المدرسة.
  */
 
 setLoginStatus(
@@ -1818,10 +1668,6 @@ setLoginStatus(
 );
 
 fetchData();
-
-/*
- * إخفاء نافذة الدخول.
- */
 
 setTimeout(()=>{
 
@@ -1843,30 +1689,34 @@ error
 let message=
 "حدث خطأ أثناء الاتصال بالنظام.";
 
-if(error.code==="permission-denied"){
+if(error.code==="auth/operation-not-allowed"){
 
 message=
-"🚫 تم رفض الوصول إلى Firebase.<br><br>" +
-"المشكلة غالباً في Firestore Security Rules.<br>" +
-"رمز الخطأ: permission-denied";
+"🔐 تسجيل الدخول المجهول غير مفعل في Firebase.<br><br>" +
+"اذهب إلى Firebase → Authentication → Sign-in method → Anonymous ثم فعّله.";
+
+}else if(error.code==="auth/network-request-failed"){
+
+message=
+"🌐 تعذر الاتصال بخدمة Firebase.<br>" +
+"تأكد من اتصال الإنترنت.";
+
+}else if(error.code==="permission-denied"){
+
+message=
+"🚫 تم رفض الوصول إلى Firestore.<br><br>" +
+"تأكد من نشر Firestore Security Rules.";
+
+}else if(error.code==="unauthenticated"){
+
+message=
+"🔐 Firebase لم يتعرف على جلسة المستخدم.";
 
 }else if(error.code==="unavailable"){
 
 message=
 "🌐 لا يمكن الاتصال بـ Firebase حالياً.<br>" +
 "تأكد من اتصال الإنترنت ثم حاول مرة أخرى.";
-
-}else if(error.code==="failed-precondition"){
-
-message=
-"⚠️ قاعدة بيانات Firestore تحتاج إلى إعداد إضافي.<br>" +
-"راجع إعدادات Firestore.";
-
-}else if(error.code==="unauthenticated"){
-
-message=
-"🔐 Firebase يطلب مصادقة للمستخدم.<br>" +
-"تحقق من إعدادات Authentication وFirestore Rules.";
 
 }else if(error.message){
 
@@ -1882,7 +1732,6 @@ message,
 );
 
 loginButton.disabled=false;
-
 loginButton.innerText=
 "دخول إلى النظام 🚀";
 
@@ -1903,19 +1752,13 @@ confirm(
 ){
 
 if(teachersUnsubscribe){
-
 teachersUnsubscribe();
-
 teachersUnsubscribe=null;
-
 }
 
 if(bookingsUnsubscribe){
-
 bookingsUnsubscribe();
-
 bookingsUnsubscribe=null;
-
 }
 
 localStorage.removeItem(
@@ -1957,19 +1800,11 @@ localStorage.getItem(
 "hessa_school_code"
 );
 
-/*
- * دعم الجلسات القديمة التي لم يكن فيها
- * hessa_school_code موجوداً.
- */
-
 if(!savedId || !savedName){
-
 return;
-
 }
 
 schoolId=savedId;
-
 schoolName=savedName;
 
 schoolCode=
@@ -1983,15 +1818,18 @@ document.getElementById(
 `المدرسة: ${schoolName}`;
 
 setLoginStatus(
-"⏳ جارٍ التحقق من اتصال المدرسة...",
+"⏳ جارٍ التحقق من الاتصال...",
 "loading"
 );
 
 try{
 
 /*
- * نتحقق من أن document القديم ما زال موجوداً.
+ * مهم جداً:
+ * نتأكد من وجود مستخدم Firebase قبل Firestore.
  */
+
+await ensureAnonymousAuth();
 
 const schoolDoc=
 await db
@@ -2000,11 +1838,6 @@ await db
 .get();
 
 if(!schoolDoc.exists){
-
-/*
- * إذا كان لدينا الرمز، نحاول العثور على
- * السجل باستخدام code.
- */
 
 if(schoolCode){
 
@@ -2061,11 +1894,6 @@ throw new Error(
 
 }else{
 
-/*
- * إذا كان السجل موجوداً،
- * نستخدم الاسم المحفوظ فيه كما هو.
- */
-
 const data=
 schoolDoc.data()||{};
 
@@ -2113,12 +1941,6 @@ console.error(
 error
 );
 
-/*
- * لا نحذف بيانات Firebase.
- * نحذف فقط جلسة المتصفح حتى يستطيع المستخدم
- * تسجيل الدخول من جديد.
- */
-
 localStorage.removeItem(
 "hessa_school_id"
 );
@@ -2132,9 +1954,7 @@ localStorage.removeItem(
 );
 
 schoolId=null;
-
 schoolName="";
-
 schoolCode="";
 
 document.getElementById(
@@ -2149,7 +1969,13 @@ document.getElementById(
 let message=
 "تعذر استعادة جلسة المدرسة.";
 
-if(error.code==="permission-denied"){
+if(error.code==="auth/operation-not-allowed"){
+
+message=
+"🔐 تسجيل الدخول المجهول غير مفعل في Firebase.<br><br>" +
+"فعّل Anonymous من Authentication → Sign-in method.";
+
+}else if(error.code==="permission-denied"){
 
 message=
 "🚫 تم رفض الوصول إلى Firebase.<br>" +
@@ -2183,28 +2009,25 @@ message,
 function fetchData(){
 
 if(!schoolId){
-
 return;
-
 }
 
-/*
- * إلغاء المستمعين السابقين.
- */
+if(!firebaseUser){
+console.error(
+"Firebase user is not authenticated."
+);
+return;
+}
 
 if(teachersUnsubscribe){
-
 teachersUnsubscribe();
-
 }
 
 if(bookingsUnsubscribe){
-
 bookingsUnsubscribe();
-
 }
 
-/* ================= TEACHERS ================= */
+/* TEACHERS */
 
 teachersUnsubscribe=
 db
@@ -2263,7 +2086,7 @@ alert(
 
 );
 
-/* ================= BOOKINGS ================= */
+/* BOOKINGS */
 
 bookingsUnsubscribe=
 db
@@ -2281,7 +2104,6 @@ snapshot.forEach(doc=>{
 allBookings.push({
 
 id:doc.id,
-
 ...doc.data()
 
 });
@@ -2326,9 +2148,7 @@ document.getElementById(
 );
 
 if(!grid){
-
 return;
-
 }
 
 grid.innerHTML="";
@@ -2353,18 +2173,10 @@ item.date==today
 null;
 
 const card=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 card.className=
-`period-card ${
-booking
-?
-"is-booked"
-:
-""
-}`;
+`period-card ${booking ? "is-booked" : ""}`;
 
 card.innerHTML=`
 
@@ -2377,11 +2189,7 @@ card.innerHTML=`
 ${
 booking
 ?
-"🔒 "+
-escapeHtml(
-booking.teacher
-)+
-" (إلغاء)"
+"🔒 "+escapeHtml(booking.teacher)+" (إلغاء)"
 :
 "🟢 متاحة"
 }
@@ -2408,6 +2216,7 @@ booking.teacher
 grid.appendChild(card);
 
 }
+
 );
 
 }
@@ -2418,34 +2227,12 @@ grid.appendChild(card);
 
 function escapeHtml(value){
 
-return String(
-value??""
-)
-
-.replace(
-/&/g,
-"&amp;"
-)
-
-.replace(
-/</g,
-"&lt;"
-)
-
-.replace(
-/>/g,
-"&gt;"
-)
-
-.replace(
-/"/g,
-"&quot;"
-)
-
-.replace(
-/'/g,
-"&#039;"
-);
+return String(value??"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
 
@@ -2464,9 +2251,7 @@ alert(
 "⚠️ القائمة فارغة! يرجى إضافة الأسماء من قسم الإعدادات أولاً."
 );
 
-showSection(
-"settings"
-);
+showSection("settings");
 
 return;
 
@@ -2480,12 +2265,8 @@ document.getElementById(
 teachers
 .map(
 teacher=>
-`<option value="${escapeHtml(
-teacher
-)}">
-${escapeHtml(
-teacher
-)}
+`<option value="${escapeHtml(teacher)}">
+${escapeHtml(teacher)}
 </option>`
 )
 .join("");
@@ -2496,12 +2277,8 @@ document.getElementById(
 subjects
 .map(
 subject=>
-`<option value="${escapeHtml(
-subject
-)}">
-${escapeHtml(
-subject
-)}
+`<option value="${escapeHtml(subject)}">
+${escapeHtml(subject)}
 </option>`
 )
 .join("");
@@ -2527,13 +2304,13 @@ document.getElementById(
 async function confirmBooking(){
 
 if(!schoolId){
-
-alert(
-"يرجى تسجيل الدخول أولاً."
-);
-
+alert("يرجى تسجيل الدخول أولاً.");
 return;
+}
 
+if(!firebaseUser){
+alert("جارٍ تهيئة الاتصال الآمن. حاول مرة أخرى.");
+return;
 }
 
 const teacher=
@@ -2550,13 +2327,8 @@ const date=
 getTodayString();
 
 if(!teacher){
-
-alert(
-"يرجى اختيار الاسم"
-);
-
+alert("يرجى اختيار الاسم");
 return;
-
 }
 
 const docId=
@@ -2572,12 +2344,11 @@ await db
 .set({
 
 date:date,
-
 period:currentPeriod,
-
 teacher:teacher,
-
-subject:subject
+subject:subject,
+createdAt:
+firebase.firestore.FieldValue.serverTimestamp()
 
 });
 
@@ -2590,9 +2361,7 @@ console.error(
 error
 );
 
-if(
-error.code==="permission-denied"
-){
+if(error.code==="permission-denied"){
 
 alert(
 "🚫 تم رفض حفظ الحجز من Firestore.\n\n" +
@@ -2653,6 +2422,16 @@ return;
 
 }
 
+if(!firebaseUser){
+
+alert(
+"لا يوجد اتصال مصادق عليه مع Firebase."
+);
+
+return;
+
+}
+
 const date=
 getTodayString();
 
@@ -2677,9 +2456,7 @@ console.error(
 error
 );
 
-if(
-error.code==="permission-denied"
-){
+if(error.code==="permission-denied"){
 
 alert(
 "🚫 تم رفض إلغاء الحجز من Firestore.\n\n" +
@@ -2715,28 +2492,27 @@ throw new Error(
 
 }
 
+if(!firebaseUser){
+
+throw new Error(
+"المستخدم غير مصادق عليه في Firebase."
+);
+
+}
+
 const snapshot=
 await db
 .collection("schools")
 .doc(schoolId)
 .collection("bookings")
-.where(
-"date",
-">=",
-startDate
-)
-.where(
-"date",
-"<=",
-endDate
-)
+.where("date",">=",startDate)
+.where("date","<=",endDate)
 .get();
 
 return snapshot.docs.map(
 doc=>({
 
 id:doc.id,
-
 ...doc.data()
 
 })
@@ -2771,17 +2547,14 @@ document.getElementById(
 );
 
 errorElement.textContent="";
-
-errorElement.style.display=
-"none";
+errorElement.style.display="none";
 
 if(!schoolId){
 
 errorElement.textContent=
 "يرجى تسجيل الدخول إلى المدرسة أولاً.";
 
-errorElement.style.display=
-"block";
+errorElement.style.display="block";
 
 return;
 
@@ -2792,8 +2565,7 @@ if(!startDate || !endDate){
 errorElement.textContent=
 "يرجى اختيار تاريخ البداية وتاريخ النهاية.";
 
-errorElement.style.display=
-"block";
+errorElement.style.display="block";
 
 return;
 
@@ -2804,18 +2576,15 @@ if(startDate>endDate){
 errorElement.textContent=
 "تاريخ البداية يجب أن يكون قبل أو مساويًا لتاريخ النهاية.";
 
-errorElement.style.display=
-"block";
+errorElement.style.display="block";
 
 return;
 
 }
 
-loadingElement.style.display=
-"block";
+loadingElement.style.display="block";
 
 filteredData=[];
-
 hasReportSearched=true;
 
 disableReportActions();
@@ -2838,9 +2607,7 @@ String(b.date)
 );
 
 if(dateComparison!==0){
-
 return dateComparison;
-
 }
 
 return Number(a.period||0)-
@@ -2865,17 +2632,14 @@ error.code==="permission-denied"
 :
 "حدث خطأ أثناء تحميل البيانات من قاعدة البيانات. تأكد من الاتصال.";
 
-errorElement.style.display=
-"block";
+errorElement.style.display="block";
 
 filteredData=[];
-
 renderReport();
 
 }finally{
 
-loadingElement.style.display=
-"none";
+loadingElement.style.display="none";
 
 }
 
@@ -2903,23 +2667,16 @@ document.getElementById(
 );
 
 if(!tbody){
-
 return;
-
 }
 
 tbody.innerHTML="";
-
-emptyState.style.display=
-"none";
-
-meta.style.display=
-"none";
+emptyState.style.display="none";
+meta.style.display="none";
 
 if(!hasReportSearched){
 
 disableReportActions();
-
 return;
 
 }
@@ -2929,11 +2686,8 @@ if(
 filteredData.length===0
 ){
 
-emptyState.style.display=
-"block";
-
+emptyState.style.display="block";
 disableReportActions();
-
 return;
 
 }
@@ -2942,14 +2696,10 @@ filteredData.forEach(
 booking=>{
 
 const row=
-document.createElement(
-"tr"
-);
+document.createElement("tr");
 
 const dateCell=
-document.createElement(
-"td"
-);
+document.createElement("td");
 
 dateCell.textContent=
 formatReportDate(
@@ -2957,9 +2707,7 @@ booking.date
 );
 
 const periodCell=
-document.createElement(
-"td"
-);
+document.createElement("td");
 
 const periodNumber=
 parseInt(
@@ -2971,49 +2719,28 @@ periodCell.textContent=
 !isNaN(periodNumber) &&
 pNames[periodNumber-1]
 ?
-`الحصة ${
-pNames[periodNumber-1]
-}`
+`الحصة ${pNames[periodNumber-1]}`
 :
-`الحصة ${
-booking.period||""
-}`;
+`الحصة ${booking.period||""}`;
 
 const teacherCell=
-document.createElement(
-"td"
-);
+document.createElement("td");
 
 teacherCell.textContent=
 booking.teacher||"";
 
 const subjectCell=
-document.createElement(
-"td"
-);
+document.createElement("td");
 
 subjectCell.textContent=
 booking.subject||"";
 
-row.appendChild(
-dateCell
-);
+row.appendChild(dateCell);
+row.appendChild(periodCell);
+row.appendChild(teacherCell);
+row.appendChild(subjectCell);
 
-row.appendChild(
-periodCell
-);
-
-row.appendChild(
-teacherCell
-);
-
-row.appendChild(
-subjectCell
-);
-
-tbody.appendChild(
-row
-);
+tbody.appendChild(row);
 
 }
 );
@@ -3031,24 +2758,17 @@ document.getElementById(
 meta.textContent=
 `عدد الحجوزات: ${filteredData.length} | الفترة: ${formatReportDate(startDate)} إلى ${formatReportDate(endDate)}`;
 
-meta.style.display=
-"block";
+meta.style.display="block";
 
 document.getElementById(
 "printSchoolName"
 ).textContent=
-`المدرسة: ${
-schoolName||"غير محددة"
-}`;
+`المدرسة: ${schoolName||"غير محددة"}`;
 
 document.getElementById(
 "printDateRange"
 ).textContent=
-`الفترة: ${
-formatReportDate(startDate)
-} إلى ${
-formatReportDate(endDate)
-}`;
+`الفترة: ${formatReportDate(startDate)} إلى ${formatReportDate(endDate)}`;
 
 enableReportActions();
 
@@ -3109,11 +2829,9 @@ window.print();
 window.addEventListener(
 "afterprint",
 ()=>{
-
 document.body.classList.remove(
 "printing-report"
 );
-
 }
 );
 
@@ -3128,8 +2846,7 @@ document.getElementById(
 "excelFileInput"
 );
 
-const file=
-fileInput.files[0];
+const file=fileInput.files[0];
 
 if(!file){
 
@@ -3190,10 +2907,7 @@ let importedNames=[];
 jsonData.forEach(
 row=>{
 
-if(
-row &&
-row.length>0
-){
+if(row && row.length>0){
 
 row.forEach(
 cell=>{
@@ -3212,9 +2926,7 @@ name!=="اسم المعلم" &&
 name!=="الاسم"
 ){
 
-importedNames.push(
-name
-);
+importedNames.push(name);
 
 }
 
@@ -3228,9 +2940,7 @@ name
 }
 );
 
-if(
-importedNames.length===0
-){
+if(importedNames.length===0){
 
 alert(
 "لم يتم العثور على أسماء جديدة في الملف."
@@ -3240,8 +2950,7 @@ return;
 
 }
 
-const batch=
-db.batch();
+const batch=db.batch();
 
 importedNames.forEach(
 name=>{
@@ -3273,13 +2982,9 @@ fileInput.value="";
 
 }catch(error){
 
-console.error(
-error
-);
+console.error(error);
 
-if(
-error.code==="permission-denied"
-){
+if(error.code==="permission-denied"){
 
 alert(
 "🚫 تم رفض حفظ الأسماء.\n\nتحقق من Firestore Security Rules."
@@ -3297,9 +3002,7 @@ alert(
 
 };
 
-reader.readAsArrayBuffer(
-file
-);
+reader.readAsArrayBuffer(file);
 
 }
 
@@ -3318,14 +3021,10 @@ const name=
 nameInput.value.trim();
 
 if(!name){
-
 return;
-
 }
 
-if(
-teachers.includes(name)
-){
+if(teachers.includes(name)){
 
 alert(
 "هذا الاسم موجود بالفعل!"
@@ -3353,22 +3052,16 @@ await db
 .collection("teachers")
 .doc(name)
 .set({
-
 name:name
-
 });
 
 nameInput.value="";
 
 }catch(error){
 
-console.error(
-error
-);
+console.error(error);
 
-if(
-error.code==="permission-denied"
-){
+if(error.code==="permission-denied"){
 
 alert(
 "🚫 تم رفض إضافة الاسم من Firebase.\n\nتحقق من Firestore Security Rules."
@@ -3401,9 +3094,7 @@ const teacherToDelete=
 select.value;
 
 if(!teacherToDelete){
-
 return;
-
 }
 
 if(
@@ -3427,13 +3118,9 @@ await db
 
 }catch(error){
 
-console.error(
-error
-);
+console.error(error);
 
-if(
-error.code==="permission-denied"
-){
+if(error.code==="permission-denied"){
 
 alert(
 "🚫 تم رفض حذف الاسم من Firebase.\n\nتحقق من Firestore Security Rules."
@@ -3476,14 +3163,11 @@ await db
 .collection("teachers")
 .get();
 
-const batch=
-db.batch();
+const batch=db.batch();
 
 snapshot.forEach(
 doc=>{
-batch.delete(
-doc.ref
-);
+batch.delete(doc.ref);
 }
 );
 
@@ -3491,13 +3175,9 @@ await batch.commit();
 
 }catch(error){
 
-console.error(
-error
-);
+console.error(error);
 
-if(
-error.code==="permission-denied"
-){
+if(error.code==="permission-denied"){
 
 alert(
 "🚫 تم رفض مسح الأسماء من Firebase.\n\nتحقق من Firestore Security Rules."
@@ -3532,16 +3212,12 @@ document.getElementById(
 );
 
 if(!select){
-
 return;
-
 }
 
 if(countSpan){
-
 countSpan.innerText=
 teachers.length;
-
 }
 
 if(
@@ -3558,12 +3234,8 @@ select.innerHTML=
 teachers
 .map(
 teacher=>
-`<option value="${escapeHtml(
-teacher
-)}">
-${escapeHtml(
-teacher
-)}
+`<option value="${escapeHtml(teacher)}">
+${escapeHtml(teacher)}
 </option>`
 )
 .join("");
@@ -3576,8 +3248,9 @@ teacher
    PAGE LOAD
 ========================================================= */
 
-window.onload=
-function(){
+window.addEventListener(
+"load",
+async function(){
 
 const startDate=
 document.getElementById(
@@ -3593,24 +3266,71 @@ const today=
 getTodayString();
 
 if(startDate){
-
-startDate.value=
-today;
-
+startDate.value=today;
 }
 
 if(endDate){
-
-endDate.value=
-today;
-
+endDate.value=today;
 }
 
 disableReportActions();
 
-checkSavedLogin();
+/*
+ * أهم تعديل:
+ * لا نبدأ Firestore إلا بعد
+ * Anonymous Authentication.
+ */
 
-};
+try{
+
+setLoginStatus(
+"⏳ جارٍ الاتصال بخدمة Firebase...",
+"loading"
+);
+
+await ensureAnonymousAuth();
+
+console.log(
+"Firebase initialized successfully."
+);
+
+await checkSavedLogin();
+
+}catch(error){
+
+console.error(
+"Firebase startup error:",
+error
+);
+
+if(error.code==="auth/operation-not-allowed"){
+
+setLoginStatus(
+"🔐 يجب تفعيل Anonymous Authentication في Firebase أولاً.<br><br>" +
+"Firebase Console → Authentication → Sign-in method → Anonymous → Enable",
+"error"
+);
+
+}else if(error.code==="auth/network-request-failed"){
+
+setLoginStatus(
+"🌐 تعذر الاتصال بـ Firebase. تأكد من الإنترنت.",
+"error"
+);
+
+}else{
+
+setLoginStatus(
+"❌ تعذر تشغيل الاتصال بقاعدة البيانات.<br>" +
+(error.message||"خطأ غير معروف"),
+"error"
+);
+
+}
+
+}
+
+});
 
 /* =========================================================
    ENTER KEY LOGIN
@@ -3631,12 +3351,8 @@ codeInput.addEventListener(
 "keydown",
 event=>{
 
-if(
-event.key==="Enter"
-){
-
+if(event.key==="Enter"){
 loginSchool();
-
 }
 
 }
@@ -3667,10 +3383,7 @@ e.preventDefault();
 deferredPrompt=e;
 
 if(installBtn){
-
-installBtn.style.display=
-"inline-block";
-
+installBtn.style.display="inline-block";
 }
 
 }
@@ -3683,9 +3396,7 @@ installBtn.addEventListener(
 async()=>{
 
 if(!deferredPrompt){
-
 return;
-
 }
 
 deferredPrompt.prompt();
@@ -3693,9 +3404,7 @@ deferredPrompt.prompt();
 const {outcome}=
 await deferredPrompt.userChoice;
 
-if(
-outcome==="accepted"
-){
+if(outcome==="accepted"){
 
 console.log(
 "تم تثبيت التطبيق بنجاح"
@@ -3705,8 +3414,7 @@ console.log(
 
 deferredPrompt=null;
 
-installBtn.style.display=
-"none";
+installBtn.style.display="none";
 
 }
 );
@@ -3718,10 +3426,7 @@ window.addEventListener(
 ()=>{
 
 if(installBtn){
-
-installBtn.style.display=
-"none";
-
+installBtn.style.display="none";
 }
 
 }
@@ -3731,9 +3436,7 @@ installBtn.style.display=
    SERVICE WORKER
 ========================================================= */
 
-if(
-"serviceWorker" in navigator
-){
+if("serviceWorker" in navigator){
 
 window.addEventListener(
 "load",
